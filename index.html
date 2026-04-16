@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carpe Diem — L'Arte Sacra da Indossare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italiana&display=swap" rel="stylesheet">
+<style>
+/* ——————————————————————————————————————
+   CARPE DIEM — L'Arte Sacra da Indossare
+   ——————————————————————————————————————— */
+
+:root{
+  --ink:            #0a0604;
+  --ink-deep:       #050302;
+  --ink-soft:       #13100b;
+  --parchment:      #f4ebd9;
+  --parchment-dim:  #ddd1b8;
+  --gold:           #c9a961;
+  --gold-bright:    #e4c880;
+  --gold-deep:      #8a6f3b;
+  --gold-shadow:    #5a4627;
+  --wine:           #6b1820;
+  --wine-deep:      #4a0f15;
+  --wine-bright:    #a82a33;
+  --bone:           #e8dcc2;
+  --shadow:         rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+html, body{
+  background:var(--ink);
+  color:var(--parchment);
+  font-family:'Cormorant Garamond', serif;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* Subtle grain/noise overlay over the whole site */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9998;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/></svg>");
+  mix-blend-mode:overlay;opacity:.35;
+}
+
+/* Custom cursor */
+.cursor-dot, .cursor-ring{
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:10000;
+  transform:translate(-50%,-50%);
+  transition:transform .15s ease, width .25s ease, height .25s ease, border-color .25s ease;
+  mix-blend-mode:difference;
+}
+.cursor-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold-bright);
+}
+.cursor-ring{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--gold);
+}
+body.hover-active .cursor-ring{
+  width:60px;height:60px;border-color:var(--gold-bright);
+}
+
+/* Typography */
+h1,h2,h3,h4,.display{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.subtle-italic{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  letter-spacing:.05em;
+  text-transform:none;
+}
+.eyebrow{
+  font-family:'Cinzel', serif;
+  font-size:.7rem;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+a{color:inherit;text-decoration:none}
+
+/* ——————————————— NAVIGATION ——————————————— */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 60px;
+  transition:all .5s ease;
+  background:linear-gradient(to bottom, rgba(10,6,4,.7), transparent);
+}
+.nav.scrolled{
+  padding:14px 60px;
+  background:rgba(10,6,4,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,169,97,.18);
+}
+.nav-logo{
+  font-family:'Cinzel', serif;
+  font-size:1rem;
+  letter-spacing:.4em;
+  color:var(--gold);
+  font-weight:600;
+}
+.nav-logo span{color:var(--parchment);font-weight:400;font-size:.7rem;letter-spacing:.3em;display:block;margin-top:2px;opacity:.6}
+.nav-menu{display:flex;gap:44px;list-style:none}
+.nav-menu a{
+  font-family:'Cinzel', serif;
+  font-size:.72rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  position:relative;
+  padding:6px 0;
+  transition:color .3s;
+}
+.nav-menu a::after{
+  content:"";
+  position:absolute;left:50%;bottom:0;
+  width:0;height:1px;background:var(--gold);
+  transition:all .4s ease;transform:translateX(-50%);
+}
+.nav-menu a:hover{color:var(--gold)}
+.nav-menu a:hover::after{width:100%}
+.nav-cart{
+  font-family:'Cinzel', serif;
+  font-size:.7rem;letter-spacing:.3em;
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:9px 18px;
+  transition:all .3s;
+}
+.nav-cart:hover{background:var(--gold);color:var(--ink)}
+
+/* ——————————————— HERO ——————————————— */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse at top, #1a1108 0%, #0a0604 40%, #000 100%);
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(201,169,97,.18) 0%, transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(107,24,32,.1) 0%, transparent 50%);
+  pointer-events:none;
+}
+
+/* Sacred frame */
+.sacred-frame{
+  position:absolute;
+  top:90px;left:50px;right:50px;bottom:50px;
+  pointer-events:none;
+  border:1px solid rgba(201,169,97,.15);
+}
+.sacred-frame::before,
+.sacred-frame::after{
+  content:"";
+  position:absolute;
+  width:40px;height:40px;
+  border:1px solid rgba(201,169,97,.35);
+}
+.sacred-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+.sacred-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+.sacred-frame-inner{
+  position:absolute;inset:0;
+}
+.sacred-frame-inner::before,
+.sacred-frame-inner::after{
+  content:"";
+  position:absolute;
+  width:40px;height:40px;
+  border:1px solid rgba(201,169,97,.35);
+}
+.sacred-frame-inner::before{top:-1px;right:-1px;border-left:none;border-bottom:none}
+.sacred-frame-inner::after{bottom:-1px;left:-1px;border-right:none;border-top:none}
+
+/* Starburst — the logo animated */
+.starburst{
+  width:min(340px, 45vw);
+  height:min(340px, 45vw);
+  position:relative;
+  margin-bottom:40px;
+  animation:floatgently 6s ease-in-out infinite;
+}
+.starburst svg{
+  width:100%;height:100%;
+  filter:drop-shadow(0 0 30px rgba(201,169,97,.4));
+}
+.starburst-core{
+  animation:pulse 3s ease-in-out infinite;
+  transform-origin:center;
+}
+.ray{
+  transform-origin:center;
+  animation:rayGlow 4s ease-in-out infinite;
+}
+
+@keyframes floatgently{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+@keyframes pulse{
+  0%,100%{opacity:1; filter:drop-shadow(0 0 8px rgba(228,200,128,.8))}
+  50%{opacity:.9; filter:drop-shadow(0 0 20px rgba(228,200,128,1))}
+}
+@keyframes rayGlow{
+  0%,100%{opacity:.85}
+  50%{opacity:1}
+}
+
+.hero-brand{
+  font-family:'Cinzel', serif;
+  font-size:clamp(2.8rem, 7vw, 5.8rem);
+  font-weight:500;
+  letter-spacing:.3em;
+  color:var(--parchment);
+  margin-bottom:8px;
+  background:linear-gradient(180deg, var(--parchment) 0%, var(--gold-bright) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-align:center;
+  line-height:1.05;
+  position:relative;
+}
+.hero-brand .char{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(40px);
+  animation:charIn .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes charIn{to{opacity:1;transform:translateY(0)}}
+
+.hero-sub{
+  font-family:'Cinzel', serif;
+  font-size:clamp(.85rem, 1.4vw, 1.1rem);
+  letter-spacing:.5em;
+  color:var(--gold);
+  margin-bottom:14px;
+  opacity:0;animation:fadeUp 1s ease .9s forwards;
+}
+.hero-tagline{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(1.1rem,1.8vw,1.5rem);
+  color:var(--parchment-dim);
+  letter-spacing:.08em;
+  margin-top:12px;
+  opacity:0;animation:fadeUp 1s ease 1.2s forwards;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.hero-divider{
+  display:flex;align-items:center;gap:18px;
+  margin-top:36px;
+  opacity:0;animation:fadeUp 1.3s ease 1.5s forwards;
+}
+.hero-divider span{
+  height:1px;width:100px;background:linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.hero-divider svg{
+  width:20px;height:20px;color:var(--gold);
+}
+
+/* Scroll indicator */
+.scroll-indicator{
+  position:absolute;bottom:60px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--gold);
+  opacity:0;animation:fadeUp 1s ease 2s forwards;
+}
+.scroll-indicator .txt{
+  font-family:'Cinzel', serif;
+  font-size:.65rem;letter-spacing:.4em;
+}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom, transparent, var(--gold));
+  position:relative;
+  overflow:hidden;
+}
+.scroll-line::after{
+  content:"";position:absolute;top:-50%;left:0;width:1px;height:50%;
+  background:var(--gold-bright);
+  animation:scrollDrop 2.5s ease-in-out infinite;
+}
+@keyframes scrollDrop{
+  0%{top:-50%}
+  100%{top:100%}
+}
+
+/* Decorative roman numerals next to hero corners */
+.hero-corner-i, .hero-corner-ii{
+  position:absolute;
+  font-family:'Cinzel', serif;
+  font-size:.7rem;letter-spacing:.4em;color:var(--gold);
+  opacity:.5;
+  z-index:2;
+}
+.hero-corner-i{top:110px;left:80px}
+.hero-corner-ii{bottom:80px;right:80px;writing-mode:vertical-rl}
+
+/* ——————————————— GENERIC SECTION STYLING ——————————————— */
+section{
+  position:relative;padding:140px 60px;
+}
+.container{
+  max-width:1400px;margin:0 auto;
+}
+.section-number{
+  font-family:'Cinzel', serif;
+  font-size:.75rem;letter-spacing:.5em;
+  color:var(--gold);
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:28px;
+}
+.section-number::before{
+  content:"";
+  width:40px;height:1px;background:var(--gold);
+}
+.section-title{
+  font-family:'Cinzel', serif;
+  font-size:clamp(2rem, 4vw, 3.6rem);
+  font-weight:500;
+  letter-spacing:.15em;
+  line-height:1.15;
+  margin-bottom:30px;
+  color:var(--parchment);
+}
+.section-title em{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  text-transform:none;
+  letter-spacing:.02em;
+  color:var(--gold);
+}
+
+/* Reveal animation */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.15s}
+.reveal.delay-2{transition-delay:.3s}
+.reveal.delay-3{transition-delay:.45s}
+.reveal.delay-4{transition-delay:.6s}
+
+/* Gold drawing line */
+.gold-line{
+  position:relative;
+  height:1px;width:100%;max-width:120px;
+  background:var(--gold-deep);
+  margin:24px 0;
+  overflow:hidden;
+}
+.gold-line::after{
+  content:"";position:absolute;top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(to right, transparent, var(--gold-bright), transparent);
+}
+.visible .gold-line::after{animation:sheen 1.8s ease forwards}
+@keyframes sheen{
+  to{left:200%}
+}
+
+/* ——————————————— PHILOSOPHY SECTION ——————————————— */
+.philosophy{
+  padding:180px 60px;
+  background:linear-gradient(180deg, #0a0604 0%, #140c06 50%, #0a0604 100%);
+  position:relative;
+  overflow:hidden;
+}
+.philosophy::before{
+  content:"";
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:800px;height:800px;max-width:80vw;max-height:80vw;
+  background:radial-gradient(circle, rgba(201,169,97,.08) 0%, transparent 65%);
+  pointer-events:none;
+}
+.philosophy-inner{
+  position:relative;
+  max-width:900px;margin:0 auto;text-align:center;
+}
+.philosophy-quote{
+  font-family:'Italiana', 'Cinzel', serif;
+  font-weight:400;
+  font-size:clamp(2rem, 4.5vw, 4rem);
+  line-height:1.3;
+  color:var(--parchment);
+  margin:40px 0;
+  letter-spacing:.01em;
+}
+.philosophy-quote em{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  color:var(--gold);
+}
+.philosophy-body{
+  font-size:1.1rem;
+  color:var(--parchment-dim);
+  line-height:1.9;
+  max-width:620px;margin:0 auto 28px;
+  font-weight:300;
+}
+
+/* Big ornamental cross as bg decoration in philosophy */
+.bg-cross{
+  position:absolute;
+  opacity:.06;
+  pointer-events:none;
+  color:var(--gold);
+}
+.bg-cross.tl{top:80px;left:80px;width:120px;height:120px}
+.bg-cross.br{bottom:80px;right:80px;width:120px;height:120px}
+
+/* ——————————————— ATELIER (how it's made) ——————————————— */
+.atelier{
+  padding:160px 60px;
+  background:
+    linear-gradient(180deg, rgba(10,6,4,1) 0%, rgba(20,12,6,1) 100%);
+  position:relative;
+}
+.atelier-head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:end;
+  margin-bottom:100px;
+}
+.atelier-head-lead{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.3rem;
+  line-height:1.8;
+  color:var(--parchment-dim);
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:50px;
+  position:relative;
+}
+.steps::before{
+  content:"";
+  position:absolute;
+  top:38px;left:2%;right:2%;
+  height:1px;
+  background:linear-gradient(to right, transparent, var(--gold-deep) 15%, var(--gold-deep) 85%, transparent);
+  z-index:0;
+}
+.step{
+  position:relative;
+  text-align:left;
+}
+.step-numeral{
+  width:78px;height:78px;
+  background:var(--ink-deep);
+  border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  position:relative;z-index:1;
+  transition:all .5s;
+}
+.step-numeral span{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:1.3rem;
+  color:var(--gold);
+  letter-spacing:.1em;
+}
+.step:hover .step-numeral{
+  background:var(--gold);
+  transform:rotate(45deg);
+}
+.step:hover .step-numeral span{
+  color:var(--ink);
+  transform:rotate(-45deg);
+  transition:color .5s;
+}
+.step-numeral span{transition:color .5s, transform .5s}
+.step h3{
+  font-size:1rem;
+  margin-bottom:14px;
+  color:var(--parchment);
+}
+.step p{
+  font-size:1rem;
+  color:var(--parchment-dim);
+  line-height:1.7;
+  font-weight:300;
+}
+
+/* ——————————————— SHOP ——————————————— */
+.shop{
+  padding:140px 60px 160px;
+  background:var(--ink);
+  position:relative;
+}
+.shop-head{
+  text-align:center;margin-bottom:90px;
+}
+.shop-head .section-number{justify-content:center}
+.shop-head .section-number::before{
+  background:linear-gradient(to right, transparent, var(--gold));
+}
+.shop-head .section-number::after{
+  content:"";
+  width:40px;height:1px;
+  background:linear-gradient(to left, transparent, var(--gold));
+}
+
+.filters{
+  display:flex;gap:26px;justify-content:center;
+  margin-bottom:60px;
+  flex-wrap:wrap;
+}
+.filter-pill{
+  font-family:'Cinzel', serif;
+  font-size:.7rem;letter-spacing:.35em;
+  text-transform:uppercase;
+  padding:10px 22px;
+  border:1px solid rgba(201,169,97,.3);
+  color:var(--parchment-dim);
+  background:transparent;
+  cursor:none;
+  transition:all .35s;
+}
+.filter-pill:hover, .filter-pill.active{
+  color:var(--ink);
+  background:var(--gold);
+  border-color:var(--gold);
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:40px;
+}
+.product{
+  position:relative;
+  background:var(--ink-soft);
+  border:1px solid rgba(201,169,97,.12);
+  overflow:hidden;
+  transition:all .5s;
+}
+.product:hover{
+  border-color:rgba(201,169,97,.5);
+  transform:translateY(-6px);
+  box-shadow:0 30px 60px rgba(0,0,0,.6), 0 0 40px rgba(201,169,97,.08);
+}
+.product-img{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:#1a1108;
+}
+.product-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1s;
+  filter:brightness(.92) contrast(1.04) saturate(.97);
+}
+.product:hover .product-img img{
+  transform:scale(1.08);
+  filter:brightness(1) contrast(1.06) saturate(1);
+}
+.product-tag{
+  position:absolute;top:18px;left:18px;
+  font-family:'Cinzel', serif;
+  font-size:.58rem;letter-spacing:.3em;
+  padding:6px 11px;
+  background:rgba(10,6,4,.85);
+  border:1px solid var(--gold);
+  color:var(--gold);
+  z-index:2;
+  backdrop-filter:blur(4px);
+}
+.product-info{
+  padding:28px 26px 32px;
+  position:relative;
+}
+.product-name{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.95rem;letter-spacing:.15em;
+  color:var(--parchment);
+  margin-bottom:6px;
+  line-height:1.3;
+}
+.product-desc{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:.95rem;
+  color:var(--parchment-dim);
+  margin-bottom:20px;
+  line-height:1.5;
+}
+.product-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px;
+  border-top:1px solid rgba(201,169,97,.12);
+}
+.product-price{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:1.15rem;
+  color:var(--gold);
+  letter-spacing:.1em;
+}
+.product-price .cents{font-size:.7em;vertical-align:top}
+.product-btn{
+  font-family:'Cinzel', serif;
+  font-size:.65rem;letter-spacing:.35em;
+  text-transform:uppercase;
+  padding:10px 16px;
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  cursor:none;
+  transition:all .35s;
+}
+.product-btn:hover{
+  background:var(--gold);color:var(--ink);
+  letter-spacing:.45em;
+}
+
+/* ——————————————— GALLERY ——————————————— */
+.gallery{
+  padding:140px 60px;
+  background:linear-gradient(180deg, var(--ink) 0%, #0d0806 100%);
+  position:relative;
+}
+.gallery-head{
+  text-align:center;margin-bottom:80px;
+}
+.gallery-head .section-number{justify-content:center}
+.gallery-head .section-number::before,
+.gallery-head .section-number::after{
+  content:"";width:40px;height:1px;background:var(--gold);
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  grid-auto-rows:80px;
+  gap:18px;
+}
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(201,169,97,.1);
+  cursor:none;
+}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.5s cubic-bezier(.2,.8,.2,1), filter 1s;
+  filter:brightness(.88) saturate(.95);
+}
+.gallery-item::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(10,6,4,.75) 100%);
+  opacity:0;transition:opacity .5s;
+}
+.gallery-item:hover img{transform:scale(1.1);filter:brightness(1)}
+.gallery-item:hover::after{opacity:1}
+.gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
+.gallery-caption{
+  position:absolute;left:20px;bottom:18px;
+  font-family:'Cinzel', serif;
+  font-size:.7rem;letter-spacing:.3em;
+  color:var(--gold-bright);
+  opacity:0;transform:translateY(10px);
+  transition:all .4s;
+  z-index:2;
+}
+
+.g-1{grid-column:span 5;grid-row:span 7}
+.g-2{grid-column:span 4;grid-row:span 4}
+.g-3{grid-column:span 3;grid-row:span 4}
+.g-4{grid-column:span 4;grid-row:span 3}
+.g-5{grid-column:span 3;grid-row:span 3}
+.g-6{grid-column:span 3;grid-row:span 5}
+.g-7{grid-column:span 4;grid-row:span 5}
+.g-8{grid-column:span 5;grid-row:span 5}
+
+/* ——————————————— TESTIMONI / QUOTE BAND ——————————————— */
+.band{
+  padding:140px 60px;
+  background:var(--ink-deep);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.band::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right, transparent, var(--gold-deep), transparent);
+}
+.band::after{
+  content:"";
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right, transparent, var(--gold-deep), transparent);
+}
+.band-quote{
+  font-family:'Italiana', serif;
+  font-size:clamp(1.8rem, 4vw, 3rem);
+  color:var(--parchment);
+  line-height:1.4;
+  max-width:900px;margin:0 auto 24px;
+}
+.band-quote::before, .band-quote::after{
+  content:"";
+  display:inline-block;
+  width:50px;height:1px;
+  background:var(--gold);
+  vertical-align:middle;
+  margin:0 24px;
+}
+.band-attr{
+  font-family:'Cinzel', serif;
+  font-size:.75rem;letter-spacing:.5em;
+  color:var(--gold);
+  margin-top:18px;
+}
+
+/* ——————————————— CONTACT ——————————————— */
+.contact{
+  padding:140px 60px;
+  background:
+    radial-gradient(ellipse at top, rgba(201,169,97,.1) 0%, transparent 50%),
+    var(--ink);
+  position:relative;
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  align-items:center;
+}
+.contact-info h2{margin-bottom:30px}
+.contact-lead{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.25rem;
+  line-height:1.7;
+  color:var(--parchment-dim);
+  margin-bottom:40px;
+}
+.contact-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:20px;
+}
+.contact-list li{
+  display:flex;align-items:center;gap:18px;
+  font-size:1.05rem;
+  color:var(--parchment);
+  padding:14px 0;
+  border-bottom:1px solid rgba(201,169,97,.15);
+  transition:all .3s;
+}
+.contact-list li:hover{
+  padding-left:8px;border-color:var(--gold);
+}
+.contact-list svg{
+  width:18px;height:18px;color:var(--gold);flex-shrink:0;
+}
+.contact-list span.lbl{
+  font-family:'Cinzel', serif;
+  font-size:.6rem;letter-spacing:.35em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-right:16px;min-width:90px;
+}
+
+/* Newsletter form */
+.newsletter{
+  background:var(--ink-soft);
+  border:1px solid rgba(201,169,97,.2);
+  padding:50px 44px;
+  position:relative;
+}
+.newsletter::before{
+  content:"";
+  position:absolute;top:-1px;left:-1px;
+  width:30px;height:30px;
+  border-top:1px solid var(--gold);border-left:1px solid var(--gold);
+}
+.newsletter::after{
+  content:"";
+  position:absolute;bottom:-1px;right:-1px;
+  width:30px;height:30px;
+  border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);
+}
+.newsletter h3{
+  font-size:1rem;margin-bottom:12px;color:var(--gold);
+}
+.newsletter p{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1rem;
+  color:var(--parchment-dim);
+  margin-bottom:26px;
+}
+.newsletter-field{
+  display:flex;border:1px solid rgba(201,169,97,.3);
+}
+.newsletter-field input{
+  flex:1;
+  background:transparent;border:none;outline:none;
+  padding:15px 18px;
+  color:var(--parchment);
+  font-family:'Cormorant Garamond', serif;
+  font-size:1rem;
+}
+.newsletter-field input::placeholder{color:rgba(244,235,217,.4)}
+.newsletter-field button{
+  background:var(--gold);color:var(--ink);border:none;
+  padding:0 28px;
+  font-family:'Cinzel', serif;
+  font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;
+  cursor:none;
+  transition:all .3s;
+}
+.newsletter-field button:hover{background:var(--gold-bright);letter-spacing:.45em}
+
+/* ——————————————— FOOTER ——————————————— */
+footer{
+  padding:80px 60px 40px;
+  background:var(--ink-deep);
+  border-top:1px solid rgba(201,169,97,.15);
+  text-align:center;
+}
+footer .starburst-small{
+  width:50px;height:50px;margin:0 auto 24px;
+  opacity:.7;
+}
+footer .f-brand{
+  font-family:'Cinzel', serif;
+  font-size:1.2rem;letter-spacing:.45em;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+footer .f-sub{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;font-size:.95rem;
+  color:var(--parchment-dim);
+  margin-bottom:36px;
+}
+.socials{
+  display:flex;gap:24px;justify-content:center;
+  margin-bottom:40px;
+}
+.socials a{
+  width:42px;height:42px;
+  border:1px solid rgba(201,169,97,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);
+  transition:all .3s;
+}
+.socials a:hover{
+  background:var(--gold);
+  color:var(--ink);
+  border-color:var(--gold);
+  transform:translateY(-3px);
+}
+.socials svg{width:16px;height:16px}
+.f-meta{
+  font-family:'Cinzel', serif;
+  font-size:.65rem;letter-spacing:.35em;
+  color:var(--parchment-dim);
+  opacity:.5;
+}
+.f-legal{
+  margin-top:16px;
+  font-family:'Cormorant Garamond', serif;
+  font-size:.85rem;
+  color:var(--parchment-dim);
+  opacity:.4;
+}
+
+/* ——————————————— CART DRAWER ——————————————— */
+.cart-drawer{
+  position:fixed;top:0;right:0;
+  width:420px;max-width:100vw;height:100vh;
+  background:var(--ink-deep);
+  border-left:1px solid var(--gold);
+  z-index:200;
+  transform:translateX(100%);
+  transition:transform .6s cubic-bezier(.5,.05,.3,1);
+  display:flex;flex-direction:column;
+}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:30px 32px;
+  border-bottom:1px solid rgba(201,169,97,.2);
+}
+.cart-head h3{font-size:1rem;color:var(--gold)}
+.cart-close{
+  width:36px;height:36px;border:1px solid rgba(201,169,97,.3);
+  background:transparent;color:var(--parchment);
+  cursor:none;font-size:1rem;
+  transition:all .3s;
+}
+.cart-close:hover{border-color:var(--gold);color:var(--gold)}
+.cart-items{flex:1;overflow-y:auto;padding:24px 32px}
+.cart-empty{
+  text-align:center;padding:60px 0;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  color:var(--parchment-dim);
+}
+.cart-item{
+  display:flex;gap:14px;align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid rgba(201,169,97,.1);
+}
+.cart-item img{width:60px;height:75px;object-fit:cover}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;margin-bottom:4px}
+.cart-item-price{color:var(--gold);font-size:.95rem}
+.cart-item-remove{
+  background:transparent;border:none;color:var(--parchment-dim);cursor:none;font-size:1rem;
+}
+.cart-foot{
+  padding:24px 32px;border-top:1px solid rgba(201,169,97,.2);
+}
+.cart-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:16px;
+}
+.cart-total .lab{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:var(--parchment-dim)}
+.cart-total .val{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold)}
+.cart-checkout{
+  width:100%;padding:18px;
+  background:var(--gold);color:var(--ink);
+  border:none;
+  font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;
+  cursor:none;transition:all .3s;
+}
+.cart-checkout:hover{background:var(--gold-bright);letter-spacing:.5em}
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  backdrop-filter:blur(4px);
+  z-index:150;opacity:0;pointer-events:none;
+  transition:opacity .5s;
+}
+.cart-overlay.active{opacity:1;pointer-events:auto}
+
+/* ——————————————— RESPONSIVE ——————————————— */
+@media (max-width:1024px){
+  .nav{padding:22px 30px}
+  .nav.scrolled{padding:12px 30px}
+  .nav-menu{display:none}
+  section{padding:100px 30px}
+  .atelier-head{grid-template-columns:1fr;gap:40px}
+  .steps{grid-template-columns:repeat(2, 1fr)}
+  .steps::before{display:none}
+  .products{grid-template-columns:repeat(2, 1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:50px}
+  .gallery-grid{grid-auto-rows:60px}
+  .hero-corner-i,.hero-corner-ii{display:none}
+  .sacred-frame{top:80px;left:20px;right:20px;bottom:30px}
+  body{cursor:auto}
+  .cursor-dot,.cursor-ring{display:none}
+}
+@media (max-width:640px){
+  section{padding:80px 20px}
+  .hero-brand{font-size:2.4rem;letter-spacing:.22em}
+  .nav{padding:16px 20px}
+  .products{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:40px}
+  .gallery-grid{
+    grid-template-columns:repeat(6, 1fr);
+  }
+  .g-1{grid-column:span 6;grid-row:span 5}
+  .g-2{grid-column:span 3;grid-row:span 4}
+  .g-3{grid-column:span 3;grid-row:span 4}
+  .g-4{grid-column:span 6;grid-row:span 4}
+  .g-5{grid-column:span 3;grid-row:span 3}
+  .g-6{grid-column:span 3;grid-row:span 3}
+  .g-7{grid-column:span 6;grid-row:span 4}
+  .g-8{grid-column:span 6;grid-row:span 4}
+  .philosophy-quote{font-size:1.6rem}
+  .contact-list span.lbl{min-width:70px;font-size:.55rem}
+  .newsletter{padding:32px 24px}
+  .cart-drawer{width:100vw}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Cart overlay & drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>✧ Il Tuo Reliquiario</h3>
+    <button class="cart-close" id="cartClose">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span class="lab">Totale</span>
+      <span class="val" id="cartTotal">€ 0,00</span>
+    </div>
+    <button class="cart-checkout">Procedi al Checkout</button>
+  </div>
+</aside>
+
+<!-- ——————————————— NAV ——————————————— -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    CARPE&nbsp;DIEM
+    <span>Artigianato&nbsp;·&nbsp;Roma</span>
+  </div>
+  <ul class="nav-menu">
+    <li><a href="#philosophy">Filosofia</a></li>
+    <li><a href="#atelier">Atelier</a></li>
+    <li><a href="#shop">Collezione</a></li>
+    <li><a href="#gallery">Galleria</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+  <button class="nav-cart" id="cartBtn">Carrello (<span id="cartCount">0</span>)</button>
+</nav>
+
+<!-- ——————————————— HERO ——————————————— -->
+<section class="hero">
+  <div class="sacred-frame">
+    <div class="sacred-frame-inner"></div>
+  </div>
+  <div class="hero-corner-i">ROMA · MMXXVI</div>
+  <div class="hero-corner-ii">ATELIER · NO. I</div>
+
+  <div class="starburst">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffe5a7" stop-opacity="1"/>
+          <stop offset="60%" stop-color="#c9a961" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#8a6f3b" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g class="starburst-core">
+        <circle cx="150" cy="150" r="10" fill="url(#coreGrad)"/>
+        <circle cx="150" cy="150" r="5" fill="#ffe5a7"/>
+      </g>
+      <g stroke="#c9a961" stroke-linecap="round" fill="none">
+        <!-- Rays: a classical starburst. 24 rays, varying length -->
+        <g class="ray">
+          <line x1="150" y1="18" x2="150" y2="60" stroke-width="1.2"/>
+          <line x1="150" y1="240" x2="150" y2="282" stroke-width="1.2"/>
+          <line x1="18" y1="150" x2="60" y2="150" stroke-width="1.2"/>
+          <line x1="240" y1="150" x2="282" y2="150" stroke-width="1.2"/>
+        </g>
+        <g class="ray" style="animation-delay:.3s">
+          <line x1="57" y1="57" x2="86" y2="86" stroke-width="1.2"/>
+          <line x1="214" y1="214" x2="243" y2="243" stroke-width="1.2"/>
+          <line x1="243" y1="57" x2="214" y2="86" stroke-width="1.2"/>
+          <line x1="86" y1="214" x2="57" y2="243" stroke-width="1.2"/>
+        </g>
+        <g class="ray" style="animation-delay:.6s;opacity:.8">
+          <line x1="110" y1="22" x2="118" y2="68" stroke-width=".8"/>
+          <line x1="190" y1="22" x2="182" y2="68" stroke-width=".8"/>
+          <line x1="110" y1="278" x2="118" y2="232" stroke-width=".8"/>
+          <line x1="190" y1="278" x2="182" y2="232" stroke-width=".8"/>
+          <line x1="22" y1="110" x2="68" y2="118" stroke-width=".8"/>
+          <line x1="22" y1="190" x2="68" y2="182" stroke-width=".8"/>
+          <line x1="278" y1="110" x2="232" y2="118" stroke-width=".8"/>
+          <line x1="278" y1="190" x2="232" y2="182" stroke-width=".8"/>
+        </g>
+        <g class="ray" style="animation-delay:.9s;opacity:.6">
+          <line x1="75" y1="38" x2="96" y2="76" stroke-width=".6"/>
+          <line x1="225" y1="38" x2="204" y2="76" stroke-width=".6"/>
+          <line x1="75" y1="262" x2="96" y2="224" stroke-width=".6"/>
+          <line x1="225" y1="262" x2="204" y2="224" stroke-width=".6"/>
+          <line x1="38" y1="75" x2="76" y2="96" stroke-width=".6"/>
+          <line x1="38" y1="225" x2="76" y2="204" stroke-width=".6"/>
+          <line x1="262" y1="75" x2="224" y2="96" stroke-width=".6"/>
+          <line x1="262" y1="225" x2="224" y2="204" stroke-width=".6"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-sub">L'ARTE SACRA DA INDOSSARE</div>
+  <h1 class="hero-brand" id="heroBrand"></h1>
+  <div class="hero-tagline">Artigianato Romano · Dal 2024</div>
+
+  <div class="hero-divider">
+    <span></span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L12 22M2 12L22 12M7 7L17 17M17 7L7 17"/></svg>
+    <span></span>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="txt">SCROLL</div>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ——————————————— PHILOSOPHY ——————————————— -->
+<section class="philosophy" id="philosophy">
+
+  <!-- Big decorative crosses -->
+  <svg class="bg-cross tl" viewBox="0 0 100 100" fill="currentColor">
+    <path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/>
+  </svg>
+  <svg class="bg-cross br" viewBox="0 0 100 100" fill="currentColor">
+    <path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/>
+  </svg>
+
+  <div class="philosophy-inner">
+    <div class="section-number reveal">
+      <span>I · FILOSOFIA</span>
+    </div>
+    <p class="eyebrow reveal delay-1">Memento · Hodie · Vive</p>
+
+    <h2 class="philosophy-quote reveal delay-2">
+      Ogni pezzo è un <em>sussurro</em> di eternità,<br>
+      reso tangibile dalla mano di chi crede<br>
+      che la bellezza sia una <em>preghiera</em>.
+    </h2>
+
+    <p class="philosophy-body reveal delay-3">
+      Carpe Diem nasce a Roma come atto d'amore verso l'arte sacra. Trasformiamo simboli millenari —
+      croci, rosari, medaglie — in gioielli contemporanei che uniscono devozione e stile, memoria e presente.
+    </p>
+    <p class="philosophy-body reveal delay-4">
+      Non creiamo accessori. Creiamo <em style="color:var(--gold);font-style:italic">piccole reliquie</em>
+      destinate a chi sceglie di portare con sé un frammento del sacro.
+    </p>
+  </div>
+</section>
+
+<!-- ——————————————— ATELIER ——————————————— -->
+<section class="atelier" id="atelier">
+  <div class="container">
+    <div class="atelier-head">
+      <div>
+        <div class="section-number reveal">
+          <span>II · ATELIER</span>
+        </div>
+        <h2 class="section-title reveal delay-1">
+          Il Rito della<br><em>Creazione</em>
+        </h2>
+      </div>
+      <p class="atelier-head-lead reveal delay-2">
+        Ogni gioiello passa per quattro mani, quattro momenti, quattro attese.
+        Un processo lento, scandito dal silenzio, che restituisce al tempo la sua dignità.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-numeral"><span>I</span></div>
+        <h3>Selezione</h3>
+        <p>Scegliamo con cura pietre naturali, perle di madreperla, giade e agate. Ogni materia è ispezionata al tatto, alla luce, al peso.</p>
+      </div>
+      <div class="step reveal delay-1">
+        <div class="step-numeral"><span>II</span></div>
+        <h3>Incastonatura</h3>
+        <p>Le croci smaltate e le medaglie sacre vengono montate una ad una, filo d'oro su filo d'oro, in un tempo che non si misura in minuti.</p>
+      </div>
+      <div class="step reveal delay-2">
+        <div class="step-numeral"><span>III</span></div>
+        <h3>Assemblaggio</h3>
+        <p>Ogni perlina viene legata manualmente al suo anellino. Un rosario richiede ore. Una collana, un pomeriggio intero.</p>
+      </div>
+      <div class="step reveal delay-3">
+        <div class="step-numeral"><span>IV</span></div>
+        <h3>Benedizione</h3>
+        <p>Il pezzo finito riposa. Viene pulito, incartato nella seta, sigillato. Pronto per accompagnare chi lo indosserà.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————————— SHOP ——————————————— -->
+<section class="shop" id="shop">
+  <div class="container">
+    <div class="shop-head">
+      <div class="section-number reveal">
+        <span>III · COLLEZIONE</span>
+      </div>
+      <h2 class="section-title reveal delay-1">
+        La <em>Collezione</em> Sacra
+      </h2>
+      <p class="subtle-italic reveal delay-2" style="font-size:1.15rem;color:var(--parchment-dim);max-width:560px;margin:10px auto 0">
+        Pezzi unici, numerati, pensati per essere portati ogni giorno come un voto silenzioso.
+      </p>
+    </div>
+
+    <div class="filters reveal">
+      <button class="filter-pill active" data-filter="all">Tutti</button>
+      <button class="filter-pill" data-filter="necklace">Collane</button>
+      <button class="filter-pill" data-filter="bracelet">Bracciali</button>
+      <button class="filter-pill" data-filter="rosary">Rosari</button>
+    </div>
+
+    <div class="products" id="productsGrid">
+
+      <!-- Product 1 -->
+      <article class="product reveal" data-category="necklace" data-name="Crux Rubra — Grande" data-price="89">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/necklace-white-red-cross-big.jpeg" alt="Collana bianca con croce rossa grande">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Rubra · Grande</div>
+          <div class="product-desc">Collana in madreperla e croce smaltata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 89<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Crux Rubra — Piccola" data-price="79">
+        <div class="product-img">
+          <img src="images/necklace-white-red-cross-small.jpeg" alt="Collana bianca con croce rossa piccola">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Rubra · Piccola</div>
+          <div class="product-desc">Collana in madreperla, croce smaltata minuta</div>
+          <div class="product-footer">
+            <div class="product-price">€ 79<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="product reveal delay-2" data-category="necklace" data-name="Crux Aurea" data-price="69">
+        <div class="product-img">
+          <img src="images/necklace-white-gold-cross.jpeg" alt="Collana bianca con croce dorata">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Aurea</div>
+          <div class="product-desc">Collana in madreperla con croce in ottone dorato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 4 -->
+      <article class="product reveal" data-category="bracelet" data-name="Rosarium — Bracciale Grande" data-price="59">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/rosary-red-bracelet-1.jpeg" alt="Bracciale rosario rosso con croce grande">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium · Croce Maior</div>
+          <div class="product-desc">Bracciale in agata rossa, croce smaltata grande</div>
+          <div class="product-footer">
+            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 5 -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Rosarium — Bracciale Piccolo" data-price="49">
+        <div class="product-img">
+          <img src="images/rosary-red-bracelet-2.jpeg" alt="Bracciale rosario rosso con croce piccola">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium · Croce Minor</div>
+          <div class="product-desc">Bracciale in agata rossa, croce smaltata piccola</div>
+          <div class="product-footer">
+            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 6 -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Romanum" data-price="149">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/rosary-full-red.jpeg" alt="Rosario completo rosso">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Romanum</div>
+          <div class="product-desc">Rosario completo, agata rossa e medaglie in bronzo dorato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 149<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ——————————————— BAND QUOTE ——————————————— -->
+<section class="band">
+  <p class="eyebrow reveal">✦ MEMENTO VIVERE ✦</p>
+  <h2 class="band-quote reveal delay-1">
+    <em>"Cogli l'attimo,<br>custodisci il sacro."</em>
+  </h2>
+  <div class="band-attr reveal delay-2">— MILO · FONDATRICE</div>
+</section>
+
+<!-- ——————————————— GALLERY ——————————————— -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <div class="section-number reveal">
+        <span>IV · GALLERIA</span>
+      </div>
+      <h2 class="section-title reveal delay-1">
+        Sguardi sull'<em>Opera</em>
+      </h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item g-1 reveal">
+        <img src="images/necklace-white-red-cross-large.jpeg" alt="">
+        <div class="gallery-caption">Crux Rubra · Dettaglio</div>
+      </div>
+      <div class="gallery-item g-2 reveal delay-1">
+        <img src="images/crosses-two-sizes.jpeg" alt="">
+        <div class="gallery-caption">Le due misure</div>
+      </div>
+      <div class="gallery-item g-3 reveal delay-2">
+        <img src="images/rosary-red-bracelet-3.jpeg" alt="">
+        <div class="gallery-caption">Rosarium</div>
+      </div>
+      <div class="gallery-item g-4 reveal">
+        <img src="images/necklace-white-gold-cross-2.jpeg" alt="">
+        <div class="gallery-caption">Crux Aurea</div>
+      </div>
+      <div class="gallery-item g-5 reveal delay-1">
+        <img src="images/necklace-white-red-cross-small-2.jpeg" alt="">
+        <div class="gallery-caption">Minima</div>
+      </div>
+      <div class="gallery-item g-6 reveal delay-2">
+        <img src="images/rosary-red-bracelet-1.jpeg" alt="">
+        <div class="gallery-caption">Bracciale</div>
+      </div>
+      <div class="gallery-item g-7 reveal">
+        <img src="images/rosary-full-red.jpeg" alt="">
+        <div class="gallery-caption">Rosarium Romanum</div>
+      </div>
+      <div class="gallery-item g-8 reveal delay-1">
+        <img src="images/necklace-white-red-cross-big.jpeg" alt="">
+        <div class="gallery-caption">Collezione</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————————— CONTACT ——————————————— -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-number reveal">
+          <span>V · CONTATTI</span>
+        </div>
+        <h2 class="section-title reveal delay-1">
+          Resta in<br><em>Contatto</em>
+        </h2>
+        <p class="contact-lead reveal delay-2">
+          Per commissioni su misura, collaborazioni o semplicemente per dirci quello che pensi — 
+          ogni messaggio è accolto con cura.
+        </p>
+
+        <ul class="contact-list reveal delay-3">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span class="lbl">EMAIL</span>
+            <a href="mailto:Carpediemartigianatosrl@gmail.com">Carpediemartigianatosrl@gmail.com</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            <span class="lbl">INSTAGRAM</span>
+            <a href="https://instagram.com/milo.bijoux" target="_blank">@milo.bijoux</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.7a8.16 8.16 0 004.77 1.52V6.69z"/></svg>
+            <span class="lbl">TIKTOK</span>
+            <a href="https://tiktok.com/@milo.bijoux" target="_blank">@milo.bijoux</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-7.58-8-13a8 8 0 1116 0c0 5.42-8 13-8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <span class="lbl">ATELIER</span>
+            <span>Roma · Italia</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="newsletter reveal delay-2">
+        <h3>La Lettera Sacra</h3>
+        <p>Iscriviti per ricevere in anteprima le nuove collezioni, i dietro le quinte dell'atelier e inviti esclusivi.</p>
+        <div class="newsletter-field">
+          <input type="email" placeholder="La tua email...">
+          <button>Iscriviti</button>
+        </div>
+        <p style="font-size:.8rem;margin-top:18px;opacity:.5">Niente spam. Solo bellezza, una volta al mese.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————————— FOOTER ——————————————— -->
+<footer>
+  <div class="starburst-small">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#c9a961" stroke-linecap="round" fill="none" stroke-width="1">
+        <circle cx="50" cy="50" r="3" fill="#c9a961"/>
+        <line x1="50" y1="10" x2="50" y2="28"/>
+        <line x1="50" y1="72" x2="50" y2="90"/>
+        <line x1="10" y1="50" x2="28" y2="50"/>
+        <line x1="72" y1="50" x2="90" y2="50"/>
+        <line x1="22" y1="22" x2="34" y2="34"/>
+        <line x1="66" y1="66" x2="78" y2="78"/>
+        <line x1="78" y1="22" x2="66" y2="34"/>
+        <line x1="34" y1="66" x2="22" y2="78"/>
+      </g>
+    </svg>
+  </div>
+  <div class="f-brand">CARPE DIEM</div>
+  <div class="f-sub">Artigianato SRL · L'arte sacra da indossare</div>
+
+  <div class="socials">
+    <a href="https://instagram.com/milo.bijoux" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    </a>
+    <a href="https://tiktok.com/@milo.bijoux" target="_blank" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.7a8.16 8.16 0 004.77 1.52V6.69z"/></svg>
+    </a>
+    <a href="mailto:Carpediemartigianatosrl@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </a>
+  </div>
+
+  <div class="f-meta">ROMA · MMXXVI · TUTTI I DIRITTI RISERVATI</div>
+  <div class="f-legal">Carpe Diem Artigianato SRL · P.IVA IT00000000000 · Privacy · Termini · Cookie</div>
+</footer>
+
+<script>
+/* ——————————————— CURSOR ——————————————— */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = window.innerWidth/2, my = window.innerHeight/2;
+let rx = mx, ry = my;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
+function animRing(){
+  rx += (mx - rx)*0.18;
+  ry += (my - ry)*0.18;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .product, .gallery-item, .filter-pill').forEach(el=>{
+  el.addEventListener('mouseenter', ()=>document.body.classList.add('hover-active'));
+  el.addEventListener('mouseleave', ()=>document.body.classList.remove('hover-active'));
+});
+
+/* ——————————————— HERO TITLE STAGGER ——————————————— */
+const brandText = 'CARPE DIEM';
+const brandEl = document.getElementById('heroBrand');
+brandText.split('').forEach((c,i)=>{
+  const span = document.createElement('span');
+  span.className = 'char';
+  span.textContent = c === ' ' ? '\u00A0' : c;
+  span.style.animationDelay = (.3 + i*.08) + 's';
+  brandEl.appendChild(span);
+});
+
+/* ——————————————— NAV SCROLL ——————————————— */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+/* ——————————————— REVEAL ON SCROLL ——————————————— */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin:'0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ——————————————— FILTERS ——————————————— */
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.product').forEach(p => {
+      if (filter === 'all' || p.dataset.category === filter) {
+        p.style.display = '';
+        p.style.animation = 'fadeUp .6s ease forwards';
+      } else {
+        p.style.display = 'none';
+      }
+    });
+  });
+});
+
+/* ——————————————— CART ——————————————— */
+const cartBtn     = document.getElementById('cartBtn');
+const cartDrawer  = document.getElementById('cartDrawer');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartClose   = document.getElementById('cartClose');
+const cartItemsEl = document.getElementById('cartItems');
+const cartCountEl = document.getElementById('cartCount');
+const cartTotalEl = document.getElementById('cartTotal');
+
+let cart = [];
+
+function openCart(){
+  cartDrawer.classList.add('open');
+  cartOverlay.classList.add('active');
+}
+function closeCart(){
+  cartDrawer.classList.remove('open');
+  cartOverlay.classList.remove('active');
+}
+cartBtn.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+function renderCart(){
+  cartCountEl.textContent = cart.length;
+  if (cart.length === 0) {
+    cartItemsEl.innerHTML = '<div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>';
+    cartTotalEl.textContent = '€ 0,00';
+    return;
+  }
+  cartItemsEl.innerHTML = cart.map((item, i) => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">€ ${item.price},00</div>
+      </div>
+      <button class="cart-item-remove" data-i="${i}">✕</button>
+    </div>
+  `).join('');
+  const total = cart.reduce((s,i)=>s+i.price, 0);
+  cartTotalEl.textContent = '€ ' + total + ',00';
+  cartItemsEl.querySelectorAll('.cart-item-remove').forEach(b => {
+    b.addEventListener('click', e => {
+      cart.splice(+e.target.dataset.i, 1);
+      renderCart();
+    });
+  });
+}
+
+document.querySelectorAll('.add-cart').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const p = e.target.closest('.product');
+    const img = p.querySelector('img').src;
+    cart.push({
+      name: p.dataset.name,
+      price: +p.dataset.price,
+      img
+    });
+    renderCart();
+    // Little feedback
+    btn.textContent = '✓ Aggiunto';
+    btn.style.background = 'var(--gold)';
+    btn.style.color = 'var(--ink)';
+    setTimeout(() => {
+      btn.textContent = 'Aggiungi';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1400);
+    openCart();
+  });
+});
+
+/* ——————————————— SMOOTH NAV LINKS ——————————————— */
+document.querySelectorAll('.nav-menu a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const id = a.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ——————————————— HERO PARALLAX ——————————————— */
+const starburst = document.querySelector('.starburst');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y < window.innerHeight && starburst) {
+    starburst.style.transform = `translateY(${y * 0.3}px) rotate(${y * 0.05}deg)`;
+    starburst.style.opacity = Math.max(0, 1 - y/500);
+  }
+});
+</script>
+
+</body>
+</html>
