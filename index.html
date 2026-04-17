@@ -8,10 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italiana&display=swap" rel="stylesheet">
 <style>
-/* ——————————————————————————————————————
-   CARPE DIEM — L'Arte Sacra da Indossare
-   ——————————————————————————————————————— */
-
 :root{
   --ink:            #0a0604;
   --ink-deep:       #050302;
@@ -43,7 +39,6 @@ html, body{
   cursor:none;
 }
 
-/* Subtle grain/noise overlay over the whole site */
 body::before{
   content:"";
   position:fixed;inset:0;
@@ -52,7 +47,6 @@ body::before{
   mix-blend-mode:overlay;opacity:.35;
 }
 
-/* Custom cursor */
 .cursor-dot, .cursor-ring{
   position:fixed;top:0;left:0;
   pointer-events:none;z-index:10000;
@@ -60,649 +54,153 @@ body::before{
   transition:transform .15s ease, width .25s ease, height .25s ease, border-color .25s ease;
   mix-blend-mode:difference;
 }
-.cursor-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--gold-bright);
-}
-.cursor-ring{
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--gold);
-}
-body.hover-active .cursor-ring{
-  width:60px;height:60px;border-color:var(--gold-bright);
-}
+.cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-bright)}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold)}
+body.hover-active .cursor-ring{width:60px;height:60px;border-color:var(--gold-bright)}
 
-/* Typography */
-h1,h2,h3,h4,.display{
-  font-family:'Cinzel', serif;
-  font-weight:500;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-.subtle-italic{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  letter-spacing:.05em;
-  text-transform:none;
-}
-.eyebrow{
-  font-family:'Cinzel', serif;
-  font-size:.7rem;
-  letter-spacing:.42em;
-  text-transform:uppercase;
-  color:var(--gold);
-  font-weight:500;
-}
+h1,h2,h3,h4,.display{font-family:'Cinzel', serif;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.subtle-italic{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;letter-spacing:.05em;text-transform:none}
+.eyebrow{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:500}
 a{color:inherit;text-decoration:none}
 
-/* ——————————————— NAVIGATION ——————————————— */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:28px 60px;
-  transition:all .5s ease;
-  background:linear-gradient(to bottom, rgba(10,6,4,.7), transparent);
-}
-.nav.scrolled{
-  padding:14px 60px;
-  background:rgba(10,6,4,.92);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(201,169,97,.18);
-}
-.nav-logo{
-  font-family:'Cinzel', serif;
-  font-size:1rem;
-  letter-spacing:.4em;
-  color:var(--gold);
-  font-weight:600;
-}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;transition:all .5s ease;background:linear-gradient(to bottom, rgba(10,6,4,.7), transparent)}
+.nav.scrolled{padding:14px 60px;background:rgba(10,6,4,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,169,97,.18)}
+.nav-logo{font-family:'Cinzel', serif;font-size:1rem;letter-spacing:.4em;color:var(--gold);font-weight:600}
 .nav-logo span{color:var(--parchment);font-weight:400;font-size:.7rem;letter-spacing:.3em;display:block;margin-top:2px;opacity:.6}
 .nav-menu{display:flex;gap:44px;list-style:none}
-.nav-menu a{
-  font-family:'Cinzel', serif;
-  font-size:.72rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  position:relative;
-  padding:6px 0;
-  transition:color .3s;
-}
-.nav-menu a::after{
-  content:"";
-  position:absolute;left:50%;bottom:0;
-  width:0;height:1px;background:var(--gold);
-  transition:all .4s ease;transform:translateX(-50%);
-}
+.nav-menu a{font-family:'Cinzel', serif;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;position:relative;padding:6px 0;transition:color .3s}
+.nav-menu a::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:1px;background:var(--gold);transition:all .4s ease;transform:translateX(-50%)}
 .nav-menu a:hover{color:var(--gold)}
 .nav-menu a:hover::after{width:100%}
-.nav-cart{
-  font-family:'Cinzel', serif;
-  font-size:.7rem;letter-spacing:.3em;
-  color:var(--gold);
-  border:1px solid var(--gold);
-  padding:9px 18px;
-  transition:all .3s;
-}
+.nav-cart{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold);border:1px solid var(--gold);padding:9px 18px;transition:all .3s}
 .nav-cart:hover{background:var(--gold);color:var(--ink)}
 
-/* ——————————————— HERO ——————————————— */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;
-  background:radial-gradient(ellipse at top, #1a1108 0%, #0a0604 40%, #000 100%);
-}
-.hero::before{
-  content:"";
-  position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(201,169,97,.18) 0%, transparent 50%),
-    radial-gradient(circle at 30% 80%, rgba(107,24,32,.1) 0%, transparent 50%);
-  pointer-events:none;
-}
-
-/* Sacred frame */
-.sacred-frame{
-  position:absolute;
-  top:90px;left:50px;right:50px;bottom:50px;
-  pointer-events:none;
-  border:1px solid rgba(201,169,97,.15);
-}
-.sacred-frame::before,
-.sacred-frame::after{
-  content:"";
-  position:absolute;
-  width:40px;height:40px;
-  border:1px solid rgba(201,169,97,.35);
-}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at top, #1a1108 0%, #0a0604 40%, #000 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, rgba(201,169,97,.18) 0%, transparent 50%),radial-gradient(circle at 30% 80%, rgba(107,24,32,.1) 0%, transparent 50%);pointer-events:none}
+.sacred-frame{position:absolute;top:90px;left:50px;right:50px;bottom:50px;pointer-events:none;border:1px solid rgba(201,169,97,.15)}
+.sacred-frame::before,.sacred-frame::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(201,169,97,.35)}
 .sacred-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
 .sacred-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
-.sacred-frame-inner{
-  position:absolute;inset:0;
-}
-.sacred-frame-inner::before,
-.sacred-frame-inner::after{
-  content:"";
-  position:absolute;
-  width:40px;height:40px;
-  border:1px solid rgba(201,169,97,.35);
-}
+.sacred-frame-inner{position:absolute;inset:0}
+.sacred-frame-inner::before,.sacred-frame-inner::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(201,169,97,.35)}
 .sacred-frame-inner::before{top:-1px;right:-1px;border-left:none;border-bottom:none}
 .sacred-frame-inner::after{bottom:-1px;left:-1px;border-right:none;border-top:none}
 
-/* Starburst — the logo animated */
-.starburst{
-  width:min(340px, 45vw);
-  height:min(340px, 45vw);
-  position:relative;
-  margin-bottom:40px;
-  animation:floatgently 6s ease-in-out infinite;
-}
-.starburst svg{
-  width:100%;height:100%;
-  filter:drop-shadow(0 0 30px rgba(201,169,97,.4));
-}
-.starburst-core{
-  animation:pulse 3s ease-in-out infinite;
-  transform-origin:center;
-}
-.ray{
-  transform-origin:center;
-  animation:rayGlow 4s ease-in-out infinite;
-}
+.starburst{width:min(340px, 45vw);height:min(340px, 45vw);position:relative;margin-bottom:40px;animation:floatgently 6s ease-in-out infinite}
+.starburst svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(201,169,97,.4))}
+.starburst-core{animation:pulse 3s ease-in-out infinite;transform-origin:center}
+.ray{transform-origin:center;animation:rayGlow 4s ease-in-out infinite}
 
-@keyframes floatgently{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-}
-@keyframes pulse{
-  0%,100%{opacity:1; filter:drop-shadow(0 0 8px rgba(228,200,128,.8))}
-  50%{opacity:.9; filter:drop-shadow(0 0 20px rgba(228,200,128,1))}
-}
-@keyframes rayGlow{
-  0%,100%{opacity:.85}
-  50%{opacity:1}
-}
+@keyframes floatgently{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1;filter:drop-shadow(0 0 8px rgba(228,200,128,.8))}50%{opacity:.9;filter:drop-shadow(0 0 20px rgba(228,200,128,1))}}
+@keyframes rayGlow{0%,100%{opacity:.85}50%{opacity:1}}
 
-.hero-brand{
-  font-family:'Cinzel', serif;
-  font-size:clamp(2.8rem, 7vw, 5.8rem);
-  font-weight:500;
-  letter-spacing:.3em;
-  color:var(--parchment);
-  margin-bottom:8px;
-  background:linear-gradient(180deg, var(--parchment) 0%, var(--gold-bright) 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-align:center;
-  line-height:1.05;
-  position:relative;
-}
-.hero-brand .char{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(40px);
-  animation:charIn .9s cubic-bezier(.2,.8,.2,1) forwards;
-}
+.hero-brand{font-family:'Cinzel', serif;font-size:clamp(2.8rem, 7vw, 5.8rem);font-weight:500;letter-spacing:.3em;color:var(--parchment);margin-bottom:8px;background:linear-gradient(180deg, var(--parchment) 0%, var(--gold-bright) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;line-height:1.05;position:relative}
+.hero-brand .char{display:inline-block;opacity:0;transform:translateY(40px);animation:charIn .9s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes charIn{to{opacity:1;transform:translateY(0)}}
+.hero-sub{font-family:'Cinzel', serif;font-size:clamp(.85rem, 1.4vw, 1.1rem);letter-spacing:.5em;color:var(--gold);margin-bottom:14px;opacity:0;animation:fadeUp 1s ease .9s forwards}
+.hero-tagline{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--parchment-dim);letter-spacing:.08em;margin-top:12px;opacity:0;animation:fadeUp 1s ease 1.2s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-.hero-sub{
-  font-family:'Cinzel', serif;
-  font-size:clamp(.85rem, 1.4vw, 1.1rem);
-  letter-spacing:.5em;
-  color:var(--gold);
-  margin-bottom:14px;
-  opacity:0;animation:fadeUp 1s ease .9s forwards;
-}
-.hero-tagline{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(1.1rem,1.8vw,1.5rem);
-  color:var(--parchment-dim);
-  letter-spacing:.08em;
-  margin-top:12px;
-  opacity:0;animation:fadeUp 1s ease 1.2s forwards;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.hero-divider{
-  display:flex;align-items:center;gap:18px;
-  margin-top:36px;
-  opacity:0;animation:fadeUp 1.3s ease 1.5s forwards;
-}
-.hero-divider span{
-  height:1px;width:100px;background:linear-gradient(to right, transparent, var(--gold), transparent);
-}
-.hero-divider svg{
-  width:20px;height:20px;color:var(--gold);
-}
-
-/* Scroll indicator */
-.scroll-indicator{
-  position:absolute;bottom:60px;left:50%;
-  transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  color:var(--gold);
-  opacity:0;animation:fadeUp 1s ease 2s forwards;
-}
-.scroll-indicator .txt{
-  font-family:'Cinzel', serif;
-  font-size:.65rem;letter-spacing:.4em;
-}
-.scroll-line{
-  width:1px;height:50px;
-  background:linear-gradient(to bottom, transparent, var(--gold));
-  position:relative;
-  overflow:hidden;
-}
-.scroll-line::after{
-  content:"";position:absolute;top:-50%;left:0;width:1px;height:50%;
-  background:var(--gold-bright);
-  animation:scrollDrop 2.5s ease-in-out infinite;
-}
-@keyframes scrollDrop{
-  0%{top:-50%}
-  100%{top:100%}
-}
-
-/* Decorative roman numerals next to hero corners */
-.hero-corner-i, .hero-corner-ii{
-  position:absolute;
-  font-family:'Cinzel', serif;
-  font-size:.7rem;letter-spacing:.4em;color:var(--gold);
-  opacity:.5;
-  z-index:2;
-}
+.hero-divider{display:flex;align-items:center;gap:18px;margin-top:36px;opacity:0;animation:fadeUp 1.3s ease 1.5s forwards}
+.hero-divider span{height:1px;width:100px;background:linear-gradient(to right, transparent, var(--gold), transparent)}
+.hero-divider svg{width:20px;height:20px;color:var(--gold)}
+.scroll-indicator{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--gold);opacity:0;animation:fadeUp 1s ease 2s forwards}
+.scroll-indicator .txt{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.4em}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom, transparent, var(--gold));position:relative;overflow:hidden}
+.scroll-line::after{content:"";position:absolute;top:-50%;left:0;width:1px;height:50%;background:var(--gold-bright);animation:scrollDrop 2.5s ease-in-out infinite}
+@keyframes scrollDrop{0%{top:-50%}100%{top:100%}}
+.hero-corner-i,.hero-corner-ii{position:absolute;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.4em;color:var(--gold);opacity:.5;z-index:2}
 .hero-corner-i{top:110px;left:80px}
 .hero-corner-ii{bottom:80px;right:80px;writing-mode:vertical-rl}
 
-/* ——————————————— GENERIC SECTION STYLING ——————————————— */
-section{
-  position:relative;padding:140px 60px;
-}
-.container{
-  max-width:1400px;margin:0 auto;
-}
-.section-number{
-  font-family:'Cinzel', serif;
-  font-size:.75rem;letter-spacing:.5em;
-  color:var(--gold);
-  display:flex;align-items:center;gap:16px;
-  margin-bottom:28px;
-}
-.section-number::before{
-  content:"";
-  width:40px;height:1px;background:var(--gold);
-}
-.section-title{
-  font-family:'Cinzel', serif;
-  font-size:clamp(2rem, 4vw, 3.6rem);
-  font-weight:500;
-  letter-spacing:.15em;
-  line-height:1.15;
-  margin-bottom:30px;
-  color:var(--parchment);
-}
-.section-title em{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  text-transform:none;
-  letter-spacing:.02em;
-  color:var(--gold);
-}
+/* SECTIONS */
+section{position:relative;padding:140px 60px}
+.container{max-width:1400px;margin:0 auto}
+.section-number{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold);display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-number::before{content:"";width:40px;height:1px;background:var(--gold)}
+.section-title{font-family:'Cinzel', serif;font-size:clamp(2rem, 4vw, 3.6rem);font-weight:500;letter-spacing:.15em;line-height:1.15;margin-bottom:30px;color:var(--parchment)}
+.section-title em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:.02em;color:var(--gold)}
 
-/* Reveal animation */
-.reveal{
-  opacity:0;transform:translateY(30px);
-  transition:opacity 1.2s ease, transform 1.2s ease;
-}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1.2s ease, transform 1.2s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal.delay-1{transition-delay:.15s}
 .reveal.delay-2{transition-delay:.3s}
 .reveal.delay-3{transition-delay:.45s}
 .reveal.delay-4{transition-delay:.6s}
 
-/* Gold drawing line */
-.gold-line{
-  position:relative;
-  height:1px;width:100%;max-width:120px;
-  background:var(--gold-deep);
-  margin:24px 0;
-  overflow:hidden;
-}
-.gold-line::after{
-  content:"";position:absolute;top:0;left:-100%;
-  width:100%;height:100%;
-  background:linear-gradient(to right, transparent, var(--gold-bright), transparent);
-}
+.gold-line{position:relative;height:1px;width:100%;max-width:120px;background:var(--gold-deep);margin:24px 0;overflow:hidden}
+.gold-line::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(to right, transparent, var(--gold-bright), transparent)}
 .visible .gold-line::after{animation:sheen 1.8s ease forwards}
-@keyframes sheen{
-  to{left:200%}
-}
+@keyframes sheen{to{left:200%}}
 
-/* ——————————————— PHILOSOPHY SECTION ——————————————— */
-.philosophy{
-  padding:180px 60px;
-  background:linear-gradient(180deg, #0a0604 0%, #140c06 50%, #0a0604 100%);
-  position:relative;
-  overflow:hidden;
-}
-.philosophy::before{
-  content:"";
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:800px;height:800px;max-width:80vw;max-height:80vw;
-  background:radial-gradient(circle, rgba(201,169,97,.08) 0%, transparent 65%);
-  pointer-events:none;
-}
-.philosophy-inner{
-  position:relative;
-  max-width:900px;margin:0 auto;text-align:center;
-}
-.philosophy-quote{
-  font-family:'Italiana', 'Cinzel', serif;
-  font-weight:400;
-  font-size:clamp(2rem, 4.5vw, 4rem);
-  line-height:1.3;
-  color:var(--parchment);
-  margin:40px 0;
-  letter-spacing:.01em;
-}
-.philosophy-quote em{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  color:var(--gold);
-}
-.philosophy-body{
-  font-size:1.1rem;
-  color:var(--parchment-dim);
-  line-height:1.9;
-  max-width:620px;margin:0 auto 28px;
-  font-weight:300;
-}
-
-/* Big ornamental cross as bg decoration in philosophy */
-.bg-cross{
-  position:absolute;
-  opacity:.06;
-  pointer-events:none;
-  color:var(--gold);
-}
+/* PHILOSOPHY */
+.philosophy{padding:180px 60px;background:linear-gradient(180deg, #0a0604 0%, #140c06 50%, #0a0604 100%);position:relative;overflow:hidden}
+.philosophy::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;max-width:80vw;max-height:80vw;background:radial-gradient(circle, rgba(201,169,97,.08) 0%, transparent 65%);pointer-events:none}
+.philosophy-inner{position:relative;max-width:900px;margin:0 auto;text-align:center}
+.philosophy-quote{font-family:'Italiana', 'Cinzel', serif;font-weight:400;font-size:clamp(2rem, 4.5vw, 4rem);line-height:1.3;color:var(--parchment);margin:40px 0;letter-spacing:.01em}
+.philosophy-quote em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;color:var(--gold)}
+.philosophy-body{font-size:1.1rem;color:var(--parchment-dim);line-height:1.9;max-width:620px;margin:0 auto 28px;font-weight:300}
+.bg-cross{position:absolute;opacity:.06;pointer-events:none;color:var(--gold)}
 .bg-cross.tl{top:80px;left:80px;width:120px;height:120px}
 .bg-cross.br{bottom:80px;right:80px;width:120px;height:120px}
 
-/* ——————————————— ATELIER (how it's made) ——————————————— */
-.atelier{
-  padding:160px 60px;
-  background:
-    linear-gradient(180deg, rgba(10,6,4,1) 0%, rgba(20,12,6,1) 100%);
-  position:relative;
-}
-.atelier-head{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:end;
-  margin-bottom:100px;
-}
-.atelier-head-lead{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:1.3rem;
-  line-height:1.8;
-  color:var(--parchment-dim);
-}
+/* ATELIER */
+.atelier{padding:160px 60px;background:linear-gradient(180deg, rgba(10,6,4,1) 0%, rgba(20,12,6,1) 100%);position:relative}
+.atelier-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:100px}
+.atelier-head-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.3rem;line-height:1.8;color:var(--parchment-dim)}
+.steps{display:grid;grid-template-columns:repeat(4, 1fr);gap:50px;position:relative}
+.steps::before{content:"";position:absolute;top:38px;left:2%;right:2%;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep) 15%, var(--gold-deep) 85%, transparent);z-index:0}
+.step{position:relative;text-align:left}
+.step-numeral{width:78px;height:78px;background:var(--ink-deep);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:28px;position:relative;z-index:1;transition:all .5s}
+.step-numeral span{font-family:'Cinzel', serif;font-weight:500;font-size:1.3rem;color:var(--gold);letter-spacing:.1em;transition:color .5s, transform .5s}
+.step:hover .step-numeral{background:var(--gold);transform:rotate(45deg)}
+.step:hover .step-numeral span{color:var(--ink);transform:rotate(-45deg)}
+.step h3{font-size:1rem;margin-bottom:14px;color:var(--parchment)}
+.step p{font-size:1rem;color:var(--parchment-dim);line-height:1.7;font-weight:300}
 
-.steps{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:50px;
-  position:relative;
-}
-.steps::before{
-  content:"";
-  position:absolute;
-  top:38px;left:2%;right:2%;
-  height:1px;
-  background:linear-gradient(to right, transparent, var(--gold-deep) 15%, var(--gold-deep) 85%, transparent);
-  z-index:0;
-}
-.step{
-  position:relative;
-  text-align:left;
-}
-.step-numeral{
-  width:78px;height:78px;
-  background:var(--ink-deep);
-  border:1px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:28px;
-  position:relative;z-index:1;
-  transition:all .5s;
-}
-.step-numeral span{
-  font-family:'Cinzel', serif;
-  font-weight:500;
-  font-size:1.3rem;
-  color:var(--gold);
-  letter-spacing:.1em;
-}
-.step:hover .step-numeral{
-  background:var(--gold);
-  transform:rotate(45deg);
-}
-.step:hover .step-numeral span{
-  color:var(--ink);
-  transform:rotate(-45deg);
-  transition:color .5s;
-}
-.step-numeral span{transition:color .5s, transform .5s}
-.step h3{
-  font-size:1rem;
-  margin-bottom:14px;
-  color:var(--parchment);
-}
-.step p{
-  font-size:1rem;
-  color:var(--parchment-dim);
-  line-height:1.7;
-  font-weight:300;
-}
-
-/* ——————————————— SHOP ——————————————— */
-.shop{
-  padding:140px 60px 160px;
-  background:var(--ink);
-  position:relative;
-}
-.shop-head{
-  text-align:center;margin-bottom:90px;
-}
+/* SHOP */
+.shop{padding:140px 60px 160px;background:var(--ink);position:relative}
+.shop-head{text-align:center;margin-bottom:90px}
 .shop-head .section-number{justify-content:center}
-.shop-head .section-number::before{
-  background:linear-gradient(to right, transparent, var(--gold));
-}
-.shop-head .section-number::after{
-  content:"";
-  width:40px;height:1px;
-  background:linear-gradient(to left, transparent, var(--gold));
-}
+.shop-head .section-number::before{background:linear-gradient(to right, transparent, var(--gold))}
+.shop-head .section-number::after{content:"";width:40px;height:1px;background:linear-gradient(to left, transparent, var(--gold))}
 
-.filters{
-  display:flex;gap:26px;justify-content:center;
-  margin-bottom:60px;
-  flex-wrap:wrap;
-}
-.filter-pill{
-  font-family:'Cinzel', serif;
-  font-size:.7rem;letter-spacing:.35em;
-  text-transform:uppercase;
-  padding:10px 22px;
-  border:1px solid rgba(201,169,97,.3);
-  color:var(--parchment-dim);
-  background:transparent;
-  cursor:none;
-  transition:all .35s;
-}
-.filter-pill:hover, .filter-pill.active{
-  color:var(--ink);
-  background:var(--gold);
-  border-color:var(--gold);
-}
+.filters{display:flex;gap:16px;justify-content:center;margin-bottom:60px;flex-wrap:wrap}
+.filter-pill{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,169,97,.3);color:var(--parchment-dim);background:transparent;cursor:none;transition:all .35s}
+.filter-pill:hover,.filter-pill.active{color:var(--ink);background:var(--gold);border-color:var(--gold)}
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:40px;
-}
-.product{
-  position:relative;
-  background:var(--ink-soft);
-  border:1px solid rgba(201,169,97,.12);
-  overflow:hidden;
-  transition:all .5s;
-}
-.product:hover{
-  border-color:rgba(201,169,97,.5);
-  transform:translateY(-6px);
-  box-shadow:0 30px 60px rgba(0,0,0,.6), 0 0 40px rgba(201,169,97,.08);
-}
-.product-img{
-  position:relative;
-  overflow:hidden;
-  aspect-ratio:4/5;
-  background:#1a1108;
-}
-.product-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1s;
-  filter:brightness(.92) contrast(1.04) saturate(.97);
-}
-.product:hover .product-img img{
-  transform:scale(1.08);
-  filter:brightness(1) contrast(1.06) saturate(1);
-}
-.product-tag{
-  position:absolute;top:18px;left:18px;
-  font-family:'Cinzel', serif;
-  font-size:.58rem;letter-spacing:.3em;
-  padding:6px 11px;
-  background:rgba(10,6,4,.85);
-  border:1px solid var(--gold);
-  color:var(--gold);
-  z-index:2;
-  backdrop-filter:blur(4px);
-}
-.product-info{
-  padding:28px 26px 32px;
-  position:relative;
-}
-.product-name{
-  font-family:'Cinzel', serif;
-  font-weight:500;
-  font-size:.95rem;letter-spacing:.15em;
-  color:var(--parchment);
-  margin-bottom:6px;
-  line-height:1.3;
-}
-.product-desc{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:.95rem;
-  color:var(--parchment-dim);
-  margin-bottom:20px;
-  line-height:1.5;
-}
-.product-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:18px;
-  border-top:1px solid rgba(201,169,97,.12);
-}
-.product-price{
-  font-family:'Cinzel', serif;
-  font-weight:500;
-  font-size:1.15rem;
-  color:var(--gold);
-  letter-spacing:.1em;
-}
+.products{display:grid;grid-template-columns:repeat(3, 1fr);gap:40px}
+.product{position:relative;background:var(--ink-soft);border:1px solid rgba(201,169,97,.12);overflow:hidden;transition:all .5s}
+.product:hover{border-color:rgba(201,169,97,.5);transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.6), 0 0 40px rgba(201,169,97,.08)}
+.product-img{position:relative;overflow:hidden;aspect-ratio:4/5;background:#1a1108}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1s;filter:brightness(.92) contrast(1.04) saturate(.97)}
+.product:hover .product-img img{transform:scale(1.08);filter:brightness(1) contrast(1.06) saturate(1)}
+.product-tag{position:absolute;top:18px;left:18px;font-family:'Cinzel', serif;font-size:.58rem;letter-spacing:.3em;padding:6px 11px;background:rgba(10,6,4,.85);border:1px solid var(--gold);color:var(--gold);z-index:2;backdrop-filter:blur(4px)}
+.product-info{padding:28px 26px 32px;position:relative}
+.product-name{font-family:'Cinzel', serif;font-weight:500;font-size:.95rem;letter-spacing:.15em;color:var(--parchment);margin-bottom:6px;line-height:1.3}
+.product-desc{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:.95rem;color:var(--parchment-dim);margin-bottom:20px;line-height:1.5}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(201,169,97,.12)}
+.product-price{font-family:'Cinzel', serif;font-weight:500;font-size:1.15rem;color:var(--gold);letter-spacing:.1em}
 .product-price .cents{font-size:.7em;vertical-align:top}
-.product-btn{
-  font-family:'Cinzel', serif;
-  font-size:.65rem;letter-spacing:.35em;
-  text-transform:uppercase;
-  padding:10px 16px;
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  cursor:none;
-  transition:all .35s;
-}
-.product-btn:hover{
-  background:var(--gold);color:var(--ink);
-  letter-spacing:.45em;
-}
+.product-btn{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;padding:10px 16px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:none;transition:all .35s}
+.product-btn:hover{background:var(--gold);color:var(--ink);letter-spacing:.45em}
 
-/* ——————————————— GALLERY ——————————————— */
-.gallery{
-  padding:140px 60px;
-  background:linear-gradient(180deg, var(--ink) 0%, #0d0806 100%);
-  position:relative;
-}
-.gallery-head{
-  text-align:center;margin-bottom:80px;
-}
+/* GALLERY */
+.gallery{padding:140px 60px;background:linear-gradient(180deg, var(--ink) 0%, #0d0806 100%);position:relative}
+.gallery-head{text-align:center;margin-bottom:80px}
 .gallery-head .section-number{justify-content:center}
-.gallery-head .section-number::before,
-.gallery-head .section-number::after{
-  content:"";width:40px;height:1px;background:var(--gold);
-}
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(12, 1fr);
-  grid-auto-rows:80px;
-  gap:18px;
-}
-.gallery-item{
-  position:relative;
-  overflow:hidden;
-  border:1px solid rgba(201,169,97,.1);
-  cursor:none;
-}
-.gallery-item img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform 1.5s cubic-bezier(.2,.8,.2,1), filter 1s;
-  filter:brightness(.88) saturate(.95);
-}
-.gallery-item::after{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(180deg, transparent 60%, rgba(10,6,4,.75) 100%);
-  opacity:0;transition:opacity .5s;
-}
+.gallery-head .section-number::before,.gallery-head .section-number::after{content:"";width:40px;height:1px;background:var(--gold)}
+.gallery-grid{display:grid;grid-template-columns:repeat(12, 1fr);grid-auto-rows:80px;gap:18px}
+.gallery-item{position:relative;overflow:hidden;border:1px solid rgba(201,169,97,.1);cursor:none}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s cubic-bezier(.2,.8,.2,1), filter 1s;filter:brightness(.88) saturate(.95)}
+.gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, rgba(10,6,4,.75) 100%);opacity:0;transition:opacity .5s}
 .gallery-item:hover img{transform:scale(1.1);filter:brightness(1)}
 .gallery-item:hover::after{opacity:1}
 .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
-.gallery-caption{
-  position:absolute;left:20px;bottom:18px;
-  font-family:'Cinzel', serif;
-  font-size:.7rem;letter-spacing:.3em;
-  color:var(--gold-bright);
-  opacity:0;transform:translateY(10px);
-  transition:all .4s;
-  z-index:2;
-}
-
+.gallery-caption{position:absolute;left:20px;bottom:18px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold-bright);opacity:0;transform:translateY(10px);transition:all .4s;z-index:2}
 .g-1{grid-column:span 5;grid-row:span 7}
 .g-2{grid-column:span 4;grid-row:span 4}
 .g-3{grid-column:span 3;grid-row:span 4}
@@ -712,273 +210,88 @@ section{
 .g-7{grid-column:span 4;grid-row:span 5}
 .g-8{grid-column:span 5;grid-row:span 5}
 
-/* ——————————————— TESTIMONI / QUOTE BAND ——————————————— */
-.band{
-  padding:140px 60px;
-  background:var(--ink-deep);
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-}
-.band::before{
-  content:"";
-  position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(to right, transparent, var(--gold-deep), transparent);
-}
-.band::after{
-  content:"";
-  position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:linear-gradient(to right, transparent, var(--gold-deep), transparent);
-}
-.band-quote{
-  font-family:'Italiana', serif;
-  font-size:clamp(1.8rem, 4vw, 3rem);
-  color:var(--parchment);
-  line-height:1.4;
-  max-width:900px;margin:0 auto 24px;
-}
-.band-quote::before, .band-quote::after{
-  content:"";
-  display:inline-block;
-  width:50px;height:1px;
-  background:var(--gold);
-  vertical-align:middle;
-  margin:0 24px;
-}
-.band-attr{
-  font-family:'Cinzel', serif;
-  font-size:.75rem;letter-spacing:.5em;
-  color:var(--gold);
-  margin-top:18px;
-}
+/* BAND */
+.band{padding:140px 60px;background:var(--ink-deep);position:relative;overflow:hidden;text-align:center}
+.band::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep), transparent)}
+.band::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep), transparent)}
+.band-quote{font-family:'Italiana', serif;font-size:clamp(1.8rem, 4vw, 3rem);color:var(--parchment);line-height:1.4;max-width:900px;margin:0 auto 24px}
+.band-quote::before,.band-quote::after{content:"";display:inline-block;width:50px;height:1px;background:var(--gold);vertical-align:middle;margin:0 24px}
+.band-attr{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold);margin-top:18px}
 
-/* ——————————————— CONTACT ——————————————— */
-.contact{
-  padding:140px 60px;
-  background:
-    radial-gradient(ellipse at top, rgba(201,169,97,.1) 0%, transparent 50%),
-    var(--ink);
-  position:relative;
-}
-.contact-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:100px;
-  align-items:center;
-}
+/* CONTACT */
+.contact{padding:140px 60px;background:radial-gradient(ellipse at top, rgba(201,169,97,.1) 0%, transparent 50%),var(--ink);position:relative}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
 .contact-info h2{margin-bottom:30px}
-.contact-lead{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:1.25rem;
-  line-height:1.7;
-  color:var(--parchment-dim);
-  margin-bottom:40px;
-}
-.contact-list{
-  list-style:none;
-  display:flex;flex-direction:column;gap:20px;
-}
-.contact-list li{
-  display:flex;align-items:center;gap:18px;
-  font-size:1.05rem;
-  color:var(--parchment);
-  padding:14px 0;
-  border-bottom:1px solid rgba(201,169,97,.15);
-  transition:all .3s;
-}
-.contact-list li:hover{
-  padding-left:8px;border-color:var(--gold);
-}
-.contact-list svg{
-  width:18px;height:18px;color:var(--gold);flex-shrink:0;
-}
-.contact-list span.lbl{
-  font-family:'Cinzel', serif;
-  font-size:.6rem;letter-spacing:.35em;
-  color:var(--gold);
-  text-transform:uppercase;
-  margin-right:16px;min-width:90px;
-}
-
-/* Newsletter form */
-.newsletter{
-  background:var(--ink-soft);
-  border:1px solid rgba(201,169,97,.2);
-  padding:50px 44px;
-  position:relative;
-}
-.newsletter::before{
-  content:"";
-  position:absolute;top:-1px;left:-1px;
-  width:30px;height:30px;
-  border-top:1px solid var(--gold);border-left:1px solid var(--gold);
-}
-.newsletter::after{
-  content:"";
-  position:absolute;bottom:-1px;right:-1px;
-  width:30px;height:30px;
-  border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);
-}
-.newsletter h3{
-  font-size:1rem;margin-bottom:12px;color:var(--gold);
-}
-.newsletter p{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:1rem;
-  color:var(--parchment-dim);
-  margin-bottom:26px;
-}
-.newsletter-field{
-  display:flex;border:1px solid rgba(201,169,97,.3);
-}
-.newsletter-field input{
-  flex:1;
-  background:transparent;border:none;outline:none;
-  padding:15px 18px;
-  color:var(--parchment);
-  font-family:'Cormorant Garamond', serif;
-  font-size:1rem;
-}
+.contact-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.25rem;line-height:1.7;color:var(--parchment-dim);margin-bottom:40px}
+.contact-list{list-style:none;display:flex;flex-direction:column;gap:20px}
+.contact-list li{display:flex;align-items:center;gap:18px;font-size:1.05rem;color:var(--parchment);padding:14px 0;border-bottom:1px solid rgba(201,169,97,.15);transition:all .3s}
+.contact-list li:hover{padding-left:8px;border-color:var(--gold)}
+.contact-list svg{width:18px;height:18px;color:var(--gold);flex-shrink:0}
+.contact-list span.lbl{font-family:'Cinzel', serif;font-size:.6rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-right:16px;min-width:90px}
+.newsletter{background:var(--ink-soft);border:1px solid rgba(201,169,97,.2);padding:50px 44px;position:relative}
+.newsletter::before{content:"";position:absolute;top:-1px;left:-1px;width:30px;height:30px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.newsletter::after{content:"";position:absolute;bottom:-1px;right:-1px;width:30px;height:30px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+.newsletter h3{font-size:1rem;margin-bottom:12px;color:var(--gold)}
+.newsletter p{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1rem;color:var(--parchment-dim);margin-bottom:26px}
+.newsletter-field{display:flex;border:1px solid rgba(201,169,97,.3)}
+.newsletter-field input{flex:1;background:transparent;border:none;outline:none;padding:15px 18px;color:var(--parchment);font-family:'Cormorant Garamond', serif;font-size:1rem}
 .newsletter-field input::placeholder{color:rgba(244,235,217,.4)}
-.newsletter-field button{
-  background:var(--gold);color:var(--ink);border:none;
-  padding:0 28px;
-  font-family:'Cinzel', serif;
-  font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;
-  cursor:none;
-  transition:all .3s;
-}
+.newsletter-field button{background:var(--gold);color:var(--ink);border:none;padding:0 28px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:none;transition:all .3s}
 .newsletter-field button:hover{background:var(--gold-bright);letter-spacing:.45em}
 
-/* ——————————————— FOOTER ——————————————— */
-footer{
-  padding:80px 60px 40px;
-  background:var(--ink-deep);
-  border-top:1px solid rgba(201,169,97,.15);
-  text-align:center;
-}
-footer .starburst-small{
-  width:50px;height:50px;margin:0 auto 24px;
-  opacity:.7;
-}
-footer .f-brand{
-  font-family:'Cinzel', serif;
-  font-size:1.2rem;letter-spacing:.45em;
-  color:var(--gold);
-  margin-bottom:10px;
-}
-footer .f-sub{
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;font-size:.95rem;
-  color:var(--parchment-dim);
-  margin-bottom:36px;
-}
-.socials{
-  display:flex;gap:24px;justify-content:center;
-  margin-bottom:40px;
-}
-.socials a{
-  width:42px;height:42px;
-  border:1px solid rgba(201,169,97,.3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);
-  transition:all .3s;
-}
-.socials a:hover{
-  background:var(--gold);
-  color:var(--ink);
-  border-color:var(--gold);
-  transform:translateY(-3px);
-}
+/* FOOTER */
+footer{padding:80px 60px 40px;background:var(--ink-deep);border-top:1px solid rgba(201,169,97,.15);text-align:center}
+footer .starburst-small{width:50px;height:50px;margin:0 auto 24px;opacity:.7}
+footer .f-brand{font-family:'Cinzel', serif;font-size:1.2rem;letter-spacing:.45em;color:var(--gold);margin-bottom:10px}
+footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--parchment-dim);margin-bottom:36px}
+.socials{display:flex;gap:24px;justify-content:center;margin-bottom:40px}
+.socials a{width:42px;height:42px;border:1px solid rgba(201,169,97,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s}
+.socials a:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:translateY(-3px)}
 .socials svg{width:16px;height:16px}
-.f-meta{
-  font-family:'Cinzel', serif;
-  font-size:.65rem;letter-spacing:.35em;
-  color:var(--parchment-dim);
-  opacity:.5;
-}
-.f-legal{
-  margin-top:16px;
-  font-family:'Cormorant Garamond', serif;
-  font-size:.85rem;
-  color:var(--parchment-dim);
-  opacity:.4;
-}
+.f-meta{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;color:var(--parchment-dim);opacity:.5}
+.f-legal{margin-top:16px;font-family:'Cormorant Garamond', serif;font-size:.85rem;color:var(--parchment-dim);opacity:.4}
 
-/* ——————————————— CART DRAWER ——————————————— */
-.cart-drawer{
-  position:fixed;top:0;right:0;
-  width:420px;max-width:100vw;height:100vh;
-  background:var(--ink-deep);
-  border-left:1px solid var(--gold);
-  z-index:200;
-  transform:translateX(100%);
-  transition:transform .6s cubic-bezier(.5,.05,.3,1);
-  display:flex;flex-direction:column;
-}
+/* CART DRAWER */
+.cart-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100vh;background:var(--ink-deep);border-left:1px solid var(--gold);z-index:200;transform:translateX(100%);transition:transform .6s cubic-bezier(.5,.05,.3,1);display:flex;flex-direction:column}
 .cart-drawer.open{transform:translateX(0)}
-.cart-head{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:30px 32px;
-  border-bottom:1px solid rgba(201,169,97,.2);
-}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:30px 32px;border-bottom:1px solid rgba(201,169,97,.2)}
 .cart-head h3{font-size:1rem;color:var(--gold)}
-.cart-close{
-  width:36px;height:36px;border:1px solid rgba(201,169,97,.3);
-  background:transparent;color:var(--parchment);
-  cursor:none;font-size:1rem;
-  transition:all .3s;
-}
+.cart-close{width:36px;height:36px;border:1px solid rgba(201,169,97,.3);background:transparent;color:var(--parchment);cursor:none;font-size:1rem;transition:all .3s}
 .cart-close:hover{border-color:var(--gold);color:var(--gold)}
 .cart-items{flex:1;overflow-y:auto;padding:24px 32px}
-.cart-empty{
-  text-align:center;padding:60px 0;
-  font-family:'Cormorant Garamond', serif;
-  font-style:italic;
-  color:var(--parchment-dim);
-}
-.cart-item{
-  display:flex;gap:14px;align-items:center;
-  padding:16px 0;
-  border-bottom:1px solid rgba(201,169,97,.1);
-}
+.cart-empty{text-align:center;padding:60px 0;font-family:'Cormorant Garamond', serif;font-style:italic;color:var(--parchment-dim)}
+.cart-item{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(201,169,97,.1)}
 .cart-item img{width:60px;height:75px;object-fit:cover}
 .cart-item-info{flex:1}
 .cart-item-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;margin-bottom:4px}
 .cart-item-price{color:var(--gold);font-size:.95rem}
-.cart-item-remove{
-  background:transparent;border:none;color:var(--parchment-dim);cursor:none;font-size:1rem;
-}
-.cart-foot{
-  padding:24px 32px;border-top:1px solid rgba(201,169,97,.2);
-}
-.cart-total{
-  display:flex;justify-content:space-between;align-items:baseline;
-  margin-bottom:16px;
-}
+.cart-item-remove{background:transparent;border:none;color:var(--parchment-dim);cursor:none;font-size:1rem}
+.cart-foot{padding:24px 32px;border-top:1px solid rgba(201,169,97,.2)}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
 .cart-total .lab{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:var(--parchment-dim)}
 .cart-total .val{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold)}
-.cart-checkout{
-  width:100%;padding:18px;
-  background:var(--gold);color:var(--ink);
-  border:none;
-  font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;
-  cursor:none;transition:all .3s;
-}
+.cart-checkout{width:100%;padding:18px;background:var(--gold);color:var(--ink);border:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;cursor:none;transition:all .3s}
 .cart-checkout:hover{background:var(--gold-bright);letter-spacing:.5em}
-.cart-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.75);
-  backdrop-filter:blur(4px);
-  z-index:150;opacity:0;pointer-events:none;
-  transition:opacity .5s;
-}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:150;opacity:0;pointer-events:none;transition:opacity .5s}
 .cart-overlay.active{opacity:1;pointer-events:auto}
 
-/* ——————————————— RESPONSIVE ——————————————— */
+/* LOAD MORE & ENHANCEMENTS */
+.products-wrapper{position:relative}
+.product[data-hidden="true"]{display:none!important}
+@keyframes productIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.load-more-wrap{text-align:center;margin-top:70px}
+.load-more-btn{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;padding:18px 50px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:none;transition:all .4s;position:relative;overflow:hidden}
+.load-more-btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s ease;z-index:0}
+.load-more-btn:hover::before{transform:translateX(0)}
+.load-more-btn:hover{color:var(--ink)}
+.load-more-btn span{position:relative;z-index:1}
+.product-count{text-align:center;margin-top:24px;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--parchment-dim);opacity:.6}
+.filter-pill{position:relative}
+.filter-count{font-family:'Cormorant Garamond', serif;font-size:.65rem;font-style:italic;opacity:.7;margin-left:4px}
+.product::before{content:"";position:absolute;inset:-1px;background:linear-gradient(135deg, rgba(201,169,97,.15), transparent);opacity:0;transition:opacity .5s;z-index:1;pointer-events:none}
+.product:hover::before{opacity:1}
+
+/* RESPONSIVE */
 @media (max-width:1024px){
   .nav{padding:22px 30px}
   .nav.scrolled{padding:12px 30px}
@@ -994,6 +307,7 @@ footer .f-sub{
   .sacred-frame{top:80px;left:20px;right:20px;bottom:30px}
   body{cursor:auto}
   .cursor-dot,.cursor-ring{display:none}
+  .filter-pill,.load-more-btn,.product-btn,.cart-close,.cart-checkout,.newsletter-field button{cursor:pointer}
 }
 @media (max-width:640px){
   section{padding:80px 20px}
@@ -1001,9 +315,7 @@ footer .f-sub{
   .nav{padding:16px 20px}
   .products{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr;gap:40px}
-  .gallery-grid{
-    grid-template-columns:repeat(6, 1fr);
-  }
+  .gallery-grid{grid-template-columns:repeat(6, 1fr)}
   .g-1{grid-column:span 6;grid-row:span 5}
   .g-2{grid-column:span 3;grid-row:span 4}
   .g-3{grid-column:span 3;grid-row:span 4}
@@ -1016,16 +328,16 @@ footer .f-sub{
   .contact-list span.lbl{min-width:70px;font-size:.55rem}
   .newsletter{padding:32px 24px}
   .cart-drawer{width:100vw}
+  .filters{gap:8px}
+  .filter-pill{padding:8px 12px;font-size:.6rem;letter-spacing:.2em}
 }
 </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Cart overlay & drawer -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer">
   <div class="cart-head">
@@ -1044,7 +356,6 @@ footer .f-sub{
   </div>
 </aside>
 
-<!-- ——————————————— NAV ——————————————— -->
 <nav class="nav" id="nav">
   <div class="nav-logo">
     CARPE&nbsp;DIEM
@@ -1060,14 +371,10 @@ footer .f-sub{
   <button class="nav-cart" id="cartBtn">Carrello (<span id="cartCount">0</span>)</button>
 </nav>
 
-<!-- ——————————————— HERO ——————————————— -->
 <section class="hero">
-  <div class="sacred-frame">
-    <div class="sacred-frame-inner"></div>
-  </div>
+  <div class="sacred-frame"><div class="sacred-frame-inner"></div></div>
   <div class="hero-corner-i">ROMA · MMXXVI</div>
   <div class="hero-corner-ii">ATELIER · NO. I</div>
-
   <div class="starburst">
     <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -1077,161 +384,75 @@ footer .f-sub{
           <stop offset="100%" stop-color="#8a6f3b" stop-opacity="0"/>
         </radialGradient>
       </defs>
-      <g class="starburst-core">
-        <circle cx="150" cy="150" r="10" fill="url(#coreGrad)"/>
-        <circle cx="150" cy="150" r="5" fill="#ffe5a7"/>
-      </g>
+      <g class="starburst-core"><circle cx="150" cy="150" r="10" fill="url(#coreGrad)"/><circle cx="150" cy="150" r="5" fill="#ffe5a7"/></g>
       <g stroke="#c9a961" stroke-linecap="round" fill="none">
-        <!-- Rays: a classical starburst. 24 rays, varying length -->
-        <g class="ray">
-          <line x1="150" y1="18" x2="150" y2="60" stroke-width="1.2"/>
-          <line x1="150" y1="240" x2="150" y2="282" stroke-width="1.2"/>
-          <line x1="18" y1="150" x2="60" y2="150" stroke-width="1.2"/>
-          <line x1="240" y1="150" x2="282" y2="150" stroke-width="1.2"/>
-        </g>
-        <g class="ray" style="animation-delay:.3s">
-          <line x1="57" y1="57" x2="86" y2="86" stroke-width="1.2"/>
-          <line x1="214" y1="214" x2="243" y2="243" stroke-width="1.2"/>
-          <line x1="243" y1="57" x2="214" y2="86" stroke-width="1.2"/>
-          <line x1="86" y1="214" x2="57" y2="243" stroke-width="1.2"/>
-        </g>
-        <g class="ray" style="animation-delay:.6s;opacity:.8">
-          <line x1="110" y1="22" x2="118" y2="68" stroke-width=".8"/>
-          <line x1="190" y1="22" x2="182" y2="68" stroke-width=".8"/>
-          <line x1="110" y1="278" x2="118" y2="232" stroke-width=".8"/>
-          <line x1="190" y1="278" x2="182" y2="232" stroke-width=".8"/>
-          <line x1="22" y1="110" x2="68" y2="118" stroke-width=".8"/>
-          <line x1="22" y1="190" x2="68" y2="182" stroke-width=".8"/>
-          <line x1="278" y1="110" x2="232" y2="118" stroke-width=".8"/>
-          <line x1="278" y1="190" x2="232" y2="182" stroke-width=".8"/>
-        </g>
-        <g class="ray" style="animation-delay:.9s;opacity:.6">
-          <line x1="75" y1="38" x2="96" y2="76" stroke-width=".6"/>
-          <line x1="225" y1="38" x2="204" y2="76" stroke-width=".6"/>
-          <line x1="75" y1="262" x2="96" y2="224" stroke-width=".6"/>
-          <line x1="225" y1="262" x2="204" y2="224" stroke-width=".6"/>
-          <line x1="38" y1="75" x2="76" y2="96" stroke-width=".6"/>
-          <line x1="38" y1="225" x2="76" y2="204" stroke-width=".6"/>
-          <line x1="262" y1="75" x2="224" y2="96" stroke-width=".6"/>
-          <line x1="262" y1="225" x2="224" y2="204" stroke-width=".6"/>
-        </g>
+        <g class="ray"><line x1="150" y1="18" x2="150" y2="60" stroke-width="1.2"/><line x1="150" y1="240" x2="150" y2="282" stroke-width="1.2"/><line x1="18" y1="150" x2="60" y2="150" stroke-width="1.2"/><line x1="240" y1="150" x2="282" y2="150" stroke-width="1.2"/></g>
+        <g class="ray" style="animation-delay:.3s"><line x1="57" y1="57" x2="86" y2="86" stroke-width="1.2"/><line x1="214" y1="214" x2="243" y2="243" stroke-width="1.2"/><line x1="243" y1="57" x2="214" y2="86" stroke-width="1.2"/><line x1="86" y1="214" x2="57" y2="243" stroke-width="1.2"/></g>
+        <g class="ray" style="animation-delay:.6s;opacity:.8"><line x1="110" y1="22" x2="118" y2="68" stroke-width=".8"/><line x1="190" y1="22" x2="182" y2="68" stroke-width=".8"/><line x1="110" y1="278" x2="118" y2="232" stroke-width=".8"/><line x1="190" y1="278" x2="182" y2="232" stroke-width=".8"/><line x1="22" y1="110" x2="68" y2="118" stroke-width=".8"/><line x1="22" y1="190" x2="68" y2="182" stroke-width=".8"/><line x1="278" y1="110" x2="232" y2="118" stroke-width=".8"/><line x1="278" y1="190" x2="232" y2="182" stroke-width=".8"/></g>
+        <g class="ray" style="animation-delay:.9s;opacity:.6"><line x1="75" y1="38" x2="96" y2="76" stroke-width=".6"/><line x1="225" y1="38" x2="204" y2="76" stroke-width=".6"/><line x1="75" y1="262" x2="96" y2="224" stroke-width=".6"/><line x1="225" y1="262" x2="204" y2="224" stroke-width=".6"/><line x1="38" y1="75" x2="76" y2="96" stroke-width=".6"/><line x1="38" y1="225" x2="76" y2="204" stroke-width=".6"/><line x1="262" y1="75" x2="224" y2="96" stroke-width=".6"/><line x1="262" y1="225" x2="224" y2="204" stroke-width=".6"/></g>
       </g>
     </svg>
   </div>
-
   <div class="hero-sub">L'ARTE SACRA DA INDOSSARE</div>
   <h1 class="hero-brand" id="heroBrand"></h1>
   <div class="hero-tagline">Artigianato Romano · Dal 2024</div>
-
   <div class="hero-divider">
     <span></span>
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L12 22M2 12L22 12M7 7L17 17M17 7L7 17"/></svg>
     <span></span>
   </div>
-
   <div class="scroll-indicator">
     <div class="txt">SCROLL</div>
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- ——————————————— PHILOSOPHY ——————————————— -->
 <section class="philosophy" id="philosophy">
-
-  <!-- Big decorative crosses -->
-  <svg class="bg-cross tl" viewBox="0 0 100 100" fill="currentColor">
-    <path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/>
-  </svg>
-  <svg class="bg-cross br" viewBox="0 0 100 100" fill="currentColor">
-    <path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/>
-  </svg>
-
+  <svg class="bg-cross tl" viewBox="0 0 100 100" fill="currentColor"><path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/></svg>
+  <svg class="bg-cross br" viewBox="0 0 100 100" fill="currentColor"><path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/></svg>
   <div class="philosophy-inner">
-    <div class="section-number reveal">
-      <span>I · FILOSOFIA</span>
-    </div>
+    <div class="section-number reveal"><span>I · FILOSOFIA</span></div>
     <p class="eyebrow reveal delay-1">Memento · Hodie · Vive</p>
-
-    <h2 class="philosophy-quote reveal delay-2">
-      Ogni pezzo è un <em>sussurro</em> di eternità,<br>
-      reso tangibile dalla mano di chi crede<br>
-      che la bellezza sia una <em>preghiera</em>.
-    </h2>
-
-    <p class="philosophy-body reveal delay-3">
-      Carpe Diem nasce a Roma come atto d'amore verso l'arte sacra. Trasformiamo simboli millenari —
-      croci, rosari, medaglie — in gioielli contemporanei che uniscono devozione e stile, memoria e presente.
-    </p>
-    <p class="philosophy-body reveal delay-4">
-      Non creiamo accessori. Creiamo <em style="color:var(--gold);font-style:italic">piccole reliquie</em>
-      destinate a chi sceglie di portare con sé un frammento del sacro.
-    </p>
+    <h2 class="philosophy-quote reveal delay-2">Ogni pezzo è un <em>sussurro</em> di eternità,<br>reso tangibile dalla mano di chi crede<br>che la bellezza sia una <em>preghiera</em>.</h2>
+    <p class="philosophy-body reveal delay-3">Carpe Diem nasce a Roma come atto d'amore verso l'arte sacra. Trasformiamo simboli millenari — croci, rosari, medaglie — in gioielli contemporanei che uniscono devozione e stile, memoria e presente.</p>
+    <p class="philosophy-body reveal delay-4">Non creiamo accessori. Creiamo <em style="color:var(--gold);font-style:italic">piccole reliquie</em> destinate a chi sceglie di portare con sé un frammento del sacro.</p>
   </div>
 </section>
 
-<!-- ——————————————— ATELIER ——————————————— -->
 <section class="atelier" id="atelier">
   <div class="container">
     <div class="atelier-head">
       <div>
-        <div class="section-number reveal">
-          <span>II · ATELIER</span>
-        </div>
-        <h2 class="section-title reveal delay-1">
-          Il Rito della<br><em>Creazione</em>
-        </h2>
+        <div class="section-number reveal"><span>II · ATELIER</span></div>
+        <h2 class="section-title reveal delay-1">Il Rito della<br><em>Creazione</em></h2>
       </div>
-      <p class="atelier-head-lead reveal delay-2">
-        Ogni gioiello passa per quattro mani, quattro momenti, quattro attese.
-        Un processo lento, scandito dal silenzio, che restituisce al tempo la sua dignità.
-      </p>
+      <p class="atelier-head-lead reveal delay-2">Ogni gioiello passa per quattro mani, quattro momenti, quattro attese. Un processo lento, scandito dal silenzio, che restituisce al tempo la sua dignità.</p>
     </div>
-
     <div class="steps">
-      <div class="step reveal">
-        <div class="step-numeral"><span>I</span></div>
-        <h3>Selezione</h3>
-        <p>Scegliamo con cura pietre naturali, perle di madreperla, giade e agate. Ogni materia è ispezionata al tatto, alla luce, al peso.</p>
-      </div>
-      <div class="step reveal delay-1">
-        <div class="step-numeral"><span>II</span></div>
-        <h3>Incastonatura</h3>
-        <p>Le croci smaltate e le medaglie sacre vengono montate una ad una, filo d'oro su filo d'oro, in un tempo che non si misura in minuti.</p>
-      </div>
-      <div class="step reveal delay-2">
-        <div class="step-numeral"><span>III</span></div>
-        <h3>Assemblaggio</h3>
-        <p>Ogni perlina viene legata manualmente al suo anellino. Un rosario richiede ore. Una collana, un pomeriggio intero.</p>
-      </div>
-      <div class="step reveal delay-3">
-        <div class="step-numeral"><span>IV</span></div>
-        <h3>Benedizione</h3>
-        <p>Il pezzo finito riposa. Viene pulito, incartato nella seta, sigillato. Pronto per accompagnare chi lo indosserà.</p>
-      </div>
+      <div class="step reveal"><div class="step-numeral"><span>I</span></div><h3>Selezione</h3><p>Scegliamo con cura pietre naturali, perle di madreperla, giade e agate. Ogni materia è ispezionata al tatto, alla luce, al peso.</p></div>
+      <div class="step reveal delay-1"><div class="step-numeral"><span>II</span></div><h3>Incastonatura</h3><p>Le croci smaltate e le medaglie sacre vengono montate una ad una, filo d'oro su filo d'oro, in un tempo che non si misura in minuti.</p></div>
+      <div class="step reveal delay-2"><div class="step-numeral"><span>III</span></div><h3>Assemblaggio</h3><p>Ogni perlina viene legata manualmente al suo anellino. Un rosario richiede ore. Una collana, un pomeriggio intero.</p></div>
+      <div class="step reveal delay-3"><div class="step-numeral"><span>IV</span></div><h3>Benedizione</h3><p>Il pezzo finito riposa. Viene pulito, incartato nella seta, sigillato. Pronto per accompagnare chi lo indosserà.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ——————————————— SHOP ——————————————— -->
 <section class="shop" id="shop">
   <div class="container">
     <div class="shop-head">
-      <div class="section-number reveal">
-        <span>III · COLLEZIONE</span>
-      </div>
-      <h2 class="section-title reveal delay-1">
-        La <em>Collezione</em> Sacra
-      </h2>
-      <p class="subtle-italic reveal delay-2" style="font-size:1.15rem;color:var(--parchment-dim);max-width:560px;margin:10px auto 0">
-        Pezzi unici, numerati, pensati per essere portati ogni giorno come un voto silenzioso.
-      </p>
+      <div class="section-number reveal"><span>III · COLLEZIONE</span></div>
+      <h2 class="section-title reveal delay-1">La <em>Collezione</em> Sacra</h2>
+      <p class="subtle-italic reveal delay-2" style="font-size:1.15rem;color:var(--parchment-dim);max-width:560px;margin:10px auto 0">Pezzi unici, numerati, pensati per essere portati ogni giorno come un voto silenzioso.</p>
     </div>
 
     <div class="filters reveal">
-      <button class="filter-pill active" data-filter="all">Tutti</button>
-      <button class="filter-pill" data-filter="necklace">Collane</button>
-      <button class="filter-pill" data-filter="bracelet">Bracciali</button>
-      <button class="filter-pill" data-filter="rosary">Rosari</button>
+      <button class="filter-pill active" data-filter="all">Tutti <span class="filter-count">(70)</span></button>
+      <button class="filter-pill" data-filter="necklace">Collane <span class="filter-count">(17)</span></button>
+      <button class="filter-pill" data-filter="bracelet">Bracciali <span class="filter-count">(14)</span></button>
+      <button class="filter-pill" data-filter="rosary">Rosari <span class="filter-count">(11)</span></button>
+      <button class="filter-pill" data-filter="earring">Orecchini <span class="filter-count">(12)</span></button>
+      <button class="filter-pill" data-filter="pendant">Ciondoli <span class="filter-count">(8)</span></button>
+      <button class="filter-pill" data-filter="ring">Anelli <span class="filter-count">(8)</span></button>
     </div>
 
     <div class="products" id="productsGrid">
@@ -1240,7 +461,7 @@ footer .f-sub{
       <article class="product reveal" data-category="necklace" data-name="Crux Rubra — Grande" data-price="89">
         <div class="product-img">
           <div class="product-tag">Bestseller</div>
-          <img src="images/5.jpeg" alt="Collana bianca con croce rossa grande">
+          <img src="images/5.jpeg" alt="Collana bianca con croce rossa grande" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Crux Rubra · Grande</div>
@@ -1255,7 +476,7 @@ footer .f-sub{
       <!-- Product 2 -->
       <article class="product reveal delay-1" data-category="necklace" data-name="Crux Rubra — Piccola" data-price="79">
         <div class="product-img">
-          <img src="images/7.jpeg" alt="Collana bianca con croce rossa piccola">
+          <img src="images/7.jpeg" alt="Collana bianca con croce rossa piccola" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Crux Rubra · Piccola</div>
@@ -1270,7 +491,7 @@ footer .f-sub{
       <!-- Product 3 -->
       <article class="product reveal delay-2" data-category="necklace" data-name="Crux Aurea" data-price="69">
         <div class="product-img">
-          <img src="images/3.jpeg" alt="Collana bianca con croce dorata">
+          <img src="images/3.jpeg" alt="Collana bianca con croce dorata" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Crux Aurea</div>
@@ -1286,7 +507,7 @@ footer .f-sub{
       <article class="product reveal" data-category="bracelet" data-name="Rosarium — Bracciale Grande" data-price="59">
         <div class="product-img">
           <div class="product-tag">Nuovo</div>
-          <img src="images/9.jpeg" alt="Bracciale rosario rosso con croce grande">
+          <img src="images/9.jpeg" alt="Bracciale rosario rosso con croce grande" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Rosarium · Croce Maior</div>
@@ -1301,7 +522,7 @@ footer .f-sub{
       <!-- Product 5 -->
       <article class="product reveal delay-1" data-category="bracelet" data-name="Rosarium — Bracciale Piccolo" data-price="49">
         <div class="product-img">
-          <img src="images/10.jpeg" alt="Bracciale rosario rosso con croce piccola">
+          <img src="images/10.jpeg" alt="Bracciale rosario rosso con croce piccola" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Rosarium · Croce Minor</div>
@@ -1317,7 +538,7 @@ footer .f-sub{
       <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Romanum" data-price="149">
         <div class="product-img">
           <div class="product-tag">Edizione Limitata</div>
-          <img src="images/8.jpeg" alt="Rosario completo rosso">
+          <img src="images/8.jpeg" alt="Rosario completo rosso" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Rosarium Romanum</div>
@@ -1329,84 +550,1072 @@ footer .f-sub{
         </div>
       </article>
 
+      <!-- Product — Sancta Maria -->
+      <article class="product reveal" data-category="necklace" data-name="Sancta Maria" data-price="99">
+        <div class="product-img">
+          
+          <img src="images/13.jpeg" alt="Sancta Maria" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Sancta Maria</div>
+          <div class="product-desc">Collana in giada bianca con medaglia mariana</div>
+          <div class="product-footer">
+            <div class="product-price">€ 99<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Stella Maris -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Stella Maris" data-price="109">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/14.jpeg" alt="Stella Maris" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Stella Maris</div>
+          <div class="product-desc">Collana in perle d'acqua dolce e stella dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 109<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Crux Alba -->
+      <article class="product reveal delay-2" data-category="necklace" data-name="Crux Alba" data-price="85">
+        <div class="product-img">
+          
+          <img src="images/15.jpeg" alt="Crux Alba" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Alba</div>
+          <div class="product-desc">Collana in madreperla con croce smaltata bianca</div>
+          <div class="product-footer">
+            <div class="product-price">€ 85<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Ave Gratia -->
+      <article class="product reveal" data-category="necklace" data-name="Ave Gratia" data-price="119">
+        <div class="product-img">
+          
+          <img src="images/16.jpeg" alt="Ave Gratia" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Ave Gratia</div>
+          <div class="product-desc">Collana in cristallo di rocca e medaglia d'oro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 119<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Lux Aeterna -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Lux Aeterna" data-price="95">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/17.jpeg" alt="Lux Aeterna" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Lux Aeterna</div>
+          <div class="product-desc">Collana lunga in onice nero e croce d'ottone</div>
+          <div class="product-footer">
+            <div class="product-price">€ 95<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Mater Dei -->
+      <article class="product reveal delay-2" data-category="necklace" data-name="Mater Dei" data-price="129">
+        <div class="product-img">
+          
+          <img src="images/18.jpeg" alt="Mater Dei" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Mater Dei</div>
+          <div class="product-desc">Collana doppio filo in perle e medaglietta sacra</div>
+          <div class="product-footer">
+            <div class="product-price">€ 129<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Via Crucis -->
+      <article class="product reveal" data-category="necklace" data-name="Via Crucis" data-price="89">
+        <div class="product-img">
+          
+          <img src="images/19.jpeg" alt="Via Crucis" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Via Crucis</div>
+          <div class="product-desc">Collana in agata grigia con croci intermedie</div>
+          <div class="product-footer">
+            <div class="product-price">€ 89<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Corona Stellarum -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Corona Stellarum" data-price="79">
+        <div class="product-img">
+          
+          <img src="images/20.jpeg" alt="Corona Stellarum" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Corona Stellarum</div>
+          <div class="product-desc">Collana girocollo in perle e stelle dorate</div>
+          <div class="product-footer">
+            <div class="product-price">€ 79<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Pax Christi -->
+      <article class="product reveal delay-2" data-category="necklace" data-name="Pax Christi" data-price="105">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/21.jpeg" alt="Pax Christi" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Pax Christi</div>
+          <div class="product-desc">Collana in madreperla rosa e croce cesellata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 105<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Domine -->
+      <article class="product reveal" data-category="necklace" data-name="Domine" data-price="139">
+        <div class="product-img">
+          
+          <img src="images/22.jpeg" alt="Domine" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Domine</div>
+          <div class="product-desc">Collana corta in perle barocche e croce antica</div>
+          <div class="product-footer">
+            <div class="product-price">€ 139<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Fides -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Fides" data-price="75">
+        <div class="product-img">
+          
+          <img src="images/23.jpeg" alt="Fides" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Fides</div>
+          <div class="product-desc">Collana in quarzo rosa e medaglia della fede</div>
+          <div class="product-footer">
+            <div class="product-price">€ 75<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Sacra Corona -->
+      <article class="product reveal delay-2" data-category="necklace" data-name="Sacra Corona" data-price="89">
+        <div class="product-img">
+          
+          <img src="images/24.jpeg" alt="Sacra Corona" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Sacra Corona</div>
+          <div class="product-desc">Collana in ematite e corona dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 89<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Verbum -->
+      <article class="product reveal" data-category="necklace" data-name="Verbum" data-price="145">
+        <div class="product-img">
+          <div class="product-tag">Esclusivo</div>
+          <img src="images/25.jpeg" alt="Verbum" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Verbum</div>
+          <div class="product-desc">Collana in lapislazzuli e croce bizantina</div>
+          <div class="product-footer">
+            <div class="product-price">€ 145<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Clavis Caeli -->
+      <article class="product reveal delay-1" data-category="necklace" data-name="Clavis Caeli" data-price="69">
+        <div class="product-img">
+          
+          <img src="images/26.jpeg" alt="Clavis Caeli" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Clavis Caeli</div>
+          <div class="product-desc">Collana con chiave sacra in bronzo dorato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Devotio · Rosso -->
+      <article class="product reveal delay-2" data-category="bracelet" data-name="Devotio · Rosso" data-price="55">
+        <div class="product-img">
+          
+          <img src="images/27.jpeg" alt="Devotio · Rosso" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Devotio · Rosso</div>
+          <div class="product-desc">Bracciale in agata rossa con croce smaltata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Devotio · Nero -->
+      <article class="product reveal" data-category="bracelet" data-name="Devotio · Nero" data-price="55">
+        <div class="product-img">
+          
+          <img src="images/28.jpeg" alt="Devotio · Nero" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Devotio · Nero</div>
+          <div class="product-desc">Bracciale in onice nero con croce in bronzo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Gratia Plena -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Gratia Plena" data-price="69">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/29.jpeg" alt="Gratia Plena" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Gratia Plena</div>
+          <div class="product-desc">Bracciale multi-filo in perle e medagliette</div>
+          <div class="product-footer">
+            <div class="product-price">€ 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Sanctus -->
+      <article class="product reveal delay-2" data-category="bracelet" data-name="Sanctus" data-price="65">
+        <div class="product-img">
+          
+          <img src="images/30.jpeg" alt="Sanctus" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Sanctus</div>
+          <div class="product-desc">Bracciale in turchese e croce cesellata oro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Pater Noster -->
+      <article class="product reveal" data-category="bracelet" data-name="Pater Noster" data-price="59">
+        <div class="product-img">
+          
+          <img src="images/31.jpeg" alt="Pater Noster" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Pater Noster</div>
+          <div class="product-desc">Bracciale rosario in giada verde e bronzo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Agnus Dei -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Agnus Dei" data-price="79">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/32.jpeg" alt="Agnus Dei" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Agnus Dei</div>
+          <div class="product-desc">Bracciale in corallo e medaglia dell'Agnello</div>
+          <div class="product-footer">
+            <div class="product-price">€ 79<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Benedictus -->
+      <article class="product reveal delay-2" data-category="bracelet" data-name="Benedictus" data-price="49">
+        <div class="product-img">
+          
+          <img src="images/33.jpeg" alt="Benedictus" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Benedictus</div>
+          <div class="product-desc">Bracciale in ematite con medaglia benedettina</div>
+          <div class="product-footer">
+            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Spiritus -->
+      <article class="product reveal" data-category="bracelet" data-name="Spiritus" data-price="62">
+        <div class="product-img">
+          
+          <img src="images/34.jpeg" alt="Spiritus" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Spiritus</div>
+          <div class="product-desc">Bracciale in cristallo e colomba dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 62<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Fortitudo -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Fortitudo" data-price="45">
+        <div class="product-img">
+          
+          <img src="images/35.jpeg" alt="Fortitudo" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Fortitudo</div>
+          <div class="product-desc">Bracciale in pietra lavica e croce massiccia</div>
+          <div class="product-footer">
+            <div class="product-price">€ 45<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Misericordia -->
+      <article class="product reveal delay-2" data-category="bracelet" data-name="Misericordia" data-price="52">
+        <div class="product-img">
+          
+          <img src="images/36.jpeg" alt="Misericordia" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Misericordia</div>
+          <div class="product-desc">Bracciale in amazzonite e croce delicata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 52<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Templum -->
+      <article class="product reveal" data-category="bracelet" data-name="Templum" data-price="48">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/37.jpeg" alt="Templum" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Templum</div>
+          <div class="product-desc">Bracciale in howlite bianca e arco sacro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 48<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Speranza -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Speranza" data-price="58">
+        <div class="product-img">
+          
+          <img src="images/38.jpeg" alt="Speranza" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Speranza</div>
+          <div class="product-desc">Bracciale in quarzo citrino e ancora dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 58<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Alba -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Alba" data-price="159">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/39.jpeg" alt="Rosarium Alba" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Alba</div>
+          <div class="product-desc">Rosario in madreperla bianca e croce d'argento</div>
+          <div class="product-footer">
+            <div class="product-price">€ 159<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Noctis -->
+      <article class="product reveal" data-category="rosary" data-name="Rosarium Noctis" data-price="139">
+        <div class="product-img">
+          
+          <img src="images/40.jpeg" alt="Rosarium Noctis" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Noctis</div>
+          <div class="product-desc">Rosario in onice nero e medaglie in bronzo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 139<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Mariae -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosarium Mariae" data-price="149">
+        <div class="product-img">
+          
+          <img src="images/41.jpeg" alt="Rosarium Mariae" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Mariae</div>
+          <div class="product-desc">Rosario in cristallo azzurro e medaglia mariana</div>
+          <div class="product-footer">
+            <div class="product-price">€ 149<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Terrae -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Terrae" data-price="119">
+        <div class="product-img">
+          
+          <img src="images/42.jpeg" alt="Rosarium Terrae" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Terrae</div>
+          <div class="product-desc">Rosario in legno d'ulivo e bronzo antico</div>
+          <div class="product-footer">
+            <div class="product-price">€ 119<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Regale -->
+      <article class="product reveal" data-category="rosary" data-name="Rosarium Regale" data-price="189">
+        <div class="product-img">
+          <div class="product-tag">Esclusivo</div>
+          <img src="images/43.jpeg" alt="Rosarium Regale" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Regale</div>
+          <div class="product-desc">Rosario in ametista e croci in oro rosa</div>
+          <div class="product-footer">
+            <div class="product-price">€ 189<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Simplex -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosarium Simplex" data-price="99">
+        <div class="product-img">
+          
+          <img src="images/44.jpeg" alt="Rosarium Simplex" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Simplex</div>
+          <div class="product-desc">Rosario essenziale in agata grigia e acciaio</div>
+          <div class="product-footer">
+            <div class="product-price">€ 99<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Floris -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Floris" data-price="169">
+        <div class="product-img">
+          
+          <img src="images/45.jpeg" alt="Rosarium Floris" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Floris</div>
+          <div class="product-desc">Rosario in giada verde e rose dorate</div>
+          <div class="product-footer">
+            <div class="product-price">€ 169<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Ignis -->
+      <article class="product reveal" data-category="rosary" data-name="Rosarium Ignis" data-price="145">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/46.jpeg" alt="Rosarium Ignis" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Ignis</div>
+          <div class="product-desc">Rosario in corniola rossa e bronzo dorato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 145<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Pacis -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosarium Pacis" data-price="135">
+        <div class="product-img">
+          
+          <img src="images/47.jpeg" alt="Rosarium Pacis" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Pacis</div>
+          <div class="product-desc">Rosario in turchese e croce di pace</div>
+          <div class="product-footer">
+            <div class="product-price">€ 135<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Aureum -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Aureum" data-price="199">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/48.jpeg" alt="Rosarium Aureum" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Aureum</div>
+          <div class="product-desc">Rosario completo in perle dorate e ottone</div>
+          <div class="product-footer">
+            <div class="product-price">€ 199<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Goccia Sacra -->
+      <article class="product reveal" data-category="earring" data-name="Goccia Sacra" data-price="45">
+        <div class="product-img">
+          
+          <img src="images/49.jpeg" alt="Goccia Sacra" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Goccia Sacra</div>
+          <div class="product-desc">Orecchini pendenti con croce e perla</div>
+          <div class="product-footer">
+            <div class="product-price">€ 45<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Crux Minima -->
+      <article class="product reveal delay-1" data-category="earring" data-name="Crux Minima" data-price="39">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/50.jpeg" alt="Crux Minima" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Minima</div>
+          <div class="product-desc">Orecchini a croce in oro satinato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 39<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Stella Divina -->
+      <article class="product reveal delay-2" data-category="earring" data-name="Stella Divina" data-price="55">
+        <div class="product-img">
+          
+          <img src="images/51.jpeg" alt="Stella Divina" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Stella Divina</div>
+          <div class="product-desc">Orecchini a stella con zircone centrale</div>
+          <div class="product-footer">
+            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Cerchio Eterno -->
+      <article class="product reveal" data-category="earring" data-name="Cerchio Eterno" data-price="49">
+        <div class="product-img">
+          
+          <img src="images/52.jpeg" alt="Cerchio Eterno" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Cerchio Eterno</div>
+          <div class="product-desc">Orecchini a cerchio con croce pendente</div>
+          <div class="product-footer">
+            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Medaglia d'Oro -->
+      <article class="product reveal delay-1" data-category="earring" data-name="Medaglia d'Oro" data-price="42">
+        <div class="product-img">
+          
+          <img src="images/53.jpeg" alt="Medaglia d'Oro" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Medaglia d'Oro</div>
+          <div class="product-desc">Orecchini a medaglia sacra in bronzo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 42<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Lacrime di Maria -->
+      <article class="product reveal delay-2" data-category="earring" data-name="Lacrime di Maria" data-price="65">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/54.jpeg" alt="Lacrime di Maria" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Lacrime di Maria</div>
+          <div class="product-desc">Orecchini pendenti in cristallo e oro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosa Mistica -->
+      <article class="product reveal" data-category="earring" data-name="Rosa Mistica" data-price="52">
+        <div class="product-img">
+          
+          <img src="images/55.jpeg" alt="Rosa Mistica" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosa Mistica</div>
+          <div class="product-desc">Orecchini a rosa con centro in granato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 52<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Colomba -->
+      <article class="product reveal delay-1" data-category="earring" data-name="Colomba" data-price="48">
+        <div class="product-img">
+          
+          <img src="images/56.jpeg" alt="Colomba" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Colomba</div>
+          <div class="product-desc">Orecchini a colomba in madreperla</div>
+          <div class="product-footer">
+            <div class="product-price">€ 48<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Lumen -->
+      <article class="product reveal delay-2" data-category="earring" data-name="Lumen" data-price="38">
+        <div class="product-img">
+          
+          <img src="images/57.jpeg" alt="Lumen" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Lumen</div>
+          <div class="product-desc">Orecchini a goccia con luce dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 38<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Ancilla -->
+      <article class="product reveal" data-category="earring" data-name="Ancilla" data-price="35">
+        <div class="product-img">
+          
+          <img src="images/58.jpeg" alt="Ancilla" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Ancilla</div>
+          <div class="product-desc">Orecchini discreti con micro-croce</div>
+          <div class="product-footer">
+            <div class="product-price">€ 35<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Seraphim -->
+      <article class="product reveal delay-1" data-category="earring" data-name="Seraphim" data-price="59">
+        <div class="product-img">
+          <div class="product-tag">Esclusivo</div>
+          <img src="images/59.jpeg" alt="Seraphim" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Seraphim</div>
+          <div class="product-desc">Orecchini ad ala in filigrana dorata</div>
+          <div class="product-footer">
+            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Aureola -->
+      <article class="product reveal delay-2" data-category="earring" data-name="Aureola" data-price="44">
+        <div class="product-img">
+          
+          <img src="images/60.jpeg" alt="Aureola" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Aureola</div>
+          <div class="product-desc">Orecchini a cerchio con alone dorato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 44<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Ex Voto -->
+      <article class="product reveal" data-category="pendant" data-name="Ex Voto" data-price="39">
+        <div class="product-img">
+          
+          <img src="images/61.jpeg" alt="Ex Voto" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Ex Voto</div>
+          <div class="product-desc">Ciondolo cuore sacro in bronzo battuto</div>
+          <div class="product-footer">
+            <div class="product-price">€ 39<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Ichthys -->
+      <article class="product reveal delay-1" data-category="pendant" data-name="Ichthys" data-price="45">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/62.jpeg" alt="Ichthys" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Ichthys</div>
+          <div class="product-desc">Ciondolo pesce cristiano in argento antico</div>
+          <div class="product-footer">
+            <div class="product-price">€ 45<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Chi-Rho -->
+      <article class="product reveal delay-2" data-category="pendant" data-name="Chi-Rho" data-price="42">
+        <div class="product-img">
+          
+          <img src="images/63.jpeg" alt="Chi-Rho" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Chi-Rho</div>
+          <div class="product-desc">Ciondolo monogramma di Cristo in ottone</div>
+          <div class="product-footer">
+            <div class="product-price">€ 42<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Scapolare -->
+      <article class="product reveal" data-category="pendant" data-name="Scapolare" data-price="55">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/64.jpeg" alt="Scapolare" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Scapolare</div>
+          <div class="product-desc">Ciondolo doppio con immagini sacre</div>
+          <div class="product-footer">
+            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Crocifisso Antico -->
+      <article class="product reveal delay-1" data-category="pendant" data-name="Crocifisso Antico" data-price="65">
+        <div class="product-img">
+          
+          <img src="images/65.jpeg" alt="Crocifisso Antico" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crocifisso Antico</div>
+          <div class="product-desc">Ciondolo croce cesellata stile medievale</div>
+          <div class="product-footer">
+            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Miracolosa -->
+      <article class="product reveal delay-2" data-category="pendant" data-name="Miracolosa" data-price="49">
+        <div class="product-img">
+          
+          <img src="images/66.jpeg" alt="Miracolosa" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Miracolosa</div>
+          <div class="product-desc">Ciondolo medaglia miracolosa in oro rosa</div>
+          <div class="product-footer">
+            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Tau -->
+      <article class="product reveal" data-category="pendant" data-name="Tau" data-price="35">
+        <div class="product-img">
+          
+          <img src="images/67.jpeg" alt="Tau" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Tau</div>
+          <div class="product-desc">Ciondolo croce Tau francescana in bronzo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 35<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Alfa et Omega -->
+      <article class="product reveal delay-1" data-category="pendant" data-name="Alfa et Omega" data-price="52">
+        <div class="product-img">
+          
+          <img src="images/68.jpeg" alt="Alfa et Omega" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Alfa et Omega</div>
+          <div class="product-desc">Ciondolo con lettere sacre in argento</div>
+          <div class="product-footer">
+            <div class="product-price">€ 52<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Anulus Fidei -->
+      <article class="product reveal delay-2" data-category="ring" data-name="Anulus Fidei" data-price="69">
+        <div class="product-img">
+          
+          <img src="images/69.jpeg" alt="Anulus Fidei" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Anulus Fidei</div>
+          <div class="product-desc">Anello fascia con croce incisa in oro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Rosarium Ring -->
+      <article class="product reveal" data-category="ring" data-name="Rosarium Ring" data-price="59">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/70.jpeg" alt="Rosarium Ring" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosarium Ring</div>
+          <div class="product-desc">Anello rosario girevole in acciaio e oro</div>
+          <div class="product-footer">
+            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Crux Signet -->
+      <article class="product reveal delay-1" data-category="ring" data-name="Crux Signet" data-price="75">
+        <div class="product-img">
+          
+          <img src="images/71.jpeg" alt="Crux Signet" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crux Signet</div>
+          <div class="product-desc">Anello sigillo con croce in rilievo</div>
+          <div class="product-footer">
+            <div class="product-price">€ 75<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Benedizione -->
+      <article class="product reveal delay-2" data-category="ring" data-name="Benedizione" data-price="49">
+        <div class="product-img">
+          
+          <img src="images/72.jpeg" alt="Benedizione" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Benedizione</div>
+          <div class="product-desc">Anello sottile con incisione sacra interna</div>
+          <div class="product-footer">
+            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Thorns -->
+      <article class="product reveal" data-category="ring" data-name="Thorns" data-price="55">
+        <div class="product-img">
+          <div class="product-tag">Esclusivo</div>
+          <img src="images/73.jpeg" alt="Thorns" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Thorns</div>
+          <div class="product-desc">Anello corona di spine in bronzo antico</div>
+          <div class="product-footer">
+            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Pax Ring -->
+      <article class="product reveal delay-1" data-category="ring" data-name="Pax Ring" data-price="45">
+        <div class="product-img">
+          
+          <img src="images/74.jpeg" alt="Pax Ring" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Pax Ring</div>
+          <div class="product-desc">Anello con simbolo della pace in argento</div>
+          <div class="product-footer">
+            <div class="product-price">€ 45<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Eterno -->
+      <article class="product reveal delay-2" data-category="ring" data-name="Eterno" data-price="85">
+        <div class="product-img">
+          <div class="product-tag">Edizione Limitata</div>
+          <img src="images/75.jpeg" alt="Eterno" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Eterno</div>
+          <div class="product-desc">Anello fascia larga con testo sacro cesellato</div>
+          <div class="product-footer">
+            <div class="product-price">€ 85<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product — Devotion Band -->
+      <article class="product reveal" data-category="ring" data-name="Devotion Band" data-price="65">
+        <div class="product-img">
+          
+          <img src="images/76.jpeg" alt="Devotion Band" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Devotion Band</div>
+          <div class="product-desc">Anello doppio filo intrecciato con croce</div>
+          <div class="product-footer">
+            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
     </div>
+
+    <div class="load-more-wrap" id="loadMoreWrap">
+      <button class="load-more-btn" id="loadMoreBtn"><span>Mostra Altri Pezzi</span></button>
+      <div class="product-count" id="productCount"></div>
+    </div>
+
   </div>
 </section>
 
-<!-- ——————————————— BAND QUOTE ——————————————— -->
 <section class="band">
   <p class="eyebrow reveal">✦ MEMENTO VIVERE ✦</p>
-  <h2 class="band-quote reveal delay-1">
-    <em>"Cogli l'attimo,<br>custodisci il sacro."</em>
-  </h2>
+  <h2 class="band-quote reveal delay-1"><em>"Cogli l'attimo,<br>custodisci il sacro."</em></h2>
   <div class="band-attr reveal delay-2">— MILO · FONDATRICE</div>
 </section>
 
-<!-- ——————————————— GALLERY ——————————————— -->
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="gallery-head">
-      <div class="section-number reveal">
-        <span>IV · GALLERIA</span>
-      </div>
-      <h2 class="section-title reveal delay-1">
-        Sguardi sull'<em>Opera</em>
-      </h2>
+      <div class="section-number reveal"><span>IV · GALLERIA</span></div>
+      <h2 class="section-title reveal delay-1">Sguardi sull'<em>Opera</em></h2>
     </div>
-
     <div class="gallery-grid">
-      <div class="gallery-item g-1 reveal">
-        <img src="images/6.jpeg" alt="">
-        <div class="gallery-caption">Crux Rubra · Dettaglio</div>
-      </div>
-      <div class="gallery-item g-2 reveal delay-1">
-        <img src="images/2.jpeg" alt="">
-        <div class="gallery-caption">Le due misure</div>
-      </div>
-      <div class="gallery-item g-3 reveal delay-2">
-        <img src="images/11.jpeg" alt="">
-        <div class="gallery-caption">Rosarium</div>
-      </div>
-      <div class="gallery-item g-4 reveal">
-        <img src="images/4.jpeg" alt="">
-        <div class="gallery-caption">Crux Aurea</div>
-      </div>
-      <div class="gallery-item g-5 reveal delay-1">
-        <img src="images/12.jpeg" alt="">
-        <div class="gallery-caption">Minima</div>
-      </div>
-      <div class="gallery-item g-6 reveal delay-2">
-        <img src="images/9.jpeg" alt="">
-        <div class="gallery-caption">Bracciale</div>
-      </div>
-      <div class="gallery-item g-7 reveal">
-        <img src="images/8.jpeg" alt="">
-        <div class="gallery-caption">Rosarium Romanum</div>
-      </div>
-      <div class="gallery-item g-8 reveal delay-1">
-        <img src="images/5.jpeg" alt="">
-        <div class="gallery-caption">Collezione</div>
-      </div>
+      <div class="gallery-item g-1 reveal"><img src="images/6.jpeg" alt="" loading="lazy"><div class="gallery-caption">Crux Rubra · Dettaglio</div></div>
+      <div class="gallery-item g-2 reveal delay-1"><img src="images/2.jpeg" alt="" loading="lazy"><div class="gallery-caption">Le due misure</div></div>
+      <div class="gallery-item g-3 reveal delay-2"><img src="images/11.jpeg" alt="" loading="lazy"><div class="gallery-caption">Rosarium</div></div>
+      <div class="gallery-item g-4 reveal"><img src="images/4.jpeg" alt="" loading="lazy"><div class="gallery-caption">Crux Aurea</div></div>
+      <div class="gallery-item g-5 reveal delay-1"><img src="images/12.jpeg" alt="" loading="lazy"><div class="gallery-caption">Minima</div></div>
+      <div class="gallery-item g-6 reveal delay-2"><img src="images/15.jpeg" alt="" loading="lazy"><div class="gallery-caption">Stella Maris</div></div>
+      <div class="gallery-item g-7 reveal"><img src="images/8.jpeg" alt="" loading="lazy"><div class="gallery-caption">Rosarium Romanum</div></div>
+      <div class="gallery-item g-8 reveal delay-1"><img src="images/5.jpeg" alt="" loading="lazy"><div class="gallery-caption">Collezione</div></div>
     </div>
   </div>
 </section>
 
-<!-- ——————————————— CONTACT ——————————————— -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="section-number reveal">
-          <span>V · CONTATTI</span>
-        </div>
-        <h2 class="section-title reveal delay-1">
-          Resta in<br><em>Contatto</em>
-        </h2>
-        <p class="contact-lead reveal delay-2">
-          Per commissioni su misura, collaborazioni o semplicemente per dirci quello che pensi — 
-          ogni messaggio è accolto con cura.
-        </p>
-
+        <div class="section-number reveal"><span>V · CONTATTI</span></div>
+        <h2 class="section-title reveal delay-1">Resta in<br><em>Contatto</em></h2>
+        <p class="contact-lead reveal delay-2">Per commissioni su misura, collaborazioni o semplicemente per dirci quello che pensi — ogni messaggio è accolto con cura.</p>
         <ul class="contact-list reveal delay-3">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -1430,7 +1639,6 @@ footer .f-sub{
           </li>
         </ul>
       </div>
-
       <div class="newsletter reveal delay-2">
         <h3>La Lettera Sacra</h3>
         <p>Iscriviti per ricevere in anteprima le nuove collezioni, i dietro le quinte dell'atelier e inviti esclusivi.</p>
@@ -1444,205 +1652,115 @@ footer .f-sub{
   </div>
 </section>
 
-<!-- ——————————————— FOOTER ——————————————— -->
 <footer>
   <div class="starburst-small">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g stroke="#c9a961" stroke-linecap="round" fill="none" stroke-width="1">
         <circle cx="50" cy="50" r="3" fill="#c9a961"/>
-        <line x1="50" y1="10" x2="50" y2="28"/>
-        <line x1="50" y1="72" x2="50" y2="90"/>
-        <line x1="10" y1="50" x2="28" y2="50"/>
-        <line x1="72" y1="50" x2="90" y2="50"/>
-        <line x1="22" y1="22" x2="34" y2="34"/>
-        <line x1="66" y1="66" x2="78" y2="78"/>
-        <line x1="78" y1="22" x2="66" y2="34"/>
-        <line x1="34" y1="66" x2="22" y2="78"/>
+        <line x1="50" y1="10" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="90"/>
+        <line x1="10" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="90" y2="50"/>
+        <line x1="22" y1="22" x2="34" y2="34"/><line x1="66" y1="66" x2="78" y2="78"/>
+        <line x1="78" y1="22" x2="66" y2="34"/><line x1="34" y1="66" x2="22" y2="78"/>
       </g>
     </svg>
   </div>
   <div class="f-brand">CARPE DIEM</div>
   <div class="f-sub">Artigianato SRL · L'arte sacra da indossare</div>
-
   <div class="socials">
-    <a href="https://instagram.com/milo.bijoux" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-    </a>
-    <a href="https://tiktok.com/@milo.bijoux" target="_blank" aria-label="TikTok">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.7a8.16 8.16 0 004.77 1.52V6.69z"/></svg>
-    </a>
-    <a href="mailto:Carpediemartigianatosrl@gmail.com" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-    </a>
+    <a href="https://instagram.com/milo.bijoux" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    <a href="https://tiktok.com/@milo.bijoux" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.7a8.16 8.16 0 004.77 1.52V6.69z"/></svg></a>
+    <a href="mailto:Carpediemartigianatosrl@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
   </div>
-
   <div class="f-meta">ROMA · MMXXVI · TUTTI I DIRITTI RISERVATI</div>
   <div class="f-legal">Carpe Diem Artigianato SRL · P.IVA IT00000000000 · Privacy · Termini · Cookie</div>
 </footer>
 
 <script>
-/* ——————————————— CURSOR ——————————————— */
-const dot = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mx = window.innerWidth/2, my = window.innerHeight/2;
-let rx = mx, ry = my;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.left = mx + 'px';
-  dot.style.top = my + 'px';
-});
-function animRing(){
-  rx += (mx - rx)*0.18;
-  ry += (my - ry)*0.18;
-  ring.style.left = rx + 'px';
-  ring.style.top = ry + 'px';
-  requestAnimationFrame(animRing);
-}
+/* CURSOR */
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
 animRing();
+document.querySelectorAll('a,button,.product,.gallery-item,.filter-pill').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hover-active'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hover-active'))});
 
-document.querySelectorAll('a, button, .product, .gallery-item, .filter-pill').forEach(el=>{
-  el.addEventListener('mouseenter', ()=>document.body.classList.add('hover-active'));
-  el.addEventListener('mouseleave', ()=>document.body.classList.remove('hover-active'));
-});
+/* HERO TITLE */
+const brandText='CARPE DIEM',brandEl=document.getElementById('heroBrand');
+brandText.split('').forEach((c,i)=>{const s=document.createElement('span');s.className='char';s.textContent=c===' '?'\u00A0':c;s.style.animationDelay=(.3+i*.08)+'s';brandEl.appendChild(s)});
 
-/* ——————————————— HERO TITLE STAGGER ——————————————— */
-const brandText = 'CARPE DIEM';
-const brandEl = document.getElementById('heroBrand');
-brandText.split('').forEach((c,i)=>{
-  const span = document.createElement('span');
-  span.className = 'char';
-  span.textContent = c === ' ' ? '\u00A0' : c;
-  span.style.animationDelay = (.3 + i*.08) + 's';
-  brandEl.appendChild(span);
-});
+/* NAV SCROLL */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{if(window.scrollY>80)nav.classList.add('scrolled');else nav.classList.remove('scrolled')});
 
-/* ——————————————— NAV SCROLL ——————————————— */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', ()=>{
-  if(window.scrollY > 80) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ——————————————— REVEAL ON SCROLL ——————————————— */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
+/* FILTERS + LOAD MORE */
+const INITIAL_SHOW=12;
+let currentFilter='all',showAll=false;
+
+function getFiltered(){
+  const all=Array.from(document.querySelectorAll('.product'));
+  return currentFilter==='all'?all:all.filter(p=>p.dataset.category===currentFilter);
+}
+function updateVisibility(){
+  const all=Array.from(document.querySelectorAll('.product'));
+  const filtered=getFiltered();
+  const limit=showAll?filtered.length:INITIAL_SHOW;
+  all.forEach(p=>{p.style.display='none'});
+  filtered.forEach((p,i)=>{
+    if(i<limit){p.style.display='';p.style.animation='productIn .5s ease forwards';p.style.animationDelay=(i%3)*.1+'s';p.classList.add('visible')}
   });
-}, { threshold: 0.12, rootMargin:'0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const wrap=document.getElementById('loadMoreWrap');
+  const btn=document.getElementById('loadMoreBtn');
+  const cnt=document.getElementById('productCount');
+  const showing=Math.min(limit,filtered.length);
+  btn.style.display=(filtered.length<=INITIAL_SHOW||showAll)?'none':'';
+  cnt.textContent=showing+' di '+filtered.length+' pezzi';
+}
 
-/* ——————————————— FILTERS ——————————————— */
-document.querySelectorAll('.filter-pill').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.filter-pill').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.product').forEach(p => {
-      if (filter === 'all' || p.dataset.category === filter) {
-        p.style.display = '';
-        p.style.animation = 'fadeUp .6s ease forwards';
-      } else {
-        p.style.display = 'none';
-      }
-    });
+    currentFilter=btn.dataset.filter;
+    showAll=false;
+    updateVisibility();
   });
 });
+document.getElementById('loadMoreBtn').addEventListener('click',()=>{showAll=true;updateVisibility()});
+updateVisibility();
 
-/* ——————————————— CART ——————————————— */
-const cartBtn     = document.getElementById('cartBtn');
-const cartDrawer  = document.getElementById('cartDrawer');
-const cartOverlay = document.getElementById('cartOverlay');
-const cartClose   = document.getElementById('cartClose');
-const cartItemsEl = document.getElementById('cartItems');
-const cartCountEl = document.getElementById('cartCount');
-const cartTotalEl = document.getElementById('cartTotal');
-
-let cart = [];
-
-function openCart(){
-  cartDrawer.classList.add('open');
-  cartOverlay.classList.add('active');
-}
-function closeCart(){
-  cartDrawer.classList.remove('open');
-  cartOverlay.classList.remove('active');
-}
-cartBtn.addEventListener('click', openCart);
-cartClose.addEventListener('click', closeCart);
-cartOverlay.addEventListener('click', closeCart);
-
+/* CART */
+const cartBtn=document.getElementById('cartBtn'),cartDrawer=document.getElementById('cartDrawer'),cartOverlay=document.getElementById('cartOverlay'),cartClose=document.getElementById('cartClose'),cartItemsEl=document.getElementById('cartItems'),cartCountEl=document.getElementById('cartCount'),cartTotalEl=document.getElementById('cartTotal');
+let cart=[];
+function openCart(){cartDrawer.classList.add('open');cartOverlay.classList.add('active')}
+function closeCart(){cartDrawer.classList.remove('open');cartOverlay.classList.remove('active')}
+cartBtn.addEventListener('click',openCart);cartClose.addEventListener('click',closeCart);cartOverlay.addEventListener('click',closeCart);
 function renderCart(){
-  cartCountEl.textContent = cart.length;
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>';
-    cartTotalEl.textContent = '€ 0,00';
-    return;
-  }
-  cartItemsEl.innerHTML = cart.map((item, i) => `
-    <div class="cart-item">
-      <img src="${item.img}" alt="${item.name}">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">€ ${item.price},00</div>
-      </div>
-      <button class="cart-item-remove" data-i="${i}">✕</button>
-    </div>
-  `).join('');
-  const total = cart.reduce((s,i)=>s+i.price, 0);
-  cartTotalEl.textContent = '€ ' + total + ',00';
-  cartItemsEl.querySelectorAll('.cart-item-remove').forEach(b => {
-    b.addEventListener('click', e => {
-      cart.splice(+e.target.dataset.i, 1);
-      renderCart();
-    });
-  });
+  cartCountEl.textContent=cart.length;
+  if(!cart.length){cartItemsEl.innerHTML='<div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>';cartTotalEl.textContent='€ 0,00';return}
+  cartItemsEl.innerHTML=cart.map((item,i)=>'<div class="cart-item"><img src="'+item.img+'" alt="'+item.name+'"><div class="cart-item-info"><div class="cart-item-name">'+item.name+'</div><div class="cart-item-price">€ '+item.price+',00</div></div><button class="cart-item-remove" data-i="'+i+'">✕</button></div>').join('');
+  cartTotalEl.textContent='€ '+cart.reduce((s,i)=>s+i.price,0)+',00';
+  cartItemsEl.querySelectorAll('.cart-item-remove').forEach(b=>{b.addEventListener('click',e=>{cart.splice(+e.target.dataset.i,1);renderCart()})});
 }
-
-document.querySelectorAll('.add-cart').forEach(btn => {
-  btn.addEventListener('click', e => {
-    const p = e.target.closest('.product');
-    const img = p.querySelector('img').src;
-    cart.push({
-      name: p.dataset.name,
-      price: +p.dataset.price,
-      img
-    });
-    renderCart();
-    // Little feedback
-    btn.textContent = '✓ Aggiunto';
-    btn.style.background = 'var(--gold)';
-    btn.style.color = 'var(--ink)';
-    setTimeout(() => {
-      btn.textContent = 'Aggiungi';
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 1400);
-    openCart();
-  });
+document.addEventListener('click',e=>{
+  if(!e.target.classList.contains('add-cart'))return;
+  const p=e.target.closest('.product');
+  cart.push({name:p.dataset.name,price:+p.dataset.price,img:p.querySelector('img').src});
+  renderCart();
+  e.target.textContent='✓ Aggiunto';e.target.style.background='var(--gold)';e.target.style.color='var(--ink)';
+  setTimeout(()=>{e.target.textContent='Aggiungi';e.target.style.background='';e.target.style.color=''},1400);
+  openCart();
 });
 
-/* ——————————————— SMOOTH NAV LINKS ——————————————— */
-document.querySelectorAll('.nav-menu a').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const id = a.getAttribute('href');
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-  });
-});
+/* NAV LINKS */
+document.querySelectorAll('.nav-menu a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
 
-/* ——————————————— HERO PARALLAX ——————————————— */
-const starburst = document.querySelector('.starburst');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (y < window.innerHeight && starburst) {
-    starburst.style.transform = `translateY(${y * 0.3}px) rotate(${y * 0.05}deg)`;
-    starburst.style.opacity = Math.max(0, 1 - y/500);
-  }
-});
+/* PARALLAX */
+const starburst=document.querySelector('.starburst');
+window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight&&starburst){starburst.style.transform='translateY('+y*.3+'px) rotate('+y*.05+'deg)';starburst.style.opacity=Math.max(0,1-y/500)}});
 </script>
-
 </body>
 </html>
