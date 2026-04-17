@@ -331,9 +331,93 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   .filters{gap:8px}
   .filter-pill{padding:8px 12px;font-size:.6rem;letter-spacing:.2em}
 }
+
+/* LOADING SCREEN */
+.loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+.loader.fade-out{
+  opacity:0;visibility:hidden;
+}
+.loader-logo{
+  width:min(280px, 60vw);height:auto;
+  opacity:0;
+  animation:loaderLogoIn 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards;
+}
+@keyframes loaderLogoIn{
+  0%{opacity:0;transform:scale(.85)}
+  60%{opacity:1;transform:scale(1.02)}
+  100%{opacity:1;transform:scale(1)}
+}
+.loader-bar{
+  width:min(200px, 40vw);height:1px;
+  background:rgba(201,169,97,.2);
+  margin-top:40px;
+  position:relative;
+  overflow:hidden;
+  opacity:0;
+  animation:fadeUp .6s ease .6s forwards;
+}
+.loader-bar::after{
+  content:"";
+  position:absolute;top:0;left:0;
+  width:0;height:100%;
+  background:linear-gradient(to right, var(--gold-deep), var(--gold-bright), var(--gold-deep));
+  animation:loaderProgress 2s ease .8s forwards;
+}
+@keyframes loaderProgress{
+  0%{width:0}
+  100%{width:100%}
+}
+.loader-text{
+  font-family:'Cinzel', serif;
+  font-size:.6rem;letter-spacing:.5em;
+  color:var(--gold);
+  margin-top:18px;
+  opacity:0;
+  animation:fadeUp .6s ease .8s forwards;
+}
+
+/* NAV LOGO IMAGE */
+.nav-logo-img{
+  height:40px;width:auto;
+  margin-right:12px;
+  vertical-align:middle;
+  transition:height .3s;
+}
+.nav.scrolled .nav-logo-img{height:32px}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-text{display:flex;flex-direction:column}
+
+/* HERO LOGO */
+.hero-logo{
+  width:min(320px, 50vw);height:auto;
+  margin-bottom:30px;
+  animation:floatgently 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 40px rgba(201,169,97,.3));
+}
+
+/* FOOTER LOGO */
+.footer-logo{
+  width:60px;height:auto;
+  margin:0 auto 20px;
+  opacity:.7;
+}
+
 </style>
 </head>
 <body>
+
+
+<!-- LOADING SCREEN -->
+<div class="loader" id="loader">
+  <img class="loader-logo" src="images/logo.JPG" alt="Carpe Diem">
+  <div class="loader-bar"></div>
+  <div class="loader-text">CARICAMENTO</div>
+</div>
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -358,8 +442,11 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
 <nav class="nav" id="nav">
   <div class="nav-logo">
-    CARPE&nbsp;DIEM
-    <span>Artigianato&nbsp;·&nbsp;Roma</span>
+    <img class="nav-logo-img" src="images/logo.JPG" alt="Carpe Diem">
+    <div class="nav-logo-text">
+      <span style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.4em;color:var(--gold);font-weight:600">CARPE&nbsp;DIEM</span>
+      <span style="color:var(--parchment);font-weight:400;font-size:.65rem;letter-spacing:.3em;opacity:.6">Artigianato&nbsp;·&nbsp;Roma</span>
+    </div>
   </div>
   <ul class="nav-menu">
     <li><a href="#philosophy">Filosofia</a></li>
@@ -375,24 +462,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   <div class="sacred-frame"><div class="sacred-frame-inner"></div></div>
   <div class="hero-corner-i">ROMA · MMXXVI</div>
   <div class="hero-corner-ii">ATELIER · NO. I</div>
-  <div class="starburst">
-    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ffe5a7" stop-opacity="1"/>
-          <stop offset="60%" stop-color="#c9a961" stop-opacity=".9"/>
-          <stop offset="100%" stop-color="#8a6f3b" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <g class="starburst-core"><circle cx="150" cy="150" r="10" fill="url(#coreGrad)"/><circle cx="150" cy="150" r="5" fill="#ffe5a7"/></g>
-      <g stroke="#c9a961" stroke-linecap="round" fill="none">
-        <g class="ray"><line x1="150" y1="18" x2="150" y2="60" stroke-width="1.2"/><line x1="150" y1="240" x2="150" y2="282" stroke-width="1.2"/><line x1="18" y1="150" x2="60" y2="150" stroke-width="1.2"/><line x1="240" y1="150" x2="282" y2="150" stroke-width="1.2"/></g>
-        <g class="ray" style="animation-delay:.3s"><line x1="57" y1="57" x2="86" y2="86" stroke-width="1.2"/><line x1="214" y1="214" x2="243" y2="243" stroke-width="1.2"/><line x1="243" y1="57" x2="214" y2="86" stroke-width="1.2"/><line x1="86" y1="214" x2="57" y2="243" stroke-width="1.2"/></g>
-        <g class="ray" style="animation-delay:.6s;opacity:.8"><line x1="110" y1="22" x2="118" y2="68" stroke-width=".8"/><line x1="190" y1="22" x2="182" y2="68" stroke-width=".8"/><line x1="110" y1="278" x2="118" y2="232" stroke-width=".8"/><line x1="190" y1="278" x2="182" y2="232" stroke-width=".8"/><line x1="22" y1="110" x2="68" y2="118" stroke-width=".8"/><line x1="22" y1="190" x2="68" y2="182" stroke-width=".8"/><line x1="278" y1="110" x2="232" y2="118" stroke-width=".8"/><line x1="278" y1="190" x2="232" y2="182" stroke-width=".8"/></g>
-        <g class="ray" style="animation-delay:.9s;opacity:.6"><line x1="75" y1="38" x2="96" y2="76" stroke-width=".6"/><line x1="225" y1="38" x2="204" y2="76" stroke-width=".6"/><line x1="75" y1="262" x2="96" y2="224" stroke-width=".6"/><line x1="225" y1="262" x2="204" y2="224" stroke-width=".6"/><line x1="38" y1="75" x2="76" y2="96" stroke-width=".6"/><line x1="38" y1="225" x2="76" y2="204" stroke-width=".6"/><line x1="262" y1="75" x2="224" y2="96" stroke-width=".6"/><line x1="262" y1="225" x2="224" y2="204" stroke-width=".6"/></g>
-      </g>
-    </svg>
-  </div>
+  <img class="hero-logo" src="images/logo.JPG" alt="Carpe Diem">
   <div class="hero-sub">L'ARTE SACRA DA INDOSSARE</div>
   <h1 class="hero-brand" id="heroBrand"></h1>
   <div class="hero-tagline">Artigianato Romano · Dal 2024</div>
@@ -543,7 +613,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal" data-category="bracelet" data-name="Terrae · Madreperla" data-price="55">
         <div class="product-img">
-          <img src="images/13.jpeg" alt="Terrae · Madreperla" loading="lazy">
+          <img src="images/13.jpg" alt="Terrae · Madreperla" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Terrae · Madreperla</div>
@@ -558,7 +628,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal delay-1" data-category="bracelet" data-name="Rosa Mystica · Bracciale" data-price="45">
         <div class="product-img">
           <div class="product-tag">Nuovo</div>
-          <img src="images/14.jpeg" alt="Rosa Mystica · Bracciale" loading="lazy">
+          <img src="images/14.jpg" alt="Rosa Mystica · Bracciale" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Rosa Mystica · Bracciale</div>
@@ -573,7 +643,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal delay-2" data-category="necklace" data-name="San Michele Arcangelo" data-price="89">
         <div class="product-img">
           <div class="product-tag">Bestseller</div>
-          <img src="images/15.jpeg" alt="San Michele Arcangelo" loading="lazy">
+          <img src="images/15.jpg" alt="San Michele Arcangelo" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">San Michele Arcangelo</div>
@@ -587,7 +657,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal" data-category="rosary" data-name="Decina Noctis" data-price="49">
         <div class="product-img">
-          <img src="images/16.jpeg" alt="Decina Noctis" loading="lazy">
+          <img src="images/16.jpg" alt="Decina Noctis" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Noctis</div>
@@ -601,7 +671,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-1" data-category="rosary" data-name="Decina Ignis" data-price="55">
         <div class="product-img">
-          <img src="images/17.jpeg" alt="Decina Ignis" loading="lazy">
+          <img src="images/17.jpg" alt="Decina Ignis" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Ignis</div>
@@ -615,7 +685,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-2" data-category="rosary" data-name="Decina Caelestis" data-price="52">
         <div class="product-img">
-          <img src="images/18.jpeg" alt="Decina Caelestis" loading="lazy">
+          <img src="images/18.jpg" alt="Decina Caelestis" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Caelestis</div>
@@ -630,7 +700,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal" data-category="rosary" data-name="Decina Rosea" data-price="55">
         <div class="product-img">
           <div class="product-tag">Nuovo</div>
-          <img src="images/20.jpeg" alt="Decina Rosea" loading="lazy">
+          <img src="images/20.jpg" alt="Decina Rosea" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Rosea</div>
@@ -644,7 +714,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-1" data-category="rosary" data-name="Decina Aurea" data-price="55">
         <div class="product-img">
-          <img src="images/21.jpeg" alt="Decina Aurea" loading="lazy">
+          <img src="images/21.jpg" alt="Decina Aurea" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Aurea</div>
@@ -658,7 +728,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-2" data-category="rosary" data-name="Decina Angelica · Rosa" data-price="59">
         <div class="product-img">
-          <img src="images/22.jpeg" alt="Decina Angelica · Rosa" loading="lazy">
+          <img src="images/22.jpg" alt="Decina Angelica · Rosa" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Angelica · Rosa</div>
@@ -673,7 +743,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal" data-category="rosary" data-name="Decina Guadalupe" data-price="65">
         <div class="product-img">
           <div class="product-tag">Esclusivo</div>
-          <img src="images/23.jpeg" alt="Decina Guadalupe" loading="lazy">
+          <img src="images/23.jpg" alt="Decina Guadalupe" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Guadalupe</div>
@@ -687,7 +757,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-1" data-category="rosary" data-name="Decina Rubra" data-price="49">
         <div class="product-img">
-          <img src="images/24.jpeg" alt="Decina Rubra" loading="lazy">
+          <img src="images/24.jpg" alt="Decina Rubra" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Rubra</div>
@@ -701,7 +771,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-2" data-category="rosary" data-name="Decina Turchese" data-price="52">
         <div class="product-img">
-          <img src="images/25.jpeg" alt="Decina Turchese" loading="lazy">
+          <img src="images/25.jpg" alt="Decina Turchese" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Turchese</div>
@@ -716,7 +786,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal" data-category="rosary" data-name="Decina Alba · Rosa Rossa" data-price="59">
         <div class="product-img">
           <div class="product-tag">Bestseller</div>
-          <img src="images/26.jpeg" alt="Decina Alba · Rosa Rossa" loading="lazy">
+          <img src="images/26.jpg" alt="Decina Alba · Rosa Rossa" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Alba · Rosa Rossa</div>
@@ -730,7 +800,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal delay-1" data-category="rosary" data-name="Decina Onyx · Rosa Rossa" data-price="62">
         <div class="product-img">
-          <img src="images/27.jpeg" alt="Decina Onyx · Rosa Rossa" loading="lazy">
+          <img src="images/27.jpg" alt="Decina Onyx · Rosa Rossa" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Onyx · Rosa Rossa</div>
@@ -745,7 +815,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal delay-2" data-category="rosary" data-name="Decina Spiritus" data-price="65">
         <div class="product-img">
           <div class="product-tag">Edizione Limitata</div>
-          <img src="images/28.jpeg" alt="Decina Spiritus" loading="lazy">
+          <img src="images/28.jpg" alt="Decina Spiritus" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Spiritus</div>
@@ -759,7 +829,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal" data-category="rosary" data-name="Decina Cherubino" data-price="59">
         <div class="product-img">
-          <img src="images/29.jpeg" alt="Decina Cherubino" loading="lazy">
+          <img src="images/29.jpg" alt="Decina Cherubino" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Cherubino</div>
@@ -789,7 +859,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal delay-2" data-category="rosary" data-name="Quintetto Sacro — Set di 5" data-price="229">
         <div class="product-img">
           <div class="product-tag">Esclusivo</div>
-          <img src="images/31.jpeg" alt="Quintetto Sacro — Set di 5" loading="lazy">
+          <img src="images/31.jpg" alt="Quintetto Sacro — Set di 5" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Quintetto Sacro — Set di 5</div>
@@ -803,7 +873,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
       <article class="product reveal" data-category="rosary" data-name="Decina Carlo Acutis" data-price="55">
         <div class="product-img">
-          <img src="images/32.jpeg" alt="Decina Carlo Acutis" loading="lazy">
+          <img src="images/32.jpg" alt="Decina Carlo Acutis" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Decina Carlo Acutis</div>
@@ -818,7 +888,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
       <article class="product reveal delay-1" data-category="rosary" data-name="Duo Bianco e Nero" data-price="99">
         <div class="product-img">
           <div class="product-tag">Nuovo</div>
-          <img src="images/33.jpeg" alt="Duo Bianco e Nero" loading="lazy">
+          <img src="images/33.jpg" alt="Duo Bianco e Nero" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-name">Duo Bianco e Nero</div>
@@ -855,11 +925,11 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
     <div class="gallery-grid">
       <div class="gallery-item g-1 reveal"><img src="images/30.jpeg" alt="" loading="lazy"><div class="gallery-caption">Trittico Rosa</div></div>
       <div class="gallery-item g-2 reveal delay-1"><img src="images/6.jpeg" alt="" loading="lazy"><div class="gallery-caption">Crux Rubra · Dettaglio</div></div>
-      <div class="gallery-item g-3 reveal delay-2"><img src="images/26.jpeg" alt="" loading="lazy"><div class="gallery-caption">Decina Alba</div></div>
-      <div class="gallery-item g-4 reveal"><img src="images/13.jpeg" alt="" loading="lazy"><div class="gallery-caption">Terrae · Madreperla</div></div>
-      <div class="gallery-item g-5 reveal delay-1"><img src="images/15.jpeg" alt="" loading="lazy"><div class="gallery-caption">San Michele</div></div>
-      <div class="gallery-item g-6 reveal delay-2"><img src="images/23.jpeg" alt="" loading="lazy"><div class="gallery-caption">Guadalupe</div></div>
-      <div class="gallery-item g-7 reveal"><img src="images/31.jpeg" alt="" loading="lazy"><div class="gallery-caption">Quintetto Sacro</div></div>
+      <div class="gallery-item g-3 reveal delay-2"><img src="images/26.jpg" alt="" loading="lazy"><div class="gallery-caption">Decina Alba</div></div>
+      <div class="gallery-item g-4 reveal"><img src="images/13.jpg" alt="" loading="lazy"><div class="gallery-caption">Terrae · Madreperla</div></div>
+      <div class="gallery-item g-5 reveal delay-1"><img src="images/15.jpg" alt="" loading="lazy"><div class="gallery-caption">San Michele</div></div>
+      <div class="gallery-item g-6 reveal delay-2"><img src="images/23.jpg" alt="" loading="lazy"><div class="gallery-caption">Guadalupe</div></div>
+      <div class="gallery-item g-7 reveal"><img src="images/31.jpg" alt="" loading="lazy"><div class="gallery-caption">Quintetto Sacro</div></div>
       <div class="gallery-item g-8 reveal delay-1"><img src="images/5.jpeg" alt="" loading="lazy"><div class="gallery-caption">Collezione</div></div>
     </div>
   </div>
@@ -909,17 +979,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 </section>
 
 <footer>
-  <div class="starburst-small">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="#c9a961" stroke-linecap="round" fill="none" stroke-width="1">
-        <circle cx="50" cy="50" r="3" fill="#c9a961"/>
-        <line x1="50" y1="10" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="90"/>
-        <line x1="10" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="90" y2="50"/>
-        <line x1="22" y1="22" x2="34" y2="34"/><line x1="66" y1="66" x2="78" y2="78"/>
-        <line x1="78" y1="22" x2="66" y2="34"/><line x1="34" y1="66" x2="22" y2="78"/>
-      </g>
-    </svg>
-  </div>
+  <img class="footer-logo" src="images/logo.JPG" alt="Carpe Diem">
   <div class="f-brand">CARPE DIEM</div>
   <div class="f-sub">Artigianato SRL · L'arte sacra da indossare</div>
   <div class="socials">
@@ -1015,8 +1075,18 @@ document.addEventListener('click',e=>{
 document.querySelectorAll('.nav-menu a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
 
 /* PARALLAX */
-const starburst=document.querySelector('.starburst');
-window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight&&starburst){starburst.style.transform='translateY('+y*.3+'px) rotate('+y*.05+'deg)';starburst.style.opacity=Math.max(0,1-y/500)}});
+const starburst=document.querySelector('.hero-logo');
+window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight&&starburst){starburst.style.transform='translateY('+y*.25+'px)';starburst.style.opacity=Math.max(0,1-y/500)}});
+
+/* LOADING SCREEN */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('fade-out');
+    setTimeout(() => loader.remove(), 800);
+  }, 2600);
+});
+
 </script>
 </body>
 </html>
