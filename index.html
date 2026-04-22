@@ -9,28 +9,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italiana&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:            #0a0604;
-  --ink-deep:       #050302;
-  --ink-soft:       #13100b;
-  --parchment:      #f4ebd9;
-  --parchment-dim:  #ddd1b8;
-  --gold:           #c9a961;
-  --gold-bright:    #e4c880;
+  --bg:             #faf7f0;
+  --bg-warm:        #f3ede2;
+  --bg-soft:        #efe8db;
+  --bg-card:        #ffffff;
+  --ink:            #2a1f14;
+  --ink-soft:       #4a3d30;
+  --ink-light:      #7a6d5e;
+  --gold:           #b8943e;
+  --gold-bright:    #d4b060;
   --gold-deep:      #8a6f3b;
   --gold-shadow:    #5a4627;
-  --wine:           #6b1820;
-  --wine-deep:      #4a0f15;
+  --wine:           #8b2332;
+  --wine-deep:      #6a1825;
   --wine-bright:    #a82a33;
   --bone:           #e8dcc2;
-  --shadow:         rgba(0,0,0,.6);
+  --shadow:         rgba(42,31,20,.08);
+  --shadow-md:      rgba(42,31,20,.12);
+  --border:         rgba(184,148,62,.2);
+  --border-light:   rgba(184,148,62,.12);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 
 html, body{
-  background:var(--ink);
-  color:var(--parchment);
+  background:var(--bg);
+  color:var(--ink);
   font-family:'Cormorant Garamond', serif;
   font-weight:400;
   font-size:18px;
@@ -43,8 +48,8 @@ body::before{
   content:"";
   position:fixed;inset:0;
   pointer-events:none;z-index:9998;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/></svg>");
-  mix-blend-mode:overlay;opacity:.35;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.6  0 0 0 0 0.5  0 0 0 0 0.4  0 0 0 0.15 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/></svg>");
+  mix-blend-mode:multiply;opacity:.2;
 }
 
 .cursor-dot, .cursor-ring{
@@ -52,62 +57,60 @@ body::before{
   pointer-events:none;z-index:10000;
   transform:translate(-50%,-50%);
   transition:transform .15s ease, width .25s ease, height .25s ease, border-color .25s ease;
-  mix-blend-mode:difference;
 }
-.cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-bright)}
-.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold)}
+.cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold-deep)}
 body.hover-active .cursor-ring{width:60px;height:60px;border-color:var(--gold-bright)}
 
 h1,h2,h3,h4,.display{font-family:'Cinzel', serif;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 .subtle-italic{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;letter-spacing:.05em;text-transform:none}
-.eyebrow{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.eyebrow{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-deep);font-weight:500}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;transition:all .5s ease;background:linear-gradient(to bottom, rgba(10,6,4,.7), transparent)}
-.nav.scrolled{padding:14px 60px;background:rgba(10,6,4,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,169,97,.18)}
-.nav-logo{font-family:'Cinzel', serif;font-size:1rem;letter-spacing:.4em;color:var(--gold);font-weight:600}
-.nav-logo span{color:var(--parchment);font-weight:400;font-size:.7rem;letter-spacing:.3em;display:block;margin-top:2px;opacity:.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;transition:all .5s ease;background:linear-gradient(to bottom, rgba(250,247,240,.85), transparent)}
+.nav.scrolled{padding:14px 60px;background:rgba(250,247,240,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px var(--shadow)}
+.nav-logo{font-family:'Cinzel', serif;font-size:1rem;letter-spacing:.4em;color:var(--gold-deep);font-weight:600;display:flex;align-items:center}
+.nav-logo span{color:var(--ink-soft);font-weight:400;font-size:.7rem;letter-spacing:.3em;display:block;margin-top:2px;opacity:.6}
 .nav-menu{display:flex;gap:44px;list-style:none}
-.nav-menu a{font-family:'Cinzel', serif;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;position:relative;padding:6px 0;transition:color .3s}
+.nav-menu a{font-family:'Cinzel', serif;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;position:relative;padding:6px 0;transition:color .3s;color:var(--ink-soft)}
 .nav-menu a::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:1px;background:var(--gold);transition:all .4s ease;transform:translateX(-50%)}
-.nav-menu a:hover{color:var(--gold)}
+.nav-menu a:hover{color:var(--gold-deep)}
 .nav-menu a:hover::after{width:100%}
-.nav-cart{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold);border:1px solid var(--gold);padding:9px 18px;transition:all .3s}
-.nav-cart:hover{background:var(--gold);color:var(--ink)}
+.nav-cart{font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold-deep);border:1px solid var(--gold);padding:9px 18px;transition:all .3s;background:transparent}
+.nav-cart:hover{background:var(--gold);color:#fff}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at top, #1a1108 0%, #0a0604 40%, #000 100%)}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, rgba(201,169,97,.18) 0%, transparent 50%),radial-gradient(circle at 30% 80%, rgba(107,24,32,.1) 0%, transparent 50%);pointer-events:none}
-.sacred-frame{position:absolute;top:90px;left:50px;right:50px;bottom:50px;pointer-events:none;border:1px solid rgba(201,169,97,.15)}
-.sacred-frame::before,.sacred-frame::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(201,169,97,.35)}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(180deg, #f8f1e4 0%, var(--bg-warm) 40%, var(--bg) 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, rgba(184,148,62,.12) 0%, transparent 50%),radial-gradient(circle at 30% 80%, rgba(139,35,50,.05) 0%, transparent 50%);pointer-events:none}
+.sacred-frame{position:absolute;top:90px;left:50px;right:50px;bottom:50px;pointer-events:none;border:1px solid var(--border)}
+.sacred-frame::before,.sacred-frame::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(184,148,62,.35)}
 .sacred-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
 .sacred-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
 .sacred-frame-inner{position:absolute;inset:0}
-.sacred-frame-inner::before,.sacred-frame-inner::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(201,169,97,.35)}
+.sacred-frame-inner::before,.sacred-frame-inner::after{content:"";position:absolute;width:40px;height:40px;border:1px solid rgba(184,148,62,.35)}
 .sacred-frame-inner::before{top:-1px;right:-1px;border-left:none;border-bottom:none}
 .sacred-frame-inner::after{bottom:-1px;left:-1px;border-right:none;border-top:none}
 
-.starburst{width:min(340px, 45vw);height:min(340px, 45vw);position:relative;margin-bottom:40px;animation:floatgently 6s ease-in-out infinite}
-.starburst svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(201,169,97,.4))}
-.starburst-core{animation:pulse 3s ease-in-out infinite;transform-origin:center}
-.ray{transform-origin:center;animation:rayGlow 4s ease-in-out infinite}
-
+.hero-logo{
+  width:min(320px, 50vw);height:auto;
+  margin-bottom:30px;
+  animation:floatgently 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 40px rgba(184,148,62,.2));
+}
 @keyframes floatgently{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes pulse{0%,100%{opacity:1;filter:drop-shadow(0 0 8px rgba(228,200,128,.8))}50%{opacity:.9;filter:drop-shadow(0 0 20px rgba(228,200,128,1))}}
-@keyframes rayGlow{0%,100%{opacity:.85}50%{opacity:1}}
 
-.hero-brand{font-family:'Cinzel', serif;font-size:clamp(2.8rem, 7vw, 5.8rem);font-weight:500;letter-spacing:.3em;color:var(--parchment);margin-bottom:8px;background:linear-gradient(180deg, var(--parchment) 0%, var(--gold-bright) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;line-height:1.05;position:relative}
+.hero-brand{font-family:'Cinzel', serif;font-size:clamp(2.8rem, 7vw, 5.8rem);font-weight:500;letter-spacing:.3em;color:var(--ink);margin-bottom:8px;background:linear-gradient(180deg, var(--ink) 0%, var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;line-height:1.05;position:relative}
 .hero-brand .char{display:inline-block;opacity:0;transform:translateY(40px);animation:charIn .9s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes charIn{to{opacity:1;transform:translateY(0)}}
-.hero-sub{font-family:'Cinzel', serif;font-size:clamp(.85rem, 1.4vw, 1.1rem);letter-spacing:.5em;color:var(--gold);margin-bottom:14px;opacity:0;animation:fadeUp 1s ease .9s forwards}
-.hero-tagline{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--parchment-dim);letter-spacing:.08em;margin-top:12px;opacity:0;animation:fadeUp 1s ease 1.2s forwards}
+.hero-sub{font-family:'Cinzel', serif;font-size:clamp(.85rem, 1.4vw, 1.1rem);letter-spacing:.5em;color:var(--gold-deep);margin-bottom:14px;opacity:0;animation:fadeUp 1s ease .9s forwards}
+.hero-tagline{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--ink-light);letter-spacing:.08em;margin-top:12px;opacity:0;animation:fadeUp 1s ease 1.2s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 .hero-divider{display:flex;align-items:center;gap:18px;margin-top:36px;opacity:0;animation:fadeUp 1.3s ease 1.5s forwards}
 .hero-divider span{height:1px;width:100px;background:linear-gradient(to right, transparent, var(--gold), transparent)}
-.hero-divider svg{width:20px;height:20px;color:var(--gold)}
-.scroll-indicator{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--gold);opacity:0;animation:fadeUp 1s ease 2s forwards}
+.hero-divider svg{width:20px;height:20px;color:var(--gold-deep)}
+.scroll-indicator{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--gold-deep);opacity:0;animation:fadeUp 1s ease 2s forwards}
 .scroll-indicator .txt{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.4em}
 .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom, transparent, var(--gold));position:relative;overflow:hidden}
 .scroll-line::after{content:"";position:absolute;top:-50%;left:0;width:1px;height:50%;background:var(--gold-bright);animation:scrollDrop 2.5s ease-in-out infinite}
@@ -119,10 +122,10 @@ a{color:inherit;text-decoration:none}
 /* SECTIONS */
 section{position:relative;padding:140px 60px}
 .container{max-width:1400px;margin:0 auto}
-.section-number{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold);display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-number{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold-deep);display:flex;align-items:center;gap:16px;margin-bottom:28px}
 .section-number::before{content:"";width:40px;height:1px;background:var(--gold)}
-.section-title{font-family:'Cinzel', serif;font-size:clamp(2rem, 4vw, 3.6rem);font-weight:500;letter-spacing:.15em;line-height:1.15;margin-bottom:30px;color:var(--parchment)}
-.section-title em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:.02em;color:var(--gold)}
+.section-title{font-family:'Cinzel', serif;font-size:clamp(2rem, 4vw, 3.6rem);font-weight:500;letter-spacing:.15em;line-height:1.15;margin-bottom:30px;color:var(--ink)}
+.section-title em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:.02em;color:var(--gold-deep)}
 
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 1.2s ease, transform 1.2s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -131,76 +134,76 @@ section{position:relative;padding:140px 60px}
 .reveal.delay-3{transition-delay:.45s}
 .reveal.delay-4{transition-delay:.6s}
 
-.gold-line{position:relative;height:1px;width:100%;max-width:120px;background:var(--gold-deep);margin:24px 0;overflow:hidden}
+.gold-line{position:relative;height:1px;width:100%;max-width:120px;background:var(--border);margin:24px 0;overflow:hidden}
 .gold-line::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(to right, transparent, var(--gold-bright), transparent)}
 .visible .gold-line::after{animation:sheen 1.8s ease forwards}
 @keyframes sheen{to{left:200%}}
 
 /* PHILOSOPHY */
-.philosophy{padding:180px 60px;background:linear-gradient(180deg, #0a0604 0%, #140c06 50%, #0a0604 100%);position:relative;overflow:hidden}
-.philosophy::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;max-width:80vw;max-height:80vw;background:radial-gradient(circle, rgba(201,169,97,.08) 0%, transparent 65%);pointer-events:none}
+.philosophy{padding:180px 60px;background:linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 50%, var(--bg) 100%);position:relative;overflow:hidden}
+.philosophy::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;max-width:80vw;max-height:80vw;background:radial-gradient(circle, rgba(184,148,62,.08) 0%, transparent 65%);pointer-events:none}
 .philosophy-inner{position:relative;max-width:900px;margin:0 auto;text-align:center}
-.philosophy-quote{font-family:'Italiana', 'Cinzel', serif;font-weight:400;font-size:clamp(2rem, 4.5vw, 4rem);line-height:1.3;color:var(--parchment);margin:40px 0;letter-spacing:.01em}
-.philosophy-quote em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;color:var(--gold)}
-.philosophy-body{font-size:1.1rem;color:var(--parchment-dim);line-height:1.9;max-width:620px;margin:0 auto 28px;font-weight:300}
+.philosophy-quote{font-family:'Italiana', 'Cinzel', serif;font-weight:400;font-size:clamp(2rem, 4.5vw, 4rem);line-height:1.3;color:var(--ink);margin:40px 0;letter-spacing:.01em}
+.philosophy-quote em{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;color:var(--gold-deep)}
+.philosophy-body{font-size:1.1rem;color:var(--ink-light);line-height:1.9;max-width:620px;margin:0 auto 28px;font-weight:300}
 .bg-cross{position:absolute;opacity:.06;pointer-events:none;color:var(--gold)}
 .bg-cross.tl{top:80px;left:80px;width:120px;height:120px}
 .bg-cross.br{bottom:80px;right:80px;width:120px;height:120px}
 
 /* ATELIER */
-.atelier{padding:160px 60px;background:linear-gradient(180deg, rgba(10,6,4,1) 0%, rgba(20,12,6,1) 100%);position:relative}
+.atelier{padding:160px 60px;background:linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);position:relative}
 .atelier-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:100px}
-.atelier-head-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.3rem;line-height:1.8;color:var(--parchment-dim)}
+.atelier-head-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.3rem;line-height:1.8;color:var(--ink-light)}
 .steps{display:grid;grid-template-columns:repeat(4, 1fr);gap:50px;position:relative}
-.steps::before{content:"";position:absolute;top:38px;left:2%;right:2%;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep) 15%, var(--gold-deep) 85%, transparent);z-index:0}
+.steps::before{content:"";position:absolute;top:38px;left:2%;right:2%;height:1px;background:linear-gradient(to right, transparent, var(--border) 15%, var(--border) 85%, transparent);z-index:0}
 .step{position:relative;text-align:left}
-.step-numeral{width:78px;height:78px;background:var(--ink-deep);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:28px;position:relative;z-index:1;transition:all .5s}
-.step-numeral span{font-family:'Cinzel', serif;font-weight:500;font-size:1.3rem;color:var(--gold);letter-spacing:.1em;transition:color .5s, transform .5s}
+.step-numeral{width:78px;height:78px;background:var(--bg-card);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:28px;position:relative;z-index:1;transition:all .5s;box-shadow:0 4px 16px var(--shadow)}
+.step-numeral span{font-family:'Cinzel', serif;font-weight:500;font-size:1.3rem;color:var(--gold-deep);letter-spacing:.1em;transition:color .5s, transform .5s}
 .step:hover .step-numeral{background:var(--gold);transform:rotate(45deg)}
-.step:hover .step-numeral span{color:var(--ink);transform:rotate(-45deg)}
-.step h3{font-size:1rem;margin-bottom:14px;color:var(--parchment)}
-.step p{font-size:1rem;color:var(--parchment-dim);line-height:1.7;font-weight:300}
+.step:hover .step-numeral span{color:#fff;transform:rotate(-45deg)}
+.step h3{font-size:1rem;margin-bottom:14px;color:var(--ink)}
+.step p{font-size:1rem;color:var(--ink-light);line-height:1.7;font-weight:300}
 
 /* SHOP */
-.shop{padding:140px 60px 160px;background:var(--ink);position:relative}
+.shop{padding:140px 60px 160px;background:var(--bg-warm);position:relative}
 .shop-head{text-align:center;margin-bottom:90px}
 .shop-head .section-number{justify-content:center}
 .shop-head .section-number::before{background:linear-gradient(to right, transparent, var(--gold))}
 .shop-head .section-number::after{content:"";width:40px;height:1px;background:linear-gradient(to left, transparent, var(--gold))}
 
 .filters{display:flex;gap:16px;justify-content:center;margin-bottom:60px;flex-wrap:wrap}
-.filter-pill{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,169,97,.3);color:var(--parchment-dim);background:transparent;cursor:none;transition:all .35s}
-.filter-pill:hover,.filter-pill.active{color:var(--ink);background:var(--gold);border-color:var(--gold)}
+.filter-pill{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--border);color:var(--ink-light);background:transparent;cursor:none;transition:all .35s}
+.filter-pill:hover,.filter-pill.active{color:#fff;background:var(--gold-deep);border-color:var(--gold-deep)}
 
 .products{display:grid;grid-template-columns:repeat(3, 1fr);gap:40px}
-.product{position:relative;background:var(--ink-soft);border:1px solid rgba(201,169,97,.12);overflow:hidden;transition:all .5s}
-.product:hover{border-color:rgba(201,169,97,.5);transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.6), 0 0 40px rgba(201,169,97,.08)}
-.product-img{position:relative;overflow:hidden;aspect-ratio:4/5;background:#1a1108}
-.product-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1s;filter:brightness(.92) contrast(1.04) saturate(.97)}
-.product:hover .product-img img{transform:scale(1.08);filter:brightness(1) contrast(1.06) saturate(1)}
-.product-tag{position:absolute;top:18px;left:18px;font-family:'Cinzel', serif;font-size:.58rem;letter-spacing:.3em;padding:6px 11px;background:rgba(10,6,4,.85);border:1px solid var(--gold);color:var(--gold);z-index:2;backdrop-filter:blur(4px)}
+.product{position:relative;background:var(--bg-card);border:1px solid var(--border-light);overflow:hidden;transition:all .5s;border-radius:2px}
+.product:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 30px 60px rgba(42,31,20,.12), 0 0 40px rgba(184,148,62,.06)}
+.product-img{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--bg-soft)}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1s;filter:brightness(.98) contrast(1.02) saturate(.98)}
+.product:hover .product-img img{transform:scale(1.06);filter:brightness(1.02) contrast(1.04) saturate(1.02)}
+.product-tag{position:absolute;top:18px;left:18px;font-family:'Cinzel', serif;font-size:.58rem;letter-spacing:.3em;padding:6px 11px;background:rgba(255,255,255,.9);border:1px solid var(--gold);color:var(--gold-deep);z-index:2;backdrop-filter:blur(4px)}
 .product-info{padding:28px 26px 32px;position:relative}
-.product-name{font-family:'Cinzel', serif;font-weight:500;font-size:.95rem;letter-spacing:.15em;color:var(--parchment);margin-bottom:6px;line-height:1.3}
-.product-desc{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:.95rem;color:var(--parchment-dim);margin-bottom:20px;line-height:1.5}
-.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(201,169,97,.12)}
-.product-price{font-family:'Cinzel', serif;font-weight:500;font-size:1.15rem;color:var(--gold);letter-spacing:.1em}
+.product-name{font-family:'Cinzel', serif;font-weight:500;font-size:.85rem;letter-spacing:.12em;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.product-desc{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:.92rem;color:var(--ink-light);margin-bottom:20px;line-height:1.5}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--border-light)}
+.product-price{font-family:'Cinzel', serif;font-weight:500;font-size:1.15rem;color:var(--gold-deep);letter-spacing:.1em}
 .product-price .cents{font-size:.7em;vertical-align:top}
-.product-btn{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;padding:10px 16px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:none;transition:all .35s}
-.product-btn:hover{background:var(--gold);color:var(--ink);letter-spacing:.45em}
+.product-btn{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;padding:10px 16px;background:transparent;border:1px solid var(--gold);color:var(--gold-deep);cursor:none;transition:all .35s}
+.product-btn:hover{background:var(--gold);color:#fff;letter-spacing:.45em}
 
 /* GALLERY */
-.gallery{padding:140px 60px;background:linear-gradient(180deg, var(--ink) 0%, #0d0806 100%);position:relative}
+.gallery{padding:140px 60px;background:linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);position:relative}
 .gallery-head{text-align:center;margin-bottom:80px}
 .gallery-head .section-number{justify-content:center}
 .gallery-head .section-number::before,.gallery-head .section-number::after{content:"";width:40px;height:1px;background:var(--gold)}
 .gallery-grid{display:grid;grid-template-columns:repeat(12, 1fr);grid-auto-rows:80px;gap:18px}
-.gallery-item{position:relative;overflow:hidden;border:1px solid rgba(201,169,97,.1);cursor:none}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s cubic-bezier(.2,.8,.2,1), filter 1s;filter:brightness(.88) saturate(.95)}
-.gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, rgba(10,6,4,.75) 100%);opacity:0;transition:opacity .5s}
-.gallery-item:hover img{transform:scale(1.1);filter:brightness(1)}
+.gallery-item{position:relative;overflow:hidden;border:1px solid var(--border-light);cursor:none;border-radius:2px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s cubic-bezier(.2,.8,.2,1), filter 1s;filter:brightness(.96) saturate(.98)}
+.gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, rgba(42,31,20,.5) 100%);opacity:0;transition:opacity .5s}
+.gallery-item:hover img{transform:scale(1.1);filter:brightness(1.02)}
 .gallery-item:hover::after{opacity:1}
 .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
-.gallery-caption{position:absolute;left:20px;bottom:18px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold-bright);opacity:0;transform:translateY(10px);transition:all .4s;z-index:2}
+.gallery-caption{position:absolute;left:20px;bottom:18px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.3em;color:#fff;opacity:0;transform:translateY(10px);transition:all .4s;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .g-1{grid-column:span 5;grid-row:span 7}
 .g-2{grid-column:span 4;grid-row:span 4}
 .g-3{grid-column:span 3;grid-row:span 4}
@@ -211,85 +214,100 @@ section{position:relative;padding:140px 60px}
 .g-8{grid-column:span 5;grid-row:span 5}
 
 /* BAND */
-.band{padding:140px 60px;background:var(--ink-deep);position:relative;overflow:hidden;text-align:center}
-.band::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep), transparent)}
-.band::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold-deep), transparent)}
-.band-quote{font-family:'Italiana', serif;font-size:clamp(1.8rem, 4vw, 3rem);color:var(--parchment);line-height:1.4;max-width:900px;margin:0 auto 24px}
+.band{padding:140px 60px;background:var(--bg-soft);position:relative;overflow:hidden;text-align:center}
+.band::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold), transparent)}
+.band::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--gold), transparent)}
+.band-quote{font-family:'Italiana', serif;font-size:clamp(1.8rem, 4vw, 3rem);color:var(--ink);line-height:1.4;max-width:900px;margin:0 auto 24px}
 .band-quote::before,.band-quote::after{content:"";display:inline-block;width:50px;height:1px;background:var(--gold);vertical-align:middle;margin:0 24px}
-.band-attr{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold);margin-top:18px}
+.band-attr{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.5em;color:var(--gold-deep);margin-top:18px}
 
 /* CONTACT */
-.contact{padding:140px 60px;background:radial-gradient(ellipse at top, rgba(201,169,97,.1) 0%, transparent 50%),var(--ink);position:relative}
+.contact{padding:140px 60px;background:radial-gradient(ellipse at top, rgba(184,148,62,.06) 0%, transparent 50%),var(--bg);position:relative}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
 .contact-info h2{margin-bottom:30px}
-.contact-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.25rem;line-height:1.7;color:var(--parchment-dim);margin-bottom:40px}
+.contact-lead{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1.25rem;line-height:1.7;color:var(--ink-light);margin-bottom:40px}
 .contact-list{list-style:none;display:flex;flex-direction:column;gap:20px}
-.contact-list li{display:flex;align-items:center;gap:18px;font-size:1.05rem;color:var(--parchment);padding:14px 0;border-bottom:1px solid rgba(201,169,97,.15);transition:all .3s}
+.contact-list li{display:flex;align-items:center;gap:18px;font-size:1.05rem;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border-light);transition:all .3s}
 .contact-list li:hover{padding-left:8px;border-color:var(--gold)}
-.contact-list svg{width:18px;height:18px;color:var(--gold);flex-shrink:0}
-.contact-list span.lbl{font-family:'Cinzel', serif;font-size:.6rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-right:16px;min-width:90px}
-.newsletter{background:var(--ink-soft);border:1px solid rgba(201,169,97,.2);padding:50px 44px;position:relative}
+.contact-list svg{width:18px;height:18px;color:var(--gold-deep);flex-shrink:0}
+.contact-list span.lbl{font-family:'Cinzel', serif;font-size:.6rem;letter-spacing:.35em;color:var(--gold-deep);text-transform:uppercase;margin-right:16px;min-width:90px}
+.newsletter{background:var(--bg-card);border:1px solid var(--border);padding:50px 44px;position:relative;box-shadow:0 8px 32px var(--shadow)}
 .newsletter::before{content:"";position:absolute;top:-1px;left:-1px;width:30px;height:30px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
 .newsletter::after{content:"";position:absolute;bottom:-1px;right:-1px;width:30px;height:30px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
-.newsletter h3{font-size:1rem;margin-bottom:12px;color:var(--gold)}
-.newsletter p{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1rem;color:var(--parchment-dim);margin-bottom:26px}
-.newsletter-field{display:flex;border:1px solid rgba(201,169,97,.3)}
-.newsletter-field input{flex:1;background:transparent;border:none;outline:none;padding:15px 18px;color:var(--parchment);font-family:'Cormorant Garamond', serif;font-size:1rem}
-.newsletter-field input::placeholder{color:rgba(244,235,217,.4)}
-.newsletter-field button{background:var(--gold);color:var(--ink);border:none;padding:0 28px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:none;transition:all .3s}
+.newsletter h3{font-size:1rem;margin-bottom:12px;color:var(--gold-deep)}
+.newsletter p{font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:1rem;color:var(--ink-light);margin-bottom:26px}
+.newsletter-field{display:flex;border:1px solid var(--border)}
+.newsletter-field input{flex:1;background:transparent;border:none;outline:none;padding:15px 18px;color:var(--ink);font-family:'Cormorant Garamond', serif;font-size:1rem}
+.newsletter-field input::placeholder{color:var(--ink-light);opacity:.5}
+.newsletter-field button{background:var(--gold);color:#fff;border:none;padding:0 28px;font-family:'Cinzel', serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:none;transition:all .3s}
 .newsletter-field button:hover{background:var(--gold-bright);letter-spacing:.45em}
 
 /* FOOTER */
-footer{padding:80px 60px 40px;background:var(--ink-deep);border-top:1px solid rgba(201,169,97,.15);text-align:center}
-footer .starburst-small{width:50px;height:50px;margin:0 auto 24px;opacity:.7}
-footer .f-brand{font-family:'Cinzel', serif;font-size:1.2rem;letter-spacing:.45em;color:var(--gold);margin-bottom:10px}
-footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--parchment-dim);margin-bottom:36px}
+footer{padding:80px 60px 40px;background:var(--bg-soft);border-top:1px solid var(--border);text-align:center}
+footer .footer-logo{width:60px;height:auto;margin:0 auto 20px;opacity:.7}
+footer .f-brand{font-family:'Cinzel', serif;font-size:1.2rem;letter-spacing:.45em;color:var(--gold-deep);margin-bottom:10px}
+footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--ink-light);margin-bottom:36px}
 .socials{display:flex;gap:24px;justify-content:center;margin-bottom:40px}
-.socials a{width:42px;height:42px;border:1px solid rgba(201,169,97,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s}
-.socials a:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:translateY(-3px)}
+.socials a{width:42px;height:42px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold-deep);transition:all .3s}
+.socials a:hover{background:var(--gold);color:#fff;border-color:var(--gold);transform:translateY(-3px)}
 .socials svg{width:16px;height:16px}
-.f-meta{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;color:var(--parchment-dim);opacity:.5}
-.f-legal{margin-top:16px;font-family:'Cormorant Garamond', serif;font-size:.85rem;color:var(--parchment-dim);opacity:.4}
+.f-meta{font-family:'Cinzel', serif;font-size:.65rem;letter-spacing:.35em;color:var(--ink-light);opacity:.5}
+.f-legal{margin-top:16px;font-family:'Cormorant Garamond', serif;font-size:.85rem;color:var(--ink-light);opacity:.4}
 
 /* CART DRAWER */
-.cart-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100vh;background:var(--ink-deep);border-left:1px solid var(--gold);z-index:200;transform:translateX(100%);transition:transform .6s cubic-bezier(.5,.05,.3,1);display:flex;flex-direction:column}
+.cart-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100vh;background:var(--bg-card);border-left:1px solid var(--gold);z-index:200;transform:translateX(100%);transition:transform .6s cubic-bezier(.5,.05,.3,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(42,31,20,.1)}
 .cart-drawer.open{transform:translateX(0)}
-.cart-head{display:flex;justify-content:space-between;align-items:center;padding:30px 32px;border-bottom:1px solid rgba(201,169,97,.2)}
-.cart-head h3{font-size:1rem;color:var(--gold)}
-.cart-close{width:36px;height:36px;border:1px solid rgba(201,169,97,.3);background:transparent;color:var(--parchment);cursor:none;font-size:1rem;transition:all .3s}
-.cart-close:hover{border-color:var(--gold);color:var(--gold)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:30px 32px;border-bottom:1px solid var(--border)}
+.cart-head h3{font-size:1rem;color:var(--gold-deep)}
+.cart-close{width:36px;height:36px;border:1px solid var(--border);background:transparent;color:var(--ink);cursor:none;font-size:1rem;transition:all .3s}
+.cart-close:hover{border-color:var(--gold);color:var(--gold-deep)}
 .cart-items{flex:1;overflow-y:auto;padding:24px 32px}
-.cart-empty{text-align:center;padding:60px 0;font-family:'Cormorant Garamond', serif;font-style:italic;color:var(--parchment-dim)}
-.cart-item{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(201,169,97,.1)}
-.cart-item img{width:60px;height:75px;object-fit:cover}
+.cart-empty{text-align:center;padding:60px 0;font-family:'Cormorant Garamond', serif;font-style:italic;color:var(--ink-light)}
+.cart-item{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--border-light)}
+.cart-item img{width:60px;height:75px;object-fit:cover;border-radius:2px}
 .cart-item-info{flex:1}
-.cart-item-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;margin-bottom:4px}
-.cart-item-price{color:var(--gold);font-size:.95rem}
-.cart-item-remove{background:transparent;border:none;color:var(--parchment-dim);cursor:none;font-size:1rem}
-.cart-foot{padding:24px 32px;border-top:1px solid rgba(201,169,97,.2)}
+.cart-item-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;margin-bottom:4px;color:var(--ink)}
+.cart-item-price{color:var(--gold-deep);font-size:.95rem}
+.cart-item-remove{background:transparent;border:none;color:var(--ink-light);cursor:none;font-size:1rem}
+.cart-foot{padding:24px 32px;border-top:1px solid var(--border)}
 .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
-.cart-total .lab{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:var(--parchment-dim)}
-.cart-total .val{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold)}
-.cart-checkout{width:100%;padding:18px;background:var(--gold);color:var(--ink);border:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;cursor:none;transition:all .3s}
+.cart-total .lab{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:var(--ink-light)}
+.cart-total .val{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold-deep)}
+.cart-checkout{width:100%;padding:18px;background:var(--gold);color:#fff;border:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;cursor:none;transition:all .3s}
 .cart-checkout:hover{background:var(--gold-bright);letter-spacing:.5em}
-.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:150;opacity:0;pointer-events:none;transition:opacity .5s}
+.cart-overlay{position:fixed;inset:0;background:rgba(42,31,20,.4);backdrop-filter:blur(4px);z-index:150;opacity:0;pointer-events:none;transition:opacity .5s}
 .cart-overlay.active{opacity:1;pointer-events:auto}
 
-/* LOAD MORE & ENHANCEMENTS */
+/* LOAD MORE */
 .products-wrapper{position:relative}
-.product[data-hidden="true"]{display:none!important}
 @keyframes productIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .load-more-wrap{text-align:center;margin-top:70px}
-.load-more-btn{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;padding:18px 50px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:none;transition:all .4s;position:relative;overflow:hidden}
+.load-more-btn{font-family:'Cinzel', serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;padding:18px 50px;background:transparent;border:1px solid var(--gold);color:var(--gold-deep);cursor:none;transition:all .4s;position:relative;overflow:hidden}
 .load-more-btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s ease;z-index:0}
 .load-more-btn:hover::before{transform:translateX(0)}
-.load-more-btn:hover{color:var(--ink)}
+.load-more-btn:hover{color:#fff}
 .load-more-btn span{position:relative;z-index:1}
-.product-count{text-align:center;margin-top:24px;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--parchment-dim);opacity:.6}
+.product-count{text-align:center;margin-top:24px;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.95rem;color:var(--ink-light);opacity:.6}
 .filter-pill{position:relative}
 .filter-count{font-family:'Cormorant Garamond', serif;font-size:.65rem;font-style:italic;opacity:.7;margin-left:4px}
-.product::before{content:"";position:absolute;inset:-1px;background:linear-gradient(135deg, rgba(201,169,97,.15), transparent);opacity:0;transition:opacity .5s;z-index:1;pointer-events:none}
+.product::before{content:"";position:absolute;inset:-1px;background:linear-gradient(135deg, rgba(184,148,62,.08), transparent);opacity:0;transition:opacity .5s;z-index:1;pointer-events:none}
 .product:hover::before{opacity:1}
+
+/* NAV LOGO IMAGE */
+.nav-logo-img{height:40px;width:auto;margin-right:12px;vertical-align:middle;transition:height .3s}
+.nav.scrolled .nav-logo-img{height:32px}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-text{display:flex;flex-direction:column}
+
+/* LOADING SCREEN */
+.loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease, visibility .8s ease}
+.loader.fade-out{opacity:0;visibility:hidden}
+.loader-logo{width:min(280px, 60vw);height:auto;opacity:0;animation:loaderLogoIn 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards}
+@keyframes loaderLogoIn{0%{opacity:0;transform:scale(.85)}60%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
+.loader-bar{width:min(200px, 40vw);height:1px;background:var(--border);margin-top:40px;position:relative;overflow:hidden;opacity:0;animation:fadeUp .6s ease .6s forwards}
+.loader-bar::after{content:"";position:absolute;top:0;left:0;width:0;height:100%;background:linear-gradient(to right, var(--gold-deep), var(--gold-bright), var(--gold-deep));animation:loaderProgress 2s ease .8s forwards}
+@keyframes loaderProgress{0%{width:0}100%{width:100%}}
+.loader-text{font-family:'Cinzel', serif;font-size:.6rem;letter-spacing:.5em;color:var(--gold-deep);margin-top:18px;opacity:0;animation:fadeUp .6s ease .8s forwards}
 
 /* RESPONSIVE */
 @media (max-width:1024px){
@@ -331,86 +349,9 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   .filters{gap:8px}
   .filter-pill{padding:8px 12px;font-size:.6rem;letter-spacing:.2em}
 }
-
-/* LOADING SCREEN */
-.loader{
-  position:fixed;inset:0;z-index:99999;
-  background:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity .8s ease, visibility .8s ease;
-}
-.loader.fade-out{
-  opacity:0;visibility:hidden;
-}
-.loader-logo{
-  width:min(280px, 60vw);height:auto;
-  opacity:0;
-  animation:loaderLogoIn 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards;
-}
-@keyframes loaderLogoIn{
-  0%{opacity:0;transform:scale(.85)}
-  60%{opacity:1;transform:scale(1.02)}
-  100%{opacity:1;transform:scale(1)}
-}
-.loader-bar{
-  width:min(200px, 40vw);height:1px;
-  background:rgba(201,169,97,.2);
-  margin-top:40px;
-  position:relative;
-  overflow:hidden;
-  opacity:0;
-  animation:fadeUp .6s ease .6s forwards;
-}
-.loader-bar::after{
-  content:"";
-  position:absolute;top:0;left:0;
-  width:0;height:100%;
-  background:linear-gradient(to right, var(--gold-deep), var(--gold-bright), var(--gold-deep));
-  animation:loaderProgress 2s ease .8s forwards;
-}
-@keyframes loaderProgress{
-  0%{width:0}
-  100%{width:100%}
-}
-.loader-text{
-  font-family:'Cinzel', serif;
-  font-size:.6rem;letter-spacing:.5em;
-  color:var(--gold);
-  margin-top:18px;
-  opacity:0;
-  animation:fadeUp .6s ease .8s forwards;
-}
-
-/* NAV LOGO IMAGE */
-.nav-logo-img{
-  height:40px;width:auto;
-  margin-right:12px;
-  vertical-align:middle;
-  transition:height .3s;
-}
-.nav.scrolled .nav-logo-img{height:32px}
-.nav-logo{display:flex;align-items:center}
-.nav-logo-text{display:flex;flex-direction:column}
-
-/* HERO LOGO */
-.hero-logo{
-  width:min(320px, 50vw);height:auto;
-  margin-bottom:30px;
-  animation:floatgently 6s ease-in-out infinite;
-  filter:drop-shadow(0 0 40px rgba(201,169,97,.3));
-}
-
-/* FOOTER LOGO */
-.footer-logo{
-  width:60px;height:auto;
-  margin:0 auto 20px;
-  opacity:.7;
-}
-
 </style>
 </head>
 <body>
-
 
 <!-- LOADING SCREEN -->
 <div class="loader" id="loader">
@@ -425,16 +366,16 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 <div class="cart-overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer">
   <div class="cart-head">
-    <h3>✧ Il Tuo Reliquiario</h3>
-    <button class="cart-close" id="cartClose">✕</button>
+    <h3>&#10047; Il Tuo Reliquiario</h3>
+    <button class="cart-close" id="cartClose">&#10005;</button>
   </div>
   <div class="cart-items" id="cartItems">
-    <div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>
+    <div class="cart-empty">Il tuo reliquiario &egrave; vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>
   </div>
   <div class="cart-foot">
     <div class="cart-total">
       <span class="lab">Totale</span>
-      <span class="val" id="cartTotal">€ 0,00</span>
+      <span class="val" id="cartTotal">&euro; 0,00</span>
     </div>
     <button class="cart-checkout">Procedi al Checkout</button>
   </div>
@@ -444,8 +385,8 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   <div class="nav-logo">
     <img class="nav-logo-img" src="logo.JPG" alt="Carpe Diem">
     <div class="nav-logo-text">
-      <span style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.4em;color:var(--gold);font-weight:600">CARPE&nbsp;DIEM</span>
-      <span style="color:var(--parchment);font-weight:400;font-size:.65rem;letter-spacing:.3em;opacity:.6">Artigianato&nbsp;·&nbsp;Roma</span>
+      <span style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.4em;color:var(--gold-deep);font-weight:600">CARPE&nbsp;DIEM</span>
+      <span style="color:var(--ink-light);font-weight:400;font-size:.65rem;letter-spacing:.3em;opacity:.6">Artigianato&nbsp;&middot;&nbsp;Roma</span>
     </div>
   </div>
   <ul class="nav-menu">
@@ -460,12 +401,12 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 
 <section class="hero">
   <div class="sacred-frame"><div class="sacred-frame-inner"></div></div>
-  <div class="hero-corner-i">ROMA · MMXXVI</div>
-  <div class="hero-corner-ii">ATELIER · NO. I</div>
+  <div class="hero-corner-i">ROMA &middot; MMXXVI</div>
+  <div class="hero-corner-ii">ATELIER &middot; NO. I</div>
   <img class="hero-logo" src="logo.JPG" alt="Carpe Diem">
   <div class="hero-sub">L'ARTE SACRA DA INDOSSARE</div>
   <h1 class="hero-brand" id="heroBrand"></h1>
-  <div class="hero-tagline">Artigianato Romano · Dal 2024</div>
+  <div class="hero-tagline">Artigianato Romano &middot; Dal 2024</div>
   <div class="hero-divider">
     <span></span>
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L12 22M2 12L22 12M7 7L17 17M17 7L7 17"/></svg>
@@ -481,11 +422,11 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   <svg class="bg-cross tl" viewBox="0 0 100 100" fill="currentColor"><path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/></svg>
   <svg class="bg-cross br" viewBox="0 0 100 100" fill="currentColor"><path d="M45 10 L55 10 L55 45 L90 45 L90 55 L55 55 L55 90 L45 90 L45 55 L10 55 L10 45 L45 45 Z"/></svg>
   <div class="philosophy-inner">
-    <div class="section-number reveal"><span>I · FILOSOFIA</span></div>
-    <p class="eyebrow reveal delay-1">Memento · Hodie · Vive</p>
-    <h2 class="philosophy-quote reveal delay-2">Ogni pezzo è un <em>sussurro</em> di eternità,<br>reso tangibile dalla mano di chi crede<br>che la bellezza sia una <em>preghiera</em>.</h2>
+    <div class="section-number reveal"><span>I &middot; FILOSOFIA</span></div>
+    <p class="eyebrow reveal delay-1">Memento &middot; Hodie &middot; Vive</p>
+    <h2 class="philosophy-quote reveal delay-2">Ogni pezzo &egrave; un <em>sussurro</em> di eternit&agrave;,<br>reso tangibile dalla mano di chi crede<br>che la bellezza sia una <em>preghiera</em>.</h2>
     <p class="philosophy-body reveal delay-3">Carpe Diem nasce a Roma come atto d'amore verso l'arte sacra. Trasformiamo simboli millenari — croci, rosari, medaglie — in gioielli contemporanei che uniscono devozione e stile, memoria e presente.</p>
-    <p class="philosophy-body reveal delay-4">Non creiamo accessori. Creiamo <em style="color:var(--gold);font-style:italic">piccole reliquie</em> destinate a chi sceglie di portare con sé un frammento del sacro.</p>
+    <p class="philosophy-body reveal delay-4">Non creiamo accessori. Creiamo <em style="color:var(--gold-deep);font-style:italic">piccole reliquie</em> destinate a chi sceglie di portare con s&eacute; un frammento del sacro.</p>
   </div>
 </section>
 
@@ -493,16 +434,16 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   <div class="container">
     <div class="atelier-head">
       <div>
-        <div class="section-number reveal"><span>II · ATELIER</span></div>
+        <div class="section-number reveal"><span>II &middot; ATELIER</span></div>
         <h2 class="section-title reveal delay-1">Il Rito della<br><em>Creazione</em></h2>
       </div>
-      <p class="atelier-head-lead reveal delay-2">Ogni gioiello passa per quattro mani, quattro momenti, quattro attese. Un processo lento, scandito dal silenzio, che restituisce al tempo la sua dignità.</p>
+      <p class="atelier-head-lead reveal delay-2">Ogni gioiello passa per quattro mani, quattro momenti, quattro attese. Un processo lento, scandito dal silenzio, che restituisce al tempo la sua dignit&agrave;.</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="step-numeral"><span>I</span></div><h3>Selezione</h3><p>Scegliamo con cura pietre naturali, perle di madreperla, giade e agate. Ogni materia è ispezionata al tatto, alla luce, al peso.</p></div>
+      <div class="step reveal"><div class="step-numeral"><span>I</span></div><h3>Selezione</h3><p>Scegliamo con cura pietre naturali, perle di madreperla, giade e agate. Ogni materia &egrave; ispezionata al tatto, alla luce, al peso.</p></div>
       <div class="step reveal delay-1"><div class="step-numeral"><span>II</span></div><h3>Incastonatura</h3><p>Le croci smaltate e le medaglie sacre vengono montate una ad una, filo d'oro su filo d'oro, in un tempo che non si misura in minuti.</p></div>
       <div class="step reveal delay-2"><div class="step-numeral"><span>III</span></div><h3>Assemblaggio</h3><p>Ogni perlina viene legata manualmente al suo anellino. Un rosario richiede ore. Una collana, un pomeriggio intero.</p></div>
-      <div class="step reveal delay-3"><div class="step-numeral"><span>IV</span></div><h3>Benedizione</h3><p>Il pezzo finito riposa. Viene pulito, incartato nella seta, sigillato. Pronto per accompagnare chi lo indosserà.</p></div>
+      <div class="step reveal delay-3"><div class="step-numeral"><span>IV</span></div><h3>Benedizione</h3><p>Il pezzo finito riposa. Viene pulito, incartato nella seta, sigillato. Pronto per accompagnare chi lo indosser&agrave;.</p></div>
     </div>
   </div>
 </section>
@@ -510,56 +451,58 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 <section class="shop" id="shop">
   <div class="container">
     <div class="shop-head">
-      <div class="section-number reveal"><span>III · COLLEZIONE</span></div>
+      <div class="section-number reveal"><span>III &middot; COLLEZIONE</span></div>
       <h2 class="section-title reveal delay-1">La <em>Collezione</em> Sacra</h2>
-      <p class="subtle-italic reveal delay-2" style="font-size:1.15rem;color:var(--parchment-dim);max-width:560px;margin:10px auto 0">Pezzi unici, numerati, pensati per essere portati ogni giorno come un voto silenzioso.</p>
+      <p class="subtle-italic reveal delay-2" style="font-size:1.15rem;color:var(--ink-light);max-width:560px;margin:10px auto 0">Pezzi unici, numerati, pensati per essere portati ogni giorno come un voto silenzioso.</p>
     </div>
 
     <div class="filters reveal">
-      <button class="filter-pill active" data-filter="all">Tutti <span class="filter-count">(26)</span></button>
-      <button class="filter-pill" data-filter="necklace">Collane <span class="filter-count">(4)</span></button>
-      <button class="filter-pill" data-filter="bracelet">Bracciali <span class="filter-count">(4)</span></button>
-      <button class="filter-pill" data-filter="rosary">Rosari <span class="filter-count">(18)</span></button>
+      <button class="filter-pill active" data-filter="all">Tutti <span class="filter-count">(33)</span></button>
+      <button class="filter-pill" data-filter="rosary">Rosari <span class="filter-count">(12)</span></button>
+      <button class="filter-pill" data-filter="decina">Decine <span class="filter-count">(19)</span></button>
+      <button class="filter-pill" data-filter="bracelet">Bracciali <span class="filter-count">(2)</span></button>
     </div>
 
     <div class="products" id="productsGrid">
 
-      <article class="product reveal" data-category="necklace" data-name="Crux Rubra Grande" data-price="89">
+      <!-- 1 -->
+      <article class="product reveal" data-category="rosary" data-name="Rosario Occhio di Gatto Celeste" data-price="55">
         <div class="product-img">
-          <div class="product-tag">Bestseller</div>
-          <img src="images/5.jpeg" alt="Crux Rubra Grande" loading="lazy">
+          <img src="images/1.jpeg" alt="Rosario Occhio di Gatto Celeste" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Crux Rubra &middot; Grande</div>
-          <div class="product-desc">Collana in madreperla e croce smaltata rossa</div>
+          <div class="product-name">Rosario Occhio di Gatto Celeste</div>
+          <div class="product-desc">Occhio di gatto celeste 6 mm, pater occhio di gatto celeste 8 mm, crociera Madonna Miracolosa e Croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">&euro; 89<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="necklace" data-name="Crux Rubra Piccola" data-price="79">
+      <!-- 2 -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosario Occhio di Gatto Rosa" data-price="55">
         <div class="product-img">
-          <img src="images/7.jpeg" alt="Crux Rubra Piccola" loading="lazy">
+          <img src="images/2.jpeg" alt="Rosario Occhio di Gatto Rosa" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Crux Rubra &middot; Piccola</div>
-          <div class="product-desc">Collana in madreperla, croce smaltata minuta</div>
+          <div class="product-name">Rosario Occhio di Gatto Rosa</div>
+          <div class="product-desc">Occhio di gatto rosa 6 mm, pater rose bianche in resina, crociera Madonna Miracolosa e Croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">&euro; 79<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-2" data-category="necklace" data-name="Crux Aurea" data-price="69">
+      <!-- 3 -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosario Cream Rose Pearl" data-price="69">
         <div class="product-img">
-          <img src="images/3.jpeg" alt="Crux Aurea" loading="lazy">
+          <img src="images/3.jpeg" alt="Rosario Cream Rose Pearl" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Crux Aurea</div>
-          <div class="product-desc">Collana in madreperla con croce in ottone dorato</div>
+          <div class="product-name">Rosario Cream Rose Pearl</div>
+          <div class="product-desc">Real crystal cream rose pearl 6 mm, pater con rose nere in resina, crociera ovale Ges&ugrave; Misericordioso e Madonna di Medjugorje e Croce in zama argentata</div>
           <div class="product-footer">
             <div class="product-price">&euro; 69<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
@@ -567,14 +510,138 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
         </div>
       </article>
 
-      <article class="product reveal" data-category="bracelet" data-name="Rosarium Croce Maior" data-price="59">
+      <!-- 4 -->
+      <article class="product reveal" data-category="rosary" data-name="Rosario White Pearl" data-price="65">
         <div class="product-img">
-          <div class="product-tag">Nuovo</div>
-          <img src="images/9.jpeg" alt="Rosarium Croce Maior" loading="lazy">
+          <img src="images/4.jpeg" alt="Rosario White Pearl" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Rosarium &middot; Croce Maior</div>
-          <div class="product-desc">Bracciale in agata rossa, croce smaltata grande</div>
+          <div class="product-name">Rosario White Pearl</div>
+          <div class="product-desc">Real crystal white pearl 6 mm, pater rose rosse in resina, crociera ovale Ges&ugrave; Misericordioso e Madonna di Medjugorje e Croce Trinit&agrave; in zama argentata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 65<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosario Blu &middot; Carlo Acutis" data-price="69">
+        <div class="product-img">
+          <div class="product-tag">Bestseller</div>
+          <img src="images/5.jpeg" alt="Rosario Blu Carlo Acutis" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Blu &middot; Carlo Acutis</div>
+          <div class="product-desc">Real crystal blu opaco 6 mm, pater real crystal blu 8 mm, crociera San Carlo Acutis protetta dalla resina e Croce in zama argentata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosario Madreperla Cappuccino" data-price="75">
+        <div class="product-img">
+          <img src="images/6.jpeg" alt="Rosario Madreperla Cappuccino" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Madreperla Cappuccino</div>
+          <div class="product-desc">Madreperla cappuccino 6 mm, pater rose rosse in resina, crociera Madonna Miracolosa ovale in zama dorata, Croce madreperla cappuccino realizzata a mano</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 75<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="product reveal" data-category="rosary" data-name="Rosario Madreperla Moka" data-price="69">
+        <div class="product-img">
+          <img src="images/7.jpeg" alt="Rosario Madreperla Moka" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Madreperla Moka</div>
+          <div class="product-desc">Madreperla moka 8 mm, pater croci madreperla moka, crociera Madonna Miracolosa ovale e Croce in zama argentata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 69<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosario Perle Maiorca" data-price="72">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/8.jpeg" alt="Rosario Perle Maiorca" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Perle Maiorca</div>
+          <div class="product-desc">Perle Maiorca rosa salmone 6 mm, pater rose rosse in resina, crociera Sacra Sindone e Croce in zama argentata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 72<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Rosario Labradorite" data-price="79">
+        <div class="product-img">
+          <img src="images/9.jpeg" alt="Rosario Labradorite" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Labradorite</div>
+          <div class="product-desc">Labradorite nero 6 mm, pater labradorite nero 8 mm, crociera Madonna Miracolosa e Croce in zama argentata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 79<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="product reveal" data-category="rosary" data-name="Set Agata Nera &middot; Rosario e Orecchini" data-price="89">
+        <div class="product-img">
+          <div class="product-tag">Esclusivo</div>
+          <img src="images/10.jpeg" alt="Set Agata Nera" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Set Agata Nera &middot; Rosario e Orecchini</div>
+          <div class="product-desc">Agata brasiliana nera 6 mm, crociera Spirito Santo, Croce, chiave e Croce piccola in zama; orecchini gancio pompeiano in argento</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 89<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="product reveal delay-1" data-category="rosary" data-name="Rosario Occhio di Gatto Grigio" data-price="55">
+        <div class="product-img">
+          <img src="images/11.jpeg" alt="Rosario Occhio di Gatto Grigio" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rosario Occhio di Gatto Grigio</div>
+          <div class="product-desc">Occhio di gatto grigio 6 mm, pater rose bianche, crociera Madonna Miracolosa ovale e Croce in zama</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="product reveal delay-2" data-category="rosary" data-name="Corona Angelica Celeste" data-price="59">
+        <div class="product-img">
+          <div class="product-tag">Nuovo</div>
+          <img src="images/12.jpeg" alt="Corona Angelica Celeste" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Corona Angelica Celeste</div>
+          <div class="product-desc">Occhio di gatto celeste, crociera Madonna Miracolosa e San Michele Arcangelo in zama</div>
           <div class="product-footer">
             <div class="product-price">&euro; 59<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
@@ -582,13 +649,29 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="bracelet" data-name="Rosarium Croce Minor" data-price="49">
+      <!-- 13 -->
+      <article class="product reveal" data-category="decina" data-name="Decine Pietre Colorate &middot; 10 mm" data-price="55">
         <div class="product-img">
-          <img src="images/10.jpeg" alt="Rosarium Croce Minor" loading="lazy">
+          <img src="images/13.jpeg" alt="Decine Pietre Colorate 10mm" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Rosarium &middot; Croce Minor</div>
-          <div class="product-desc">Bracciale in agata rossa, croce smaltata piccola</div>
+          <div class="product-name">Decine Pietre Colorate &middot; 10 mm</div>
+          <div class="product-desc">Decine pietre vari colori 10 mm, croci e crociere in zama argentata o dorata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Decine Pietre Colorate &middot; 8 mm" data-price="49">
+        <div class="product-img">
+          <img src="images/14.jpeg" alt="Decine Pietre Colorate 8mm" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Decine Pietre Colorate &middot; 8 mm</div>
+          <div class="product-desc">Decine pietre vari colori 8 mm, croci e crociere in zama argentata o dorata</div>
           <div class="product-footer">
             <div class="product-price">&euro; 49<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
@@ -596,305 +679,291 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
         </div>
       </article>
 
-      <article class="product reveal delay-2" data-category="rosary" data-name="Rosarium Romanum" data-price="149">
-        <div class="product-img">
-          <div class="product-tag">Edizione Limitata</div>
-          <img src="images/8.jpeg" alt="Rosarium Romanum" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Rosarium Romanum</div>
-          <div class="product-desc">Rosario completo, agata rossa e medaglie in bronzo dorato</div>
-          <div class="product-footer">
-            <div class="product-price">&euro; 149<span class="cents">,00</span></div>
-            <button class="product-btn add-cart">Aggiungi</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product reveal" data-category="bracelet" data-name="Terrae · Madreperla" data-price="55">
-        <div class="product-img">
-          <img src="images/13.jpeg" alt="Terrae · Madreperla" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Terrae · Madreperla</div>
-          <div class="product-desc">Bracciale in agata marrone striata con croce in madreperla e medaglietta sacra</div>
-          <div class="product-footer">
-            <div class="product-price">€ 55<span class="cents">,00</span></div>
-            <button class="product-btn add-cart">Aggiungi</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product reveal delay-1" data-category="bracelet" data-name="Rosa Mystica · Bracciale" data-price="45">
-        <div class="product-img">
-          <div class="product-tag">Nuovo</div>
-          <img src="images/14.jpeg" alt="Rosa Mystica · Bracciale" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Rosa Mystica · Bracciale</div>
-          <div class="product-desc">Bracciale delicato in perle rosa con crocifisso in argento</div>
-          <div class="product-footer">
-            <div class="product-price">€ 45<span class="cents">,00</span></div>
-            <button class="product-btn add-cart">Aggiungi</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product reveal delay-2" data-category="necklace" data-name="San Michele Arcangelo" data-price="89">
+      <!-- 15 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Madreperla &middot; Carlo Acutis" data-price="55">
         <div class="product-img">
           <div class="product-tag">Bestseller</div>
-          <img src="images/15.jpeg" alt="San Michele Arcangelo" loading="lazy">
+          <img src="images/15.jpeg" alt="Decina Madreperla Carlo Acutis" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">San Michele Arcangelo</div>
-          <div class="product-desc">Collana rosario in pietra occhio di gatto azzurra con San Michele in argento</div>
+          <div class="product-name">Decina Madreperla &middot; Carlo Acutis</div>
+          <div class="product-desc">Madreperla 8 mm con pater rosa in resina, crociera San Carlo Acutis protetta dalla resina e Croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 89<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Noctis" data-price="49">
+      <!-- 16 -->
+      <article class="product reveal" data-category="bracelet" data-name="Bracciale Madreperla Moka" data-price="39">
         <div class="product-img">
-          <img src="images/16.jpeg" alt="Decina Noctis" loading="lazy">
+          <img src="images/16.jpeg" alt="Bracciale Madreperla Moka" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Noctis</div>
-          <div class="product-desc">Decina del rosario in agata nera sfaccettata, medaglia di San Benedetto e crocifisso INRI in argento</div>
+          <div class="product-name">Bracciale Madreperla Moka</div>
+          <div class="product-desc">Madreperla moka 8 mm con croce madreperla moka, catenina in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 39<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Decina Ignis" data-price="55">
+      <!-- 17 -->
+      <article class="product reveal delay-1" data-category="bracelet" data-name="Bracciale Crystal Rosa" data-price="35">
         <div class="product-img">
-          <img src="images/17.jpeg" alt="Decina Ignis" loading="lazy">
+          <img src="images/17.jpeg" alt="Bracciale Crystal Rosa" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Ignis</div>
-          <div class="product-desc">Decina del rosario in agata arancio e corniola, medaglia Miracolosa e crocifisso in oro</div>
+          <div class="product-name">Bracciale Crystal Rosa</div>
+          <div class="product-desc">Real crystal rosa 6 mm, croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 35<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-2" data-category="rosary" data-name="Decina Caelestis" data-price="52">
+      <!-- 18 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Agata Nera" data-price="52">
         <div class="product-img">
-          <img src="images/18.jpeg" alt="Decina Caelestis" loading="lazy">
+          <img src="images/18.jpeg" alt="Decina Agata Nera" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Caelestis</div>
-          <div class="product-desc">Decina del rosario in agata blu, medaglia cuore Madonna e angelo crocifisso in argento</div>
+          <div class="product-name">Decina Agata Nera</div>
+          <div class="product-desc">Agata brasiliana nera sfaccettata 10 mm, croce e crociera in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 52<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 52<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Rosea" data-price="55">
+      <!-- 19 -->
+      <article class="product reveal" data-category="decina" data-name="Decina Agata Blu" data-price="55">
         <div class="product-img">
-          <div class="product-tag">Nuovo</div>
-          <img src="images/20.jpeg" alt="Decina Rosea" loading="lazy">
+          <img src="images/19.jpeg" alt="Decina Agata Blu" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Rosea</div>
-          <div class="product-desc">Decina del rosario in agata fucsia, medaglia Miracolosa e crocifisso in oro</div>
+          <div class="product-name">Decina Agata Blu</div>
+          <div class="product-desc">Agata brasiliana blu sfaccettata 8 mm, pater agata brasiliana blu 10 mm, crociera a forma di cuore con volto della Madonna e Angelo in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Decina Aurea" data-price="55">
+      <!-- 20 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Decina Crystal Rosa" data-price="55">
         <div class="product-img">
-          <img src="images/21.jpeg" alt="Decina Aurea" loading="lazy">
+          <img src="images/20.jpeg" alt="Decina Crystal Rosa" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Aurea</div>
-          <div class="product-desc">Decina del rosario in giada gialla, medaglia Miracolosa e crocifisso in oro</div>
+          <div class="product-name">Decina Crystal Rosa</div>
+          <div class="product-desc">Real crystal rosa 8 mm con pater rosa bianca in resina, crociera Madonna con Bambino e Angelo in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-2" data-category="rosary" data-name="Decina Angelica · Rosa" data-price="59">
+      <!-- 21 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Agata Brasiliana" data-price="49">
         <div class="product-img">
-          <img src="images/22.jpeg" alt="Decina Angelica · Rosa" loading="lazy">
+          <img src="images/21.jpeg" alt="Decina Agata Brasiliana" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Angelica · Rosa</div>
-          <div class="product-desc">Decina in perle rosa con Madonna col Bambino, rosellina bianca e angelo in argento</div>
+          <div class="product-name">Decina Agata Brasiliana</div>
+          <div class="product-desc">Agata brasiliana sfaccettata 10 mm</div>
           <div class="product-footer">
-            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 49<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Guadalupe" data-price="65">
+      <!-- 22 -->
+      <article class="product reveal" data-category="decina" data-name="Decina Granato &middot; Guadalupe" data-price="59">
         <div class="product-img">
-          <div class="product-tag">Esclusivo</div>
-          <img src="images/23.jpeg" alt="Decina Guadalupe" loading="lazy">
+          <img src="images/22.jpeg" alt="Decina Granato Guadalupe" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Guadalupe</div>
-          <div class="product-desc">Decina in granato bordeaux con medaglia della Guadalupe dorata, rose bianche e angelo</div>
+          <div class="product-name">Decina Granato &middot; Guadalupe</div>
+          <div class="product-desc">Pietre granato liscio 8 mm, pater rose bianche in resina, crociera Madonna di Guadalupe e Angelo in zama dorata</div>
           <div class="product-footer">
-            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 59<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Decina Rubra" data-price="49">
+      <!-- 23 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Decina Bordeaux" data-price="52">
         <div class="product-img">
-          <img src="images/24.jpeg" alt="Decina Rubra" loading="lazy">
+          <img src="images/23.jpeg" alt="Decina Bordeaux" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Rubra</div>
-          <div class="product-desc">Decina del rosario in agata rossa ciliegia, Madonna col Bambino e crocifisso in argento</div>
+          <div class="product-name">Decina Bordeaux</div>
+          <div class="product-desc">Bordeaux sfaccettata 8 mm, crociera Madonna del Buon Consiglio e Croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 49<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 52<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-2" data-category="rosary" data-name="Decina Turchese" data-price="52">
+      <!-- 24 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Occhio di Gatto Azzurro" data-price="49">
         <div class="product-img">
-          <img src="images/25.jpeg" alt="Decina Turchese" loading="lazy">
+          <img src="images/24.jpeg" alt="Decina Occhio di Gatto Azzurro" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Turchese</div>
-          <div class="product-desc">Decina in pietra occhio di gatto turchese, medaglia Miracolosa e crocifisso ornato in argento</div>
+          <div class="product-name">Decina Occhio di Gatto Azzurro</div>
+          <div class="product-desc">Occhio di gatto azzurro sfaccettato 10 mm, crociera Madonna Miracolosa ovale e Croce in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 52<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 49<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Alba · Rosa Rossa" data-price="59">
+      <!-- 25 -->
+      <article class="product reveal" data-category="decina" data-name="Decina Occhio di Gatto Bianco" data-price="55">
+        <div class="product-img">
+          <img src="images/25.jpeg" alt="Decina Occhio di Gatto Bianco" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Decina Occhio di Gatto Bianco</div>
+          <div class="product-desc">Occhio di gatto bianco sfaccettato 8 mm, pater rosa rossa in resina, crociera Madonna Miracolosa ovale e Croce Trinit&agrave; in zama</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 26 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Decina Onice Satinato" data-price="59">
         <div class="product-img">
           <div class="product-tag">Bestseller</div>
-          <img src="images/26.jpeg" alt="Decina Alba · Rosa Rossa" loading="lazy">
+          <img src="images/26.jpeg" alt="Decina Onice Satinato" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Alba · Rosa Rossa</div>
-          <div class="product-desc">Decina in pietra di luna bianca con medaglia Miracolosa dorata, rosa rossa e crocifisso in oro</div>
+          <div class="product-name">Decina Onice Satinato</div>
+          <div class="product-desc">Onice satinato liscio 8 mm, pater rose rosse in resina, crociera Madonna Miracolosa ovale e Croce del Perdono in zama dorata</div>
           <div class="product-footer">
-            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 59<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Decina Onyx · Rosa Rossa" data-price="62">
-        <div class="product-img">
-          <img src="images/27.jpeg" alt="Decina Onyx · Rosa Rossa" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Decina Onyx · Rosa Rossa</div>
-          <div class="product-desc">Decina in onice nero opaco con medaglia Miracolosa dorata, rosa rossa e crocifisso barocco in oro</div>
-          <div class="product-footer">
-            <div class="product-price">€ 62<span class="cents">,00</span></div>
-            <button class="product-btn add-cart">Aggiungi</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product reveal delay-2" data-category="rosary" data-name="Decina Spiritus" data-price="65">
+      <!-- 27 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Blu &middot; Spiritus" data-price="62">
         <div class="product-img">
           <div class="product-tag">Edizione Limitata</div>
-          <img src="images/28.jpeg" alt="Decina Spiritus" loading="lazy">
+          <img src="images/27.jpeg" alt="Decina Blu Spiritus" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Spiritus</div>
-          <div class="product-desc">Decina in lapislazzuli blu scuro, medaglia dello Spirito Santo e crocifisso della Passione in argento</div>
+          <div class="product-name">Decina Blu &middot; Spiritus</div>
+          <div class="product-desc">Pietre sintetiche blu lisce 8 mm, pater pietra sintetica blu 10 mm, crociera Spirito Santo e Croce del Buon Pastore</div>
           <div class="product-footer">
-            <div class="product-price">€ 65<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 62<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Cherubino" data-price="59">
+      <!-- 28 -->
+      <article class="product reveal" data-category="decina" data-name="Decina Giada Bordeaux" data-price="59">
         <div class="product-img">
-          <img src="images/29.jpeg" alt="Decina Cherubino" loading="lazy">
+          <img src="images/28.jpeg" alt="Decina Giada Bordeaux" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Cherubino</div>
-          <div class="product-desc">Decina in agata rossa ciliegia con medaglia sacra dorata e pendente angelo cherubino in oro</div>
+          <div class="product-name">Decina Giada Bordeaux</div>
+          <div class="product-desc">Giada bordeaux 8 mm, crociera Salus Populi Romani e Angelo in zama dorata</div>
           <div class="product-footer">
-            <div class="product-price">€ 59<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 59<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Trittico Rosa — Set di 3" data-price="149">
-        <div class="product-img">
-          <div class="product-tag">Edizione Limitata</div>
-          <img src="images/30.jpeg" alt="Trittico Rosa — Set di 3" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Trittico Rosa — Set di 3</div>
-          <div class="product-desc">Tre decine del rosario (quarzo rosa, onice nero, pietra di luna) con rose rosse e crocifissi</div>
-          <div class="product-footer">
-            <div class="product-price">€ 149<span class="cents">,00</span></div>
-            <button class="product-btn add-cart">Aggiungi</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product reveal delay-2" data-category="rosary" data-name="Quintetto Sacro — Set di 5" data-price="229">
+      <!-- 29 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Duo Madreperla e Onice" data-price="89">
         <div class="product-img">
           <div class="product-tag">Esclusivo</div>
-          <img src="images/31.jpeg" alt="Quintetto Sacro — Set di 5" loading="lazy">
+          <img src="images/29.jpeg" alt="Duo Madreperla e Onice" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Quintetto Sacro — Set di 5</div>
-          <div class="product-desc">Cinque decine in colori diversi (verde, corallo, giallo, nero, azzurro) con medaglie e crocifissi</div>
+          <div class="product-name">Duo Madreperla e Onice</div>
+          <div class="product-desc">Madreperla bianca liscia 6 mm con croce in madreperla bianca realizzata a mano, crociera in zama dorata; onice liscio 6 mm con croce in madreperla bianca, crociera in zama argentata</div>
           <div class="product-footer">
-            <div class="product-price">€ 229<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 89<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal" data-category="rosary" data-name="Decina Carlo Acutis" data-price="55">
+      <!-- 30 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Agata Arancione" data-price="52">
         <div class="product-img">
-          <img src="images/32.jpeg" alt="Decina Carlo Acutis" loading="lazy">
+          <img src="images/30.jpeg" alt="Decina Agata Arancione" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Decina Carlo Acutis</div>
-          <div class="product-desc">Decina in madreperla bianca con medaglia ritratto, rosa rossa e crocifisso in argento</div>
+          <div class="product-name">Decina Agata Arancione</div>
+          <div class="product-desc">Agata brasiliana arancione sfaccettata 8 mm, crociera Madonna Miracolosa ovale e Croce in zama dorata</div>
           <div class="product-footer">
-            <div class="product-price">€ 55<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 52<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
       </article>
 
-      <article class="product reveal delay-1" data-category="rosary" data-name="Duo Bianco e Nero" data-price="99">
+      <!-- 31 -->
+      <article class="product reveal" data-category="decina" data-name="Decina Agata Fucsia" data-price="52">
+        <div class="product-img">
+          <img src="images/31.jpeg" alt="Decina Agata Fucsia" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Decina Agata Fucsia</div>
+          <div class="product-desc">Agata brasiliana fucsia sfaccettata 8 mm, crociera Madonna Miracolosa ovale e Croce in zama dorata</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 52<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 32 -->
+      <article class="product reveal delay-1" data-category="decina" data-name="Decina Angelica Maiorca Rossa" data-price="55">
+        <div class="product-img">
+          <img src="images/32.jpeg" alt="Decina Angelica Maiorca Rossa" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Decina Angelica Maiorca Rossa</div>
+          <div class="product-desc">Maiorca rossa liscia 8 mm, crociera Madonna Miracolosa e San Michele Arcangelo</div>
+          <div class="product-footer">
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
+            <button class="product-btn add-cart">Aggiungi</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 33 -->
+      <article class="product reveal delay-2" data-category="decina" data-name="Decina Angelica Celeste" data-price="55">
         <div class="product-img">
           <div class="product-tag">Nuovo</div>
-          <img src="images/33.jpeg" alt="Duo Bianco e Nero" loading="lazy">
+          <img src="images/33.jpeg" alt="Decina Angelica Celeste" loading="lazy">
         </div>
         <div class="product-info">
-          <div class="product-name">Duo Bianco e Nero</div>
-          <div class="product-desc">Due decine del rosario (bianca e nera) con croci in madreperla e roselline</div>
+          <div class="product-name">Decina Angelica Celeste</div>
+          <div class="product-desc">Occhio di gatto celeste sfaccettato 8 mm, crociera Madonna Miracolosa e San Michele Arcangelo</div>
           <div class="product-footer">
-            <div class="product-price">€ 99<span class="cents">,00</span></div>
+            <div class="product-price">&euro; 55<span class="cents">,00</span></div>
             <button class="product-btn add-cart">Aggiungi</button>
           </div>
         </div>
@@ -911,26 +980,26 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 </section>
 
 <section class="band">
-  <p class="eyebrow reveal">✦ MEMENTO VIVERE ✦</p>
-  <h2 class="band-quote reveal delay-1"><em>"Cogli l'attimo,<br>custodisci il sacro."</em></h2>
-  <div class="band-attr reveal delay-2">— MILO · FONDATRICE</div>
+  <p class="eyebrow reveal">&#10022; MEMENTO VIVERE &#10022;</p>
+  <h2 class="band-quote reveal delay-1"><em>&ldquo;Cogli l'attimo,<br>custodisci il sacro.&rdquo;</em></h2>
+  <div class="band-attr reveal delay-2">&mdash; MILO &middot; FONDATRICE</div>
 </section>
 
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="gallery-head">
-      <div class="section-number reveal"><span>IV · GALLERIA</span></div>
+      <div class="section-number reveal"><span>IV &middot; GALLERIA</span></div>
       <h2 class="section-title reveal delay-1">Sguardi sull'<em>Opera</em></h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item g-1 reveal"><img src="images/30.jpeg" alt="" loading="lazy"><div class="gallery-caption">Trittico Rosa</div></div>
-      <div class="gallery-item g-2 reveal delay-1"><img src="images/6.jpeg" alt="" loading="lazy"><div class="gallery-caption">Crux Rubra · Dettaglio</div></div>
-      <div class="gallery-item g-3 reveal delay-2"><img src="images/26.jpeg" alt="" loading="lazy"><div class="gallery-caption">Decina Alba</div></div>
-      <div class="gallery-item g-4 reveal"><img src="images/13.jpeg" alt="" loading="lazy"><div class="gallery-caption">Terrae · Madreperla</div></div>
-      <div class="gallery-item g-5 reveal delay-1"><img src="images/15.jpeg" alt="" loading="lazy"><div class="gallery-caption">San Michele</div></div>
-      <div class="gallery-item g-6 reveal delay-2"><img src="images/23.jpeg" alt="" loading="lazy"><div class="gallery-caption">Guadalupe</div></div>
-      <div class="gallery-item g-7 reveal"><img src="images/31.jpeg" alt="" loading="lazy"><div class="gallery-caption">Quintetto Sacro</div></div>
-      <div class="gallery-item g-8 reveal delay-1"><img src="images/5.jpeg" alt="" loading="lazy"><div class="gallery-caption">Collezione</div></div>
+      <div class="gallery-item g-1 reveal"><img src="images/3.jpeg" alt="" loading="lazy"><div class="gallery-caption">Cream Rose Pearl</div></div>
+      <div class="gallery-item g-2 reveal delay-1"><img src="images/6.jpeg" alt="" loading="lazy"><div class="gallery-caption">Madreperla Cappuccino</div></div>
+      <div class="gallery-item g-3 reveal delay-2"><img src="images/26.jpeg" alt="" loading="lazy"><div class="gallery-caption">Onice Satinato</div></div>
+      <div class="gallery-item g-4 reveal"><img src="images/13.jpeg" alt="" loading="lazy"><div class="gallery-caption">Decine Colorate</div></div>
+      <div class="gallery-item g-5 reveal delay-1"><img src="images/15.jpeg" alt="" loading="lazy"><div class="gallery-caption">Carlo Acutis</div></div>
+      <div class="gallery-item g-6 reveal delay-2"><img src="images/22.jpeg" alt="" loading="lazy"><div class="gallery-caption">Guadalupe</div></div>
+      <div class="gallery-item g-7 reveal"><img src="images/29.jpeg" alt="" loading="lazy"><div class="gallery-caption">Duo Madreperla e Onice</div></div>
+      <div class="gallery-item g-8 reveal delay-1"><img src="images/5.jpeg" alt="" loading="lazy"><div class="gallery-caption">Rosario Blu</div></div>
     </div>
   </div>
 </section>
@@ -939,9 +1008,9 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="section-number reveal"><span>V · CONTATTI</span></div>
+        <div class="section-number reveal"><span>V &middot; CONTATTI</span></div>
         <h2 class="section-title reveal delay-1">Resta in<br><em>Contatto</em></h2>
-        <p class="contact-lead reveal delay-2">Per commissioni su misura, collaborazioni o semplicemente per dirci quello che pensi — ogni messaggio è accolto con cura.</p>
+        <p class="contact-lead reveal delay-2">Per commissioni su misura, collaborazioni o semplicemente per dirci quello che pensi &mdash; ogni messaggio &egrave; accolto con cura.</p>
         <ul class="contact-list reveal delay-3">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -961,7 +1030,7 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-7.58-8-13a8 8 0 1116 0c0 5.42-8 13-8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
             <span class="lbl">ATELIER</span>
-            <span>Roma · Italia</span>
+            <span>Roma &middot; Italia</span>
           </li>
         </ul>
       </div>
@@ -981,14 +1050,14 @@ footer .f-sub{font-family:'Cormorant Garamond', serif;font-style:italic;font-siz
 <footer>
   <img class="footer-logo" src="logo.JPG" alt="Carpe Diem">
   <div class="f-brand">CARPE DIEM</div>
-  <div class="f-sub">Artigianato SRL · L'arte sacra da indossare</div>
+  <div class="f-sub">Artigianato SRL &middot; L'arte sacra da indossare</div>
   <div class="socials">
     <a href="https://instagram.com/milo.bijoux" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
     <a href="https://tiktok.com/@milo.bijoux" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.7a8.16 8.16 0 004.77 1.52V6.69z"/></svg></a>
     <a href="mailto:Carpediemartigianatosrl@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8L10.89 13.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
   </div>
-  <div class="f-meta">ROMA · MMXXVI · TUTTI I DIRITTI RISERVATI</div>
-  <div class="f-legal">Carpe Diem Artigianato SRL · P.IVA IT00000000000 · Privacy · Termini · Cookie</div>
+  <div class="f-meta">ROMA &middot; MMXXVI &middot; TUTTI I DIRITTI RISERVATI</div>
+  <div class="f-legal">Carpe Diem Artigianato SRL &middot; P.IVA IT00000000000 &middot; Privacy &middot; Termini &middot; Cookie</div>
 </footer>
 
 <script>
@@ -1056,9 +1125,9 @@ function closeCart(){cartDrawer.classList.remove('open');cartOverlay.classList.r
 cartBtn.addEventListener('click',openCart);cartClose.addEventListener('click',closeCart);cartOverlay.addEventListener('click',closeCart);
 function renderCart(){
   cartCountEl.textContent=cart.length;
-  if(!cart.length){cartItemsEl.innerHTML='<div class="cart-empty">Il tuo reliquiario è vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>';cartTotalEl.textContent='€ 0,00';return}
-  cartItemsEl.innerHTML=cart.map((item,i)=>'<div class="cart-item"><img src="'+item.img+'" alt="'+item.name+'"><div class="cart-item-info"><div class="cart-item-name">'+item.name+'</div><div class="cart-item-price">€ '+item.price+',00</div></div><button class="cart-item-remove" data-i="'+i+'">✕</button></div>').join('');
-  cartTotalEl.textContent='€ '+cart.reduce((s,i)=>s+i.price,0)+',00';
+  if(!cart.length){cartItemsEl.innerHTML='<div class="cart-empty">Il tuo reliquiario &egrave; vuoto.<br><span style="font-size:.8em;opacity:.7">Aggiungi un pezzo per iniziare</span></div>';cartTotalEl.textContent='\u20AC 0,00';return}
+  cartItemsEl.innerHTML=cart.map((item,i)=>'<div class="cart-item"><img src="'+item.img+'" alt="'+item.name+'"><div class="cart-item-info"><div class="cart-item-name">'+item.name+'</div><div class="cart-item-price">\u20AC '+item.price+',00</div></div><button class="cart-item-remove" data-i="'+i+'">\u2715</button></div>').join('');
+  cartTotalEl.textContent='\u20AC '+cart.reduce((s,i)=>s+i.price,0)+',00';
   cartItemsEl.querySelectorAll('.cart-item-remove').forEach(b=>{b.addEventListener('click',e=>{cart.splice(+e.target.dataset.i,1);renderCart()})});
 }
 document.addEventListener('click',e=>{
@@ -1066,7 +1135,7 @@ document.addEventListener('click',e=>{
   const p=e.target.closest('.product');
   cart.push({name:p.dataset.name,price:+p.dataset.price,img:p.querySelector('img').src});
   renderCart();
-  e.target.textContent='✓ Aggiunto';e.target.style.background='var(--gold)';e.target.style.color='var(--ink)';
+  e.target.textContent='\u2713 Aggiunto';e.target.style.background='var(--gold)';e.target.style.color='#fff';
   setTimeout(()=>{e.target.textContent='Aggiungi';e.target.style.background='';e.target.style.color=''},1400);
   openCart();
 });
@@ -1075,8 +1144,8 @@ document.addEventListener('click',e=>{
 document.querySelectorAll('.nav-menu a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
 
 /* PARALLAX */
-const starburst=document.querySelector('.hero-logo');
-window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight&&starburst){starburst.style.transform='translateY('+y*.25+'px)';starburst.style.opacity=Math.max(0,1-y/500)}});
+const heroLogo=document.querySelector('.hero-logo');
+window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight&&heroLogo){heroLogo.style.transform='translateY('+y*.25+'px)';heroLogo.style.opacity=Math.max(0,1-y/500)}});
 
 /* LOADING SCREEN */
 window.addEventListener('load', () => {
@@ -1086,7 +1155,6 @@ window.addEventListener('load', () => {
     setTimeout(() => loader.remove(), 800);
   }, 2600);
 });
-
 </script>
 </body>
 </html>
