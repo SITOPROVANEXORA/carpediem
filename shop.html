@@ -59,12 +59,12 @@ a{color:inherit;text-decoration:none}
 /* ── PRODUCTS GRID ── */
 .shop-section{padding:0 50px 100px}
 .container{max-width:1400px;margin:0 auto}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .product{position:relative;background:var(--bg-card);border:1px solid var(--border-light);overflow:hidden;transition:border-color .4s,transform .4s,box-shadow .4s;border-radius:2px}
 .product:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 20px 40px rgba(42,31,20,.1)}
-.product-img{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--bg-soft)}
-.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:brightness(.98) contrast(1.02) saturate(.98)}
-.product:hover .product-img img{transform:scale(1.04)}
+.product-img{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;padding:12px}
+.product-img img{width:100%;height:100%;object-fit:contain;transition:transform .6s ease;filter:brightness(.98) contrast(1.02) saturate(.98)}
+.product:hover .product-img img{transform:scale(1.06)}
 .product-tag{position:absolute;top:12px;left:12px;font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;padding:5px 9px;background:rgba(255,255,255,.9);border:1px solid var(--gold);color:var(--gold-deep);z-index:2;backdrop-filter:blur(4px)}
 .product-info{padding:18px 18px 22px}
 .product-name{font-family:'Cinzel',serif;font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--ink);margin-bottom:5px;line-height:1.3}
@@ -119,14 +119,13 @@ footer .f-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
 .f-meta{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;color:var(--ink-light);opacity:.5}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1200px){.products{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:1024px){
   .nav{padding:16px 24px}
   .shop-section{padding:0 24px 80px}
   .filters{padding:0 24px}
   .floating-contacts{gap:20px;padding:10px 20px;font-size:.78rem}
+  .products{grid-template-columns:repeat(2,1fr);gap:22px}
 }
-@media(max-width:768px){.products{grid-template-columns:repeat(2,1fr);gap:18px}}
 @media(max-width:640px){
   .nav{padding:14px 18px}
   .shop-hero{padding:120px 18px 40px}
