@@ -133,9 +133,9 @@ section{position:relative;padding:120px 50px}
 .gallery-head{text-align:center;margin-bottom:70px}
 .gallery-head .section-number{justify-content:center}
 .gallery-head .section-number::before,.gallery-head .section-number::after{content:"";width:40px;height:1px;background:var(--gold)}
-.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:70px;gap:14px}
-.gallery-item{position:relative;overflow:hidden;border:1px solid var(--border-light);border-radius:2px}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;filter:brightness(.96) saturate(.98)}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:80px;gap:14px}
+.gallery-item{position:relative;overflow:hidden;border:1px solid var(--border-light);border-radius:2px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;padding:10px}
+.gallery-item img{width:100%;height:100%;object-fit:contain;transition:transform .8s ease;filter:brightness(.96) saturate(.98)}
 .gallery-item:hover img{transform:scale(1.06);filter:brightness(1.02)}
 .gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(42,31,20,.5) 100%);opacity:0;transition:opacity .4s}
 .gallery-item:hover::after{opacity:1}
@@ -207,7 +207,7 @@ footer .f-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
   .steps{grid-template-columns:repeat(2,1fr)}
   .steps::before{display:none}
   .contact-grid{grid-template-columns:1fr;gap:40px}
-  .gallery-grid{grid-auto-rows:55px}
+  .gallery-grid{grid-auto-rows:65px}
   .hero-corner-i,.hero-corner-ii{display:none}
   .sacred-frame{top:70px;left:18px;right:18px;bottom:24px}
   .floating-contacts{gap:20px;padding:10px 20px;font-size:.78rem}
@@ -217,15 +217,15 @@ footer .f-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
   .hero-brand{font-size:2.2rem;letter-spacing:.2em}
   .nav{padding:14px 18px}
   .steps{grid-template-columns:1fr;gap:30px}
-  .gallery-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:50px}
-  .g-1{grid-column:span 6;grid-row:span 4}
-  .g-2{grid-column:span 3;grid-row:span 3}
-  .g-3{grid-column:span 3;grid-row:span 3}
-  .g-4{grid-column:span 6;grid-row:span 3}
+  .gallery-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:60px}
+  .g-1{grid-column:span 6;grid-row:span 5}
+  .g-2{grid-column:span 3;grid-row:span 4}
+  .g-3{grid-column:span 3;grid-row:span 4}
+  .g-4{grid-column:span 6;grid-row:span 4}
   .g-5{grid-column:span 3;grid-row:span 3}
   .g-6{grid-column:span 3;grid-row:span 3}
-  .g-7{grid-column:span 6;grid-row:span 3}
-  .g-8{grid-column:span 6;grid-row:span 3}
+  .g-7{grid-column:span 6;grid-row:span 4}
+  .g-8{grid-column:span 6;grid-row:span 4}
   .philosophy-quote{font-size:1.5rem}
   .floating-contacts{gap:12px;padding:8px 14px;font-size:.72rem;flex-wrap:wrap;justify-content:center}
   .floating-contacts .sep{display:none}
